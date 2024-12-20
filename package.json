@@ -77,7 +77,6 @@
     "node": ">=20.0.0"
   },
   "resolutions": {
-    "ethers": "5.7.2",
-    "@wormhole-foundation/sdk-icons": "https://github.com/friendlysxw/wormhole-sdk-ts/raw/temp-pkgs/core/icons/wormhole-foundation-sdk-icons-1.0.3.tgz"
+    "ethers": "5.7.2"
   }
 }
