@@ -1,3 +1,4 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -14,7 +15,13 @@ import { shareToWarpcast } from "@/lib/sharing/warpcast";
 import { shareToWhatsApp } from "@/lib/sharing/whatsapp";
 import { Copy, Share2 } from "lucide-react";
 
-export function SharePageButton({ className }: { className?: string }) {
+export function SharePageButton({
+  className,
+  link,
+}: {
+  className?: string;
+  link?: string;
+}) {
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -26,7 +33,7 @@ export function SharePageButton({ className }: { className?: string }) {
         <DialogHeader>
           <DialogTitle>Share</DialogTitle>
         </DialogHeader>
-        <ShareLinkContent link={window.location.href} />
+        <ShareLinkContent link={link || window.location.href} />
       </DialogContent>
     </Dialog>
   );
