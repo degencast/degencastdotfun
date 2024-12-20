@@ -1,9 +1,14 @@
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 
-export default function BgGifs() {
+export default function BgGifs({ className }: { className?: string }) {
   return (
-    <div className="w-screen h-screen fixed top-0 left-0 -z-10 overflow-hidden mt-[80px] max-sm:mt-[70px]">
+    <div
+      className={cn(
+        "w-screen h-screen fixed top-0 left-0 -z-10 overflow-hidden mt-[80px] max-sm:mt-[70px]",
+        className
+      )}
+    >
       <div className="min-w-screen min-h-screen flex flex-col justify-between gap-14 ">
         {Array.from({ length: 10 }).map((_, rowIndex) => (
           <div
