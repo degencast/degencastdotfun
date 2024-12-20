@@ -76,6 +76,22 @@ export default function LandingPageHome() {
         <SectionTitle>🗺️ Roadmap 🗺️</SectionTitle>
         <Roadmap />
       </section>
+      <section className=" " id="castdao">
+        <SectionTitle>🐱 CAST DAO 🐱</SectionTitle>
+        <div className="text-[36px] font-normal text-white leading-[120%] max-md:text-[24px]">
+          CAST DAO declares that the Token it issues is not intended for use in
+          jurisdictions where its offering is unlawful, including but not
+          limited to the United States, Canada, Japan, Hong Kong, South Africa,
+          and Brazil. The Token is not registered with the SEC under the US
+          Securities Act of 1933 or listed on any US securities exchange.
+          <br />
+          <br />
+          CAST DAO has taken no action to facilitate a market for the Token in
+          the United States. The Token may not be offered, sold, or transferred
+          in the US unless exempt from or not subject to registration under the
+          Securities Act and complies with applicable US securities laws.
+        </div>
+      </section>
       <section className=" mt-[128px] max-md:hidden">
         <Footer />
       </section>

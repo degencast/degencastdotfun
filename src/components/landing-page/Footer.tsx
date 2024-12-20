@@ -1,3 +1,4 @@
+"use client";
 import {
   PARAGRAPH_LINK,
   TG_LINK,
@@ -6,10 +7,15 @@ import {
 } from "@/constants/landing-page";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function Footer() {
+  const [windowObj, setWindowObj] = useState<Window & typeof globalThis>();
+  useEffect(() => {
+    setWindowObj(window);
+  }, []);
   return (
-    <div className="w-full h-14 py-3 justify-between items-center inline-flex">
+    <div className="w-full h-14 py-3 justify-between items-center flex">
       <div className="justify-start items-center gap-6 flex">
         {/* <Link
           className="justify-start items-center gap-2 flex"
@@ -35,6 +41,9 @@ export default function Footer() {
           </div>
           <span className="text-white text-2xl font-normal">X</span>
         </Link>
+
+        <Line />
+
         <Link
           className="justify-start items-center gap-2 flex"
           href={WARPCAST_LINK}
@@ -49,6 +58,9 @@ export default function Footer() {
           </div>
           <span className="text-white text-2xl font-normal">Warpcast</span>
         </Link>
+
+        <Line />
+
         <Link
           className="justify-start items-center gap-2 flex"
           href={PARAGRAPH_LINK}
@@ -59,14 +71,38 @@ export default function Footer() {
           </div>
           <span className="text-white text-2xl font-normal">Paragraph</span>
         </Link>
+
+        <Line />
+
+        <Link
+          className="justify-start items-center gap-2 flex"
+          href={`${windowObj && windowObj.location.origin}/pdf/test.pdf`}
+          target="_blank"
+        >
+          <span className="text-white text-2xl font-normal">
+            Terms of Service
+          </span>
+        </Link>
+
+        <Line />
+
+        <Link
+          className="justify-start items-center gap-2 flex"
+          href={`${windowObj && windowObj.location.origin}/pdf/test.pdf`}
+          target="_blank"
+        >
+          <span className="text-white text-2xl font-normal">
+            Privact Policy
+          </span>
+        </Link>
       </div>
       <div className="text-white text-2xl font-normal">
-        Powered by{" "}
-        <Link href={"https://degencast.fun"} target="_blank">
-          <span>degencast.fun</span>
-        </Link>{" "}
-        —— Your Gateway to Web3 Freedom.
+        Powered by degencast.ai
       </div>
     </div>
   );
+}
+
+function Line() {
+  return <div className="w-[2px] h-[24px] bg-white rounded-full"></div>;
 }
