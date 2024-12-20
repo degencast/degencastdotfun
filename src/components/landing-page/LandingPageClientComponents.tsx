@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { ChevronLeft } from "lucide-react";
@@ -8,12 +8,17 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { NavMenu } from "./NavMenu";
-import { SharePageButton } from "../Share";
+import dynamic from "next/dynamic";
+const SharePageButton = dynamic(
+  () => import("../Share").then((mod) => mod.SharePageButton),
+  { ssr: false }
+);
 
 export function DefaultHeader() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const isBuyPage = pathname === "/buy";
+
   return (
     <>
       {" "}
