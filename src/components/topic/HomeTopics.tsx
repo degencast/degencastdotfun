@@ -30,13 +30,13 @@ export default function HomeTopics() {
       <CardContent className="w-full flex-col gap-6 flex">
         <div className="w-full justify-between items-end flex">
           <div className="  flex items-center gap-6">
-            <span className="text-3xl font-bold text-primary max-sm:text-base">
+            <span className="text-3xl font-bold text-primary max-md:text-base">
               🔥Hot Topic
             </span>
             <Loading className="w-52 h-14" />
           </div>
           <Link
-            className=" text-2xl font-bold text-primary max-sm:text-xs"
+            className=" text-2xl font-bold text-primary max-md:text-xs"
             href={"/topics"}
           >
             View all
@@ -132,7 +132,7 @@ export function HomeTopicItem({
   const { topic, memes } = data;
   return (
     <div className="w-full">
-      <div className="w-full grid grid-cols-2 gap-4 max-sm:grid-cols-1">
+      <div className="w-full grid grid-cols-2 gap-4 max-md:grid-cols-1">
         {/* Left box - 50% width */}
         <div className="aspect-square">
           <TopicCard topic={topic} />
@@ -142,7 +142,7 @@ export function HomeTopicItem({
         <div
           className={cn(
             "w-full grid grid-cols-2 gap-4",
-            memes.length <= 2 ? "max-sm:grid-rows-1" : ""
+            memes.length <= 2 ? "max-md:grid-rows-1" : ""
           )}
         >
           {memes.map((item, idx) => {
@@ -177,14 +177,14 @@ function MemeCard({ meme, className }: { meme: MemeData; className?: string }) {
           />
           <div className="absolute top-0 w-full bg-gradient-to-b from-black/80 to-transparent">
             <div className="p-6 ">
-              <span className="text-2xl text-primary max-sm:text-base">
+              <span className="text-2xl text-primary max-md:text-base">
                 {meme.name}
               </span>
             </div>
           </div>
           {/* <div className="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent">
             <div className="p-6 flex justify-between items-end">
-              <span className="text-2xl text-secondary max-sm:text-base">
+              <span className="text-2xl text-secondary max-md:text-base">
                 {new Intl.NumberFormat("en-US", {
                   style: "currency",
                   currency: "USD",

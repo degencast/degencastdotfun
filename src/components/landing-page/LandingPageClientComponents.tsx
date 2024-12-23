@@ -53,7 +53,7 @@ export function DefaultHeader() {
             </>
           )}
           {isBuyPage && (
-            <div className="ml-auto hidden max-sm:block">
+            <div className="ml-auto hidden max-md:block">
               <SharePageButton />
             </div>
           )}

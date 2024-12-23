@@ -5,7 +5,7 @@ export default function BgGifs({ className }: { className?: string }) {
   return (
     <div
       className={cn(
-        "w-screen h-screen fixed top-0 left-0 -z-10 overflow-hidden mt-[80px] max-sm:mt-[70px]",
+        "w-screen h-screen fixed top-0 left-0 -z-10 overflow-hidden mt-[80px] max-md:mt-[70px]",
         className
       )}
     >
@@ -20,23 +20,21 @@ export default function BgGifs({ className }: { className?: string }) {
           >
             {Array.from({ length: rowIndex % 2 === 0 ? 5 : 6 }).map(
               (_, colIndex) => (
-                <div key={colIndex} className="w-[140px] h-[140px]">
+                <div
+                  key={colIndex}
+                  className={cn(
+                    "w-[140px] h-[140px] relative max-md:w-[60px] max-md:h-[60px]",
+                    colIndex < 2 && "max-md:hidden"
+                  )}
+                >
                   {rowIndex % 2 === 0 ? (
                     <Image
                       src="/images/Vitalik-unscreen.gif"
                       alt="Vitalik"
-                      width={140}
-                      height={140}
-                      unoptimized
+                      fill
                     />
                   ) : (
-                    <Image
-                      src="/images/Toly-unscreen.gif"
-                      alt="Toly"
-                      width={140}
-                      height={140}
-                      unoptimized
-                    />
+                    <Image src="/images/Toly-unscreen.gif" alt="Toly" fill />
                   )}
                 </div>
               )
@@ -45,5 +43,16 @@ export default function BgGifs({ className }: { className?: string }) {
         ))}
       </div>
     </div>
+  );
+}
+
+export function BgGifsMask({ className }: { className?: string }) {
+  return (
+    <div
+      className={cn(
+        "w-screen h-screen fixed top-0 left-0 -z-[5] overflow-hidden mt-[80px] max-md:mt-[70px] bg-white/40",
+        className
+      )}
+    ></div>
   );
 }

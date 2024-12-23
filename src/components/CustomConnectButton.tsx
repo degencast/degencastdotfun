@@ -133,7 +133,7 @@ export const CustomConnectButton = (props: ConnectButtonProps) => {
                         {account.displayName}
 
                         {account.displayBalance ? (
-                          <span className="max-sm:hidden">
+                          <span className="max-md:hidden">
                             ({account.displayBalance})
                           </span>
                         ) : (

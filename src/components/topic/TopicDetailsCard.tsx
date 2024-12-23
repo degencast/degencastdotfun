@@ -14,26 +14,26 @@ export default function TopicDetailsCard({
 }) {
   return (
     <Card className={cn("w-full h-full", className)}>
-      <CardContent className="w-full h-full flex gap-3  max-sm:flex-col">
+      <CardContent className="w-full h-full flex gap-3  max-md:flex-col">
         <img
           src={topic.image}
-          className="aspect-square w-[30%] max-sm:w-full rounded-2xl object-cover"
+          className="aspect-square w-[30%] max-md:w-full rounded-2xl object-cover"
           loading="lazy"
           alt={topic.name}
         />
-        <div className="flex-1 flex flex-col gap-6 max-sm:w-full max-sm:gap-3">
+        <div className="flex-1 flex flex-col gap-6 max-md:w-full max-md:gap-3">
           <div className="flex justify-between items-center">
-            <span className="text-3xl font-bold text-foreground max-sm:text-xl">
+            <span className="text-3xl font-bold text-foreground max-md:text-xl">
               #{topic.name}
             </span>
             <Badge
               variant={"secondary"}
-              className="text-2xl font-bold max-sm:text-base"
+              className="text-2xl font-bold max-md:text-base"
             >
               {topic.stats?.memesAmount} memes
             </Badge>
           </div>
-          <span className="text-2xl font-normal text-card-foreground max-sm:text-base">
+          <span className="text-2xl font-normal text-card-foreground max-md:text-base">
             {topic.description}
           </span>
           <div className="mt-auto">

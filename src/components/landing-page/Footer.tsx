@@ -78,7 +78,7 @@ export default function Footer() {
           className="justify-start items-center gap-2 flex"
           href={`${
             windowObj && windowObj.location.origin
-          }/pdf/CAST_DAO_TERM_OF_SERVICE.pdf`}
+          }/pdf/TERMS_OF_SERVICE_OF_DEGENCAST.pdf`}
           target="_blank"
         >
           <span className="text-white text-2xl font-normal">
@@ -92,7 +92,7 @@ export default function Footer() {
           className="justify-start items-center gap-2 flex"
           href={`${
             windowObj && windowObj.location.origin
-          }/pdf/CAST_DAO_PRIVACY_POLICY.pdf`}
+          }/pdf/PRIVACY_POLICY_OF_DEGENCAST.pdf`}
           target="_blank"
         >
           <span className="text-white text-2xl font-normal">

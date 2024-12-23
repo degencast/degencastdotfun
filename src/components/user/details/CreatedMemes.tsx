@@ -49,7 +49,7 @@ export default function CreatedMemes({ address }: { address: string }) {
       })}
       {loading ? (
         <div className="w-full flex justify-center items-start">
-          <Loading className="w-[30%] h-20 max-sm:w-[60%]" />
+          <Loading className="w-[30%] h-20 max-md:w-[60%]" />
         </div>
       ) : null}
     </div>

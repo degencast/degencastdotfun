@@ -38,11 +38,11 @@ export default function Share2EarnDialogButton() {
           Share2Earn
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[816px] gap-8 max-sm:h-screen flex flex-col">
+      <DialogContent className="sm:max-w-[816px] gap-8 max-md:h-screen flex flex-col">
         <DialogHeader>
           <DialogTitle>Share2Earn</DialogTitle>
         </DialogHeader>
-        <div className="flex-col justify-start items-start gap-8 inline-flex max-sm:flex-1 max-sm:overflow-y-auto">
+        <div className="flex-col justify-start items-start gap-8 inline-flex max-md:flex-1 max-md:overflow-y-auto">
           <GuideText
             guides={[
               {

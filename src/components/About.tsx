@@ -15,7 +15,7 @@ export default function AboutDialogButton() {
       <DialogTrigger asChild>
         <CircleHelp className="fill-primary-foreground stroke-primary size-16 -mx-2 cursor-pointer hover:scale-105 transition-transform" />
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[816px] max-h-[90vh] gap-8 max-sm:h-screen flex flex-col">
+      <DialogContent className="sm:max-w-[816px] max-h-[90vh] gap-8 max-md:h-screen flex flex-col">
         <DialogHeader>
           <DialogTitle>How degencast.fun works?</DialogTitle>
         </DialogHeader>

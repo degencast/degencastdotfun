@@ -34,8 +34,8 @@ export default function HomeMemes() {
     <Card className="w-full">
       <CardContent className="w-full flex-col gap-3 flex p-3">
         <div className="w-full justify-between items-center flex">
-          <div className="flex-1  flex items-center gap-6 max-sm:gap-3 justify-between">
-            <span className="text-2xl font-bold text-primary max-sm:text-2xl">
+          <div className="flex-1  flex items-center gap-6 max-md:gap-3 justify-between">
+            <span className="text-2xl font-bold text-primary max-md:text-2xl">
               🔥Top Volume
             </span>
             <Select
