@@ -50,7 +50,7 @@ function MemeInfo({ meme }: { meme: MemeData }) {
       <div className="flex-1">
         <span className="text-primary text-xl font-bold">{meme.name}</span>
         <br />
-        <span className="font-normal text-base max-sm:text-xs">
+        <span className="font-normal text-base max-md:text-xs">
           {meme.description}
         </span>
       </div>

@@ -21,8 +21,8 @@ export default function Home() {
       <div className="w-full">
         <div className="w-full flex gap-4 relative">
           <Tabs defaultValue={SortBy.trending} className="flex-1">
-            <TabsList className="w-full mb-6 max-sm:mb-3">
-              <div className="flex-1 flex flex-row items-center overflow-x-auto gap-6 max-sm:gap-2">
+            <TabsList className="w-full mb-6 max-md:mb-3">
+              <div className="flex-1 flex flex-row items-center overflow-x-auto gap-6 max-md:gap-2">
                 {tabs.map((tab) => (
                   <TabsTrigger value={tab.value} key={tab.value}>
                     {tab.name}
@@ -45,7 +45,7 @@ export default function Home() {
       </div>
       <div
         className={cn(
-          "w-screen  max-w-screen-2xl p-6 max-sm:p-3 fixed left-1/2 -translate-x-1/2 bottom-0 h-0 py-0 box-border"
+          "w-screen  max-w-screen-2xl p-6 max-md:p-3 fixed left-1/2 -translate-x-1/2 bottom-0 h-0 py-0 box-border"
         )}
       >
         <div className=" absolute bottom-[100px] right-[40px]">

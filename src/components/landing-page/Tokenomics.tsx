@@ -12,7 +12,7 @@ export default function Tokenomics() {
   };
   return (
     <div className="w-full">
-      <div className="text-center text-2xl font-normal text-white leading-[140%]">
+      <div className="text-center text-2xl font-normal leading-[140%]">
         {tokenomics.community}% of the supply is allocated to the community. An
         additional {tokenomics.liquidityReserve}% was used to establish the
         initial liquidity pool, while another {tokenomics.teamEcosystemSupport}%
@@ -30,7 +30,7 @@ export default function Tokenomics() {
       >
         <div
           className={cn(
-            "flex-1 border-4 p-12 border-primary bg-white rounded-lg",
+            "flex-1 border-4 p-12 border-primary bg-white rounded-[30px]",
 
             "flex-col justify-start items-start gap-8 flex text-2xl",
             "max-md:p-4 max-md:w-fit max-md:gap-4 max-md:text-xs"

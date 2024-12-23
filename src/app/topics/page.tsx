@@ -27,8 +27,8 @@ export default function Topics() {
   return (
     <div className="w-full">
       <Tabs defaultValue={SortBy.trending} className="w-full">
-        <TabsList className="w-full mb-6 max-sm:mb-3">
-          <div className="flex-1 flex flex-row items-center overflow-x-auto gap-6 max-sm:gap-2">
+        <TabsList className="w-full mb-6 max-md:mb-3">
+          <div className="flex-1 flex flex-row items-center overflow-x-auto gap-6 max-md:gap-2">
             {tabs.map((tab) => (
               <TabsTrigger value={tab.value} key={tab.value}>
                 {tab.name}
@@ -38,7 +38,7 @@ export default function Topics() {
           {/* <SearchInput
             placeholder="Search topic..."
             disabled
-            className="w-[260px] max-sm:hidden"
+            className="w-[260px] max-md:hidden"
           /> */}
         </TabsList>
 

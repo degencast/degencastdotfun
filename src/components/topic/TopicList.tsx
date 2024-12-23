@@ -44,7 +44,7 @@ export default function TopicList({ sortBy }: { sortBy: TopicSortBy }) {
             ref={idx === items.length - 1 ? observe : null}
             className="mt-4"
           >
-            <Card className="w-full max-sm:hidden">
+            <Card className="w-full max-md:hidden">
               <CardContent className="w-full">
                 <TopicAndMemes
                   data={{
@@ -56,7 +56,7 @@ export default function TopicList({ sortBy }: { sortBy: TopicSortBy }) {
             </Card>
             <TopicCard
               topic={item}
-              className="aspect-square hidden max-sm:block"
+              className="aspect-square hidden max-md:block"
             />
           </div>
         );
@@ -64,12 +64,12 @@ export default function TopicList({ sortBy }: { sortBy: TopicSortBy }) {
       {loading
         ? Array.from({ length: 4 }).map((_, index) => (
             <div className="w-full mt-4" key={index}>
-              <Card className="w-full max-sm:hidden">
+              <Card className="w-full max-md:hidden">
                 <CardContent className="w-full">
                   <TopicAndMemesSkeleton />
                 </CardContent>
               </Card>
-              <Skeleton className="w-full aspect-square hidden max-sm:block" />
+              <Skeleton className="w-full aspect-square hidden max-md:block" />
             </div>
           ))
         : null}

@@ -48,15 +48,15 @@ function ShareLinkContent({
 }) {
   return (
     <div className="w-full flex flex-col justify-start items-center gap-6">
-      <span className="text-2xl font-normal max-sm:text-base self-start">
+      <span className="text-2xl font-normal max-md:text-base self-start">
         Share the Token with Friends! 🎉
       </span>
-      <span className="text-2xl font-normal max-sm:text-base self-start">
+      <span className="text-2xl font-normal max-md:text-base self-start">
         Let your friends know about this awesome token! Simply copy the link
         below and share it via your favorite platform.
       </span>
 
-      <div className="w-full shrink-0 justify-center items-start flex sm:gap-12 max-sm:justify-evenly">
+      <div className="w-full shrink-0 justify-center items-start flex sm:gap-12 max-md:justify-evenly">
         <ShareItem
           icon="/images/farcaster.png"
           name="Warpcast"
@@ -115,9 +115,9 @@ function ShareItem({
       <img
         src={icon}
         alt={name}
-        className="w-[80px] h-[80px] max-sm:w-[48px] max-sm:h-[48px] rounded-full"
+        className="w-[80px] h-[80px] max-md:w-[48px] max-md:h-[48px] rounded-full"
       />
-      <div className=" text-center text-[#16181d] max-sm:text-xs">{name}</div>
+      <div className=" text-center text-[#16181d] max-md:text-xs">{name}</div>
     </div>
   );
 }
@@ -135,7 +135,7 @@ function CopyLink({ link }: { link: string }) {
       }}
     >
       <div className="w-0 flex-1 ">
-        <span className="line-clamp-1 text-foreground text-xl max-sm:text-xs">
+        <span className="line-clamp-1 text-foreground text-xl max-md:text-xs">
           {link}
         </span>
       </div>

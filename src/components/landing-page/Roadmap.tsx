@@ -118,7 +118,7 @@ export default function Roadmap() {
           className="w-full hidden max-md:block"
         />
       </div>
-      <div className="mt-12 text-[40px] font-normal text-white text-center max-md:text-2xl">
+      <div className="mt-12 text-[40px] font-normal text-primary text-center max-md:text-2xl">
         Cuz 100% according to plan...
       </div>
     </div>

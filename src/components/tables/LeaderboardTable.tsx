@@ -33,7 +33,7 @@ export default function LeaderboardTable({
               <TableHead>Proportion</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody className="text-card-foreground max-sm:text-xs">
+          <TableBody className="text-card-foreground max-md:text-xs">
             {data.map((item, index) => (
               <TableRow
                 key={`${item.user.walletAddress}_${index}`}

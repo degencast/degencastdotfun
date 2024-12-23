@@ -40,7 +40,7 @@ export default function AirdropRules() {
             <motion.button
               onClick={() => setActiveIdx(idx)}
               className={cn(
-                "py-6 px-12 text-left rounded-lg transition-colors border-primary border-4 box-border text-2xl font-bold",
+                "py-6 px-12 text-left rounded-[30px] transition-colors border-primary border-4 box-border text-2xl font-bold",
                 "max-md:p-6",
                 " focus-visible:outline-none focus-visible:ring-2 ",
                 activeIdx === idx ? "bg-primary text-white " : "bg-[#FFFACD]"
@@ -52,7 +52,7 @@ export default function AirdropRules() {
             </motion.button>
 
             {activeIdx === idx && (
-              <div className="border-4 border-primary bg-white rounded-lg overflow-hidden w-full hidden max-md:flex">
+              <div className="border-4 border-primary bg-white rounded-[30px] overflow-hidden w-full hidden max-md:flex">
                 <div className="w-full h-full p-6 box-border flex items-center justify-center text-[20px] font-normal lenading-[140%]">
                   {item.content}
                 </div>
@@ -64,7 +64,7 @@ export default function AirdropRules() {
 
       {/* Content Panel */}
       <motion.div
-        className="flex-1 border-4 border-primary bg-white rounded-lg overflow-hidden max-md:hidden"
+        className="flex-1 border-4 border-primary bg-white rounded-[30px] overflow-hidden max-md:hidden"
         layout
       >
         <AnimatePresence mode="wait">

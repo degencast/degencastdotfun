@@ -36,7 +36,7 @@ const chainOptions = [
       <img
         src="/images/chain/base.png"
         alt="base"
-        className="size-[40px] rounded-full max-sm:size-[16px]"
+        className="size-[40px] rounded-full max-md:size-[16px]"
       />
     ),
   },
@@ -47,7 +47,7 @@ const chainOptions = [
       <img
         src="/images/chain/solana.png"
         alt="solana"
-        className="size-[40px] rounded-full max-sm:size-[16px]"
+        className="size-[40px] rounded-full max-md:size-[16px]"
       />
     ),
   },
@@ -69,7 +69,7 @@ export default function MemeDetails({ addr }: { addr: string }) {
   if (pending || !meme) {
     return (
       <div className="flex justify-center items-start mt-[20%]">
-        <Loading className="w-[30%] h-20 max-sm:w-[60%]" />
+        <Loading className="w-[30%] h-20 max-md:w-[60%]" />
       </div>
     );
   }
@@ -100,8 +100,8 @@ export default function MemeDetails({ addr }: { addr: string }) {
   return (
     <>
       {" "}
-      <div className="w-full flex flex-row gap-6 max-sm:flex-col max-sm:gap-3">
-        <div className="flex-1 flex flex-col justify-start items-start gap-6 max-sm:gap-3">
+      <div className="w-full flex flex-row gap-6 max-md:flex-col max-md:gap-3">
+        <div className="flex-1 flex flex-col justify-start items-start gap-6 max-md:gap-3">
           <div id="info" className="w-full">
             <MemeCard meme={meme} hideSwap noMemeDetailLink />
           </div>
@@ -123,7 +123,7 @@ export default function MemeDetails({ addr }: { addr: string }) {
           </div>
           <MemeTradeChart meme={meme} isSol={isSol} />
 
-          <div className="w-full flex-col gap-6 hidden max-sm:flex max-sm:gap-3">
+          <div className="w-full flex-col gap-6 hidden max-md:flex max-md:gap-3">
             <div id="swap" className="w-full flex flex-col gap-3">
               {tradeActionTab}
             </div>
@@ -132,12 +132,12 @@ export default function MemeDetails({ addr }: { addr: string }) {
             </div>
           </div>
         </div>
-        <div className="w-[400px] flex flex-col gap-6 max-sm:hidden">
+        <div className="w-[400px] flex flex-col gap-6 max-md:hidden">
           {tradeActionTab}
           {memeBaseInfoEl}
         </div>
       </div>
-      <div className="w-full h-[56px] hidden max-sm:block">
+      <div className="w-full h-[56px] hidden max-md:block">
         <div className="w-screen p-3 flex flex-row items-center justify-evenly fixed bottom-0 left-0 bg-primary text-white text-2xl font-bold">
           <PositionLink href="#info" topOffset={80}>
             Info

@@ -44,25 +44,25 @@ export function MemeCard({
   const memeInfo = (
     <div className="flex flex-row gap-3 ">
       {" "}
-      <div className="h-[94px] aspect-square max-sm:h-[70px]">
+      <div className="h-[94px] aspect-square max-md:h-[70px]">
         <Avatar className="w-full h-full object-cover rounded-lg">
           <AvatarImage
             src={meme.image}
             className="hover:scale-105 transition-all"
           />
           <AvatarFallback className="w-full h-full object-cover rounded-lg">
-            <span className="text-3xl font-bold text-secondary max-sm:text-xl">
+            <span className="text-3xl font-bold text-secondary max-md:text-xl">
               {meme.name[0].toUpperCase()}
             </span>
           </AvatarFallback>
         </Avatar>
       </div>
       <div className="flex-1 flex flex-col gap-2">
-        <span className="text-primary text-2xl font-bold line-clamp-1 max-sm:text-base">
+        <span className="text-primary text-2xl font-bold line-clamp-1 max-md:text-base">
           {meme.name} (${meme.symbol})
         </span>
         <div className="flex items-center gap-3">
-          <div className="font-bold text-secondary max-sm:text-xs">
+          <div className="font-bold text-secondary max-md:text-xs">
             Total Market Cap
           </div>
           <div className="text-xs">
@@ -77,7 +77,7 @@ export function MemeCard({
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="font-bold text-secondary  max-sm:text-xs">
+          <div className="font-bold text-secondary  max-md:text-xs">
             Created By
           </div>
           {baseToken.tokenAddress === CAST_TOKEN_ADDRESS ? (
@@ -109,7 +109,7 @@ export function MemeCard({
         </div>
       </div>
       {!hideShare && (
-        <div className="ml-auto max-sm:hidden">
+        <div className="ml-auto max-md:hidden">
           <MemeShareButton meme={meme} />
         </div>
       )}
@@ -134,7 +134,7 @@ export function MemeCard({
           <Separator className="h-1 w-full bg-primary my-3" />
         )}
 
-        <div className="flex flex-row gap-3 max-sm:flex-col">
+        <div className="flex flex-row gap-3 max-md:flex-col">
           {baseToken && (
             <div className="flex-1">
               <MemeInfoOnChain
@@ -161,7 +161,7 @@ export function MemeCard({
           )}
 
           {baseToken && solToken && (
-            <Separator className="h-auto w-1 bg-primary max-sm:w-full max-sm:h-1" />
+            <Separator className="h-auto w-1 bg-primary max-md:w-full max-md:h-1" />
           )}
 
           {solToken && (
@@ -213,8 +213,8 @@ function MemeInfoOnChain({
 }) {
   return (
     <div className="w-full flex flex-col gap-2">
-      <div className="flex items-center gap-3 max-sm:gap-2">
-        <div className="font-bold text-secondary max-sm:text-xs">
+      <div className="flex items-center gap-3 max-md:gap-2">
+        <div className="font-bold text-secondary max-md:text-xs">
           {chainName} Market Cap
         </div>
         <div className="text-xs">
@@ -228,15 +228,15 @@ function MemeInfoOnChain({
         </div>
       </div>
 
-      <div className="flex items-center gap-3 max-sm:gap-2">
-        <div className="font-bold text-secondary max-sm:text-xs">
+      <div className="flex items-center gap-3 max-md:gap-2">
+        <div className="font-bold text-secondary max-md:text-xs">
           {chainName} Address
         </div>
         {/* <span className="text-xs">{shortPubKey(token?.tokenAddress)}</span> */}
         <CopyAddress address={token?.tokenAddress} size="small" />
       </div>
 
-      <div className="flex items-center gap-2 max-sm:gap-1">
+      <div className="flex items-center gap-2 max-md:gap-1">
         <MemeLinkButton label={scanName} href={scanUrl} iconUrl={scanIconUrl} />
         <MemeLinkButton
           label={"Dexscreener"}
@@ -265,7 +265,7 @@ function MemeLinkButton({
     <Link href={href} target={href.startsWith("http") ? "_blank" : ""}>
       <Button
         variant={"secondary"}
-        className="flex flex-row gap-1 items-center px-3 py-1 max-sm:px-1"
+        className="flex flex-row gap-1 items-center px-3 py-1 max-md:px-1"
         onClick={(e) => e.stopPropagation()}
       >
         {icon ? (
@@ -276,7 +276,7 @@ function MemeLinkButton({
             <AvatarFallback className="w-full h-full"></AvatarFallback>
           </Avatar>
         ) : null}
-        <span className="font-normal line-clamp-1 max-sm:text-xs">{label}</span>
+        <span className="font-normal line-clamp-1 max-md:text-xs">{label}</span>
       </Button>
     </Link>
   );

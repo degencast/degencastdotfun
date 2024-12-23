@@ -27,7 +27,7 @@ export default function UserBaseInfo({ address }: { address: string }) {
   const lensProfile = profiles.find((p) => p.platform === "lens");
   return (
     <Card className="w-full">
-      <CardContent className="w-full flex-col justify-start items-start gap-6 flex max-sm:gap-3">
+      <CardContent className="w-full flex-col justify-start items-start gap-6 flex max-md:gap-3">
         <div className="w-full aspect-square">
           <DefaultUserAvatar
             address={address}

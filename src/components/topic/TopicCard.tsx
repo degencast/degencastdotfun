@@ -28,12 +28,12 @@ export default function TopicCard({
           }}
         >
           <div className="flex justify-between items-center gap-4 flex-wrap">
-            <Badge className="text-2xl font-bold max-sm:text-base">
+            <Badge className="text-2xl font-bold max-md:text-base">
               #{topic.name}
             </Badge>
             <Badge
               variant={"secondary"}
-              className="text-2xl font-bold max-sm:text-base"
+              className="text-2xl font-bold max-md:text-base"
             >
               {topic.stats.memesAmount} memes
             </Badge>
