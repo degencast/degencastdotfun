@@ -128,51 +128,19 @@ export default function MemeBridge({
           }
         `}
         </style>
-        <FixIcon>
-          <WormholeConnect
-            config={wormholeConfig}
-            theme={{
-              mode: "light",
-              // input: "",
-              primary: "#FD1E95",
-              secondary: "#03BFFF",
-              // text: "#1E1E1E",
-              // textSecondary: "#1E1E1E",
-              font: "",
-            }}
-          />
-        </FixIcon>
+        <WormholeConnect
+          config={wormholeConfig}
+          theme={{
+            mode: "light",
+            // input: "",
+            primary: "#FD1E95",
+            secondary: "#03BFFF",
+            // text: "#1E1E1E",
+            // textSecondary: "#1E1E1E",
+            font: "",
+          }}
+        />
       </CardContent>
     </Card>
   );
-}
-
-const prefix = "wormhole_sdk_icons";
-function FixIcon({ children }: PropsWithChildren) {
-  const container = useRef(null);
-  const ids = useRef<any>({});
-  useEffect(() => {
-    const addPrefix = async () => {
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      if (!container.current) return;
-
-      const svgElement = container.current as SVGSVGElement;
-
-      const svgs = svgElement.querySelectorAll(
-        ".MuiBadge-badge svg"
-      ) as NodeListOf<SVGSVGElement>;
-
-      svgs.forEach((svg, index) => {
-        const img = document.createElement("img");
-        img.src = `data:image/svg+xml;base64,${btoa(svg.outerHTML)}`;
-        img.width = svg.width.baseVal.value;
-        img.height = svg.height.baseVal.value;
-        img.style.borderRadius = svg.style.borderRadius;
-        svg.replaceWith(img);
-      });
-    };
-    addPrefix();
-  }, []);
-
-  return <div ref={container}>{children}</div>;
 }
