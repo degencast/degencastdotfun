@@ -7790,10 +7790,10 @@
     "@wormhole-foundation/sdk-sui-core" "1.3.0-beta.3"
     "@wormhole-foundation/sdk-sui-tokenbridge" "1.3.0-beta.3"
 
-"@wormhole-foundation/wormhole-connect@^1.1.9":
-  version "1.1.9"
-  resolved "https://registry.yarnpkg.com/@wormhole-foundation/wormhole-connect/-/wormhole-connect-1.1.9.tgz#6b55c8ad0daeccf4a8ca8a045e45518ba393a1bd"
-  integrity sha512-ongVBzoLixU6YtNmgkamt78p1uXMIZeLp5gGJiG9OJjfGRErEknU/dTL2eYmwiLOThkK+yBQNCDP8MgEyCoF4w==
+"@wormhole-foundation/wormhole-connect@npm:@us3r-network/wormhole-connect@latest":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@us3r-network/wormhole-connect/-/wormhole-connect-1.0.0.tgz#2ee790b67e4a0a4e1e0969558ac69cc41a46dfae"
+  integrity sha512-iqw9QDM8WMnAvyoSGlDw2QkJsZGcdHmdlVB8i0LDe3TJLM0VCD4ILG3lgWeMUxvOmnCLe5icpvq3XDnWaNpivg==
   dependencies:
     "@coral-xyz/anchor" "^0.29.0"
     "@cosmjs/cosmwasm-stargate" "^0.31.3"
@@ -11838,9 +11838,9 @@ jotai@1.4.0:
   integrity sha512-CUB+A3N+WjtimZvtDnMXvVRognzKh86KB3rKnQlbRvpnmGYU+O9aOZMWSgTaxstXc4Y5GYy02LBEjiv4Rs8MAg==
 
 jotai@^2.8.3:
-  version "2.10.4"
-  resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.10.4.tgz#635f499c0fd0202f78c4d4115a71880f915ffdbd"
-  integrity sha512-/T4ofyMSkAybEs2OvR8S4HACa+/ASUEPLz86SUjFXJqU9RdJKLvZDJrag398suvHC5CR0+Cs4P5m/gtVcryzlw==
+  version "2.11.0"
+  resolved "https://registry.yarnpkg.com/jotai/-/jotai-2.11.0.tgz#923f8351e0b2d721036af892c0ae25625049d120"
+  integrity sha512-zKfoBBD1uDw3rljwHkt0fWuja1B76R7CjznuBO+mSX6jpsO1EBeWNRKpeaQho9yPI/pvCv4recGfgOXGxwPZvQ==
 
 jpeg-js@^0.4.2:
   version "0.4.4"

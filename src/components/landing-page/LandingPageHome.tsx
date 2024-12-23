@@ -78,7 +78,7 @@ export default function LandingPageHome() {
       </section>
       <section className=" " id="castdao">
         <SectionTitle>🐱 CAST DAO 🐱</SectionTitle>
-        <div className="text-[36px] font-normal text-white leading-[120%] max-md:text-[24px]">
+        <div className="text-[24px] font-normal text-white leading-[120%] max-md:text-[12px]">
           CAST DAO declares that the Token it issues is not intended for use in
           jurisdictions where its offering is unlawful, including but not
           limited to the United States, Canada, Japan, Hong Kong, South Africa,
