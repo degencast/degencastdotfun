@@ -39,13 +39,13 @@ export default function RootLayout({
     <html lang="en">
       <Script src="https://terminal.jup.ag/main-v3.js"></Script>
       <body className={`${font.className} antialiased`}>
-        <Providers>
-          {CAST_LANDING_PAGE ? (
-            <LandingPageRootLayout>{children}</LandingPageRootLayout>
-          ) : (
+        {CAST_LANDING_PAGE ? (
+          <LandingPageRootLayout>{children}</LandingPageRootLayout>
+        ) : (
+          <Providers>
             <DefaultRootLayout>{children}</DefaultRootLayout>
-          )}
-        </Providers>
+          </Providers>
+        )}
         <Toaster />
       </body>
     </html>
