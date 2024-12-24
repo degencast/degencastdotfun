@@ -77,10 +77,10 @@ export default function LandingPageHome() {
           </CardContent>
         </Card>
       </section>
-      <section className=" " id="rules">
+      {/* <section className=" " id="rules">
         <SectionTitle>✨ Airdrop Rules ✨</SectionTitle>
         <AirdropRules />
-      </section>
+      </section> */}
       <section className=" " id="tokenomics">
         <SectionTitle>📊 TOKENOMICS 📊</SectionTitle>
         <Card className="w-full h-fit overflow-hidden rounded-[30px]">

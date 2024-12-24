@@ -23,11 +23,11 @@ import { PositionLink } from "../PositionLink";
 export function NavMenu() {
   return (
     <div className="flex items-center gap-4 z-20 ml-auto max-md:gap-2">
-      <PositionLink href="#rules" className="max-md:hidden">
+      {/* <PositionLink href="#rules" className="max-md:hidden">
         <Button className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6">
           Rules
         </Button>
-      </PositionLink>
+      </PositionLink> */}
 
       <PositionLink href="#tokenomics" className="max-md:hidden">
         <Button className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6">
@@ -68,9 +68,9 @@ export function NavMenuMobile({ className }: { className?: string }) {
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-primary border-none p-2">
         <div className=" flex flex-col gap-2 overflow-hidden rounded-sm">
-          <DropdownMenuItem className="p-4 bg-white rounded-none text-xl font-normal justify-center">
+          {/* <DropdownMenuItem className="p-4 bg-white rounded-none text-xl font-normal justify-center">
             <PositionLink href="#rules">Rules</PositionLink>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
           <DropdownMenuItem className="p-4 bg-white rounded-none text-xl font-normal justify-center">
             <PositionLink href="#tokenomics">Tokenomics</PositionLink>
           </DropdownMenuItem>
