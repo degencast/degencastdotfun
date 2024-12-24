@@ -2,13 +2,13 @@ import Image from "next/image";
 import { Button } from "../ui/button";
 import AirdropRules from "./AirdropRules";
 import Tokenomics from "./Tokenomics";
-import Footer from "./Footer";
 import Link from "next/link";
 import { getCreateCastWebUrl } from "@/lib/sharing/warpcast";
 import Roadmap from "./Roadmap";
 import { cn } from "@/lib/utils";
 import { PropsWithChildren } from "react";
 import { Card, CardContent } from "../ui/card";
+import CastDao from "./CastDao";
 
 export default function LandingPageHome() {
   return (
@@ -97,30 +97,13 @@ export default function LandingPageHome() {
           </CardContent>
         </Card>
       </section>
-      <section className=" " id="castdao">
+      <section className="mb-20" id="castdao">
         <SectionTitle>🐱 CAST DAO 🐱</SectionTitle>
-        <Card className="w-full h-fit overflow-hidden rounded-[30px]">
+        <Card className="w-full max-w-[978px] h-fit overflow-hidden rounded-[30px] mx-auto">
           <CardContent>
-            <div className="text-[24px] font-normal leading-[120%] max-md:text-[12px]">
-              CAST DAO declares that the Token it issues is not intended for use
-              in jurisdictions where its offering is unlawful, including but not
-              limited to the United States, Canada, Japan, Hong Kong, South
-              Africa, and Brazil. The Token is not registered with the SEC under
-              the US Securities Act of 1933 or listed on any US securities
-              exchange.
-              <br />
-              <br />
-              CAST DAO has taken no action to facilitate a market for the Token
-              in the United States. The Token may not be offered, sold, or
-              transferred in the US unless exempt from or not subject to
-              registration under the Securities Act and complies with applicable
-              US securities laws.
-            </div>
+            <CastDao />
           </CardContent>
         </Card>
-      </section>
-      <section className=" mt-[128px] max-md:hidden">
-        <Footer />
       </section>
     </div>
   );
