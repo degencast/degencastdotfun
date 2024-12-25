@@ -53,12 +53,12 @@ export default function CastDao() {
         </div>
       </div>
       <div className="flex flex-col justify-start gap-6 max-md:hidden">
-        {/* <Link
+        <Link
           className="justify-start items-center gap-2 flex"
           href={TG_LINK}
           target="_blank"
         >
-          <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 relative rounded-[10px] overflow-hidden">
             <Image
               src="/landing-page/images/telegram.png"
               alt="telegram"
@@ -66,7 +66,7 @@ export default function CastDao() {
             />
           </div>
           <span className="text-3xl font-normal">Telegram</span>
-        </Link> */}
+        </Link>
         <Link
           className="justify-start items-center gap-2 flex"
           href={X_LINK}

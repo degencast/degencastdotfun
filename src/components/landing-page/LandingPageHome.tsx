@@ -59,6 +59,13 @@ export default function LandingPageHome() {
                   </div>
                 </Button>
               </Link>
+              <Link
+                href={`https://newcaster.org/`}
+                target="_blank"
+                className=" text-[#ff1393] text-2xl font-normal underline w-auto mx-auto hover:scale-105 transition-all"
+              >
+                No Farcaster account?
+              </Link>
             </div>
             <div className="w-[505px] h-[496px] relative max-md:hidden rounded-[30px] overflow-hidden">
               <Image
