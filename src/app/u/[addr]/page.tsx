@@ -11,11 +11,11 @@ export default function UserDetails({
 }) {
   const addr = params.addr;
   return (
-    <div className="flex flex-row justify-center items-start gap-6 max-sm:flex-col max-sm:gap-3">
-      <div className="w-[30%] max-sm:w-full">
+    <div className="flex flex-row justify-center items-start gap-6 max-md:flex-col max-md:gap-3">
+      <div className="w-[30%] max-md:w-full">
         <UserBaseInfo address={addr} />
       </div>
-      <div className="flex-1 max-sm:w-full">
+      <div className="flex-1 max-md:w-full">
         <h2 className="font-bold text-4xl text-primary">Created Memes</h2>
         <CreatedMemes address={addr} />
         {/* <UserTabs address={addr} /> */}

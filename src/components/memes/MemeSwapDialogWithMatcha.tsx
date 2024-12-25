@@ -19,7 +19,7 @@ export default function MemeSwapDialogWithMatcha({
       <DialogTrigger asChild>
         <Button>Swap</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[500px] gap-8 max-sm:h-screen flex flex-col">
+      <DialogContent className="sm:max-w-[500px] gap-8 max-md:h-screen flex flex-col">
         <DialogHeader>
           <DialogTitle>Trade on Matcha</DialogTitle>
         </DialogHeader>

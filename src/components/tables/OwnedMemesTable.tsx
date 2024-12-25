@@ -35,7 +35,7 @@ export default function OwnedMemesTable({
               <TableHead>Claim</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody className="text-card-foreground max-sm:text-xs">
+          <TableBody className="text-card-foreground max-md:text-xs">
             {data.map((item, index) => {
               const hasReferralReward = item.referralReward;
               const rewardAmount = item?.referralReward?.amount;

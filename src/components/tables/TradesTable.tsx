@@ -42,7 +42,7 @@ export default function TradesTable({
               <TableHead>Action</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody className="text-card-foreground max-sm:text-xs">
+          <TableBody className="text-card-foreground max-md:text-xs">
             {data.map((item, index) => (
               <TableRow
                 key={item.txType + "_" + index}
@@ -103,7 +103,7 @@ export default function TradesTable({
                     target="_blank"
                   >
                     <span className="font-bold text-foreground p-4">🔗</span>
-                    {/* <SquareArrowOutUpRight className=" stroke-[#1E1E1E] size-6 max-sm:size-4" /> */}
+                    {/* <SquareArrowOutUpRight className=" stroke-[#1E1E1E] size-6 max-md:size-4" /> */}
                   </Link>
                 </TableCell>
               </TableRow>

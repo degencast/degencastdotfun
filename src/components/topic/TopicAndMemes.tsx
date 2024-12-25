@@ -8,16 +8,16 @@ import { MemeCard } from "../memes/MultiChainMemeCard";
 export function TopicAndMemesSkeleton() {
   return (
     <div className="w-full">
-      <div className="w-full flex flex-row gap-4 max-sm:flex-col">
+      <div className="w-full flex flex-row gap-4 max-md:flex-col">
         {/* Left box - 50% width */}
-        <div className="aspect-square w-[30%] max-sm:w-full">
+        <div className="aspect-square w-[30%] max-md:w-full">
           <Skeleton className="w-full h-full" />
         </div>
 
         {/* Right section - 2x2 grid */}
         <div
           className={cn(
-            "flex-1 w-full grid grid-rows-2 gap-4 max-sm:grid-rows-1"
+            "flex-1 w-full grid grid-rows-2 gap-4 max-md:grid-rows-1"
           )}
         >
           {Array.from({ length: 2 }).map((_, idx) => {
@@ -26,7 +26,7 @@ export function TopicAndMemesSkeleton() {
                 key={`${idx}`}
                 className={cn(
                   "h-full flex-1 aspect-auto",
-                  idx > 1 && "max-sm:hidden"
+                  idx > 1 && "max-md:hidden"
                 )}
               >
                 <Skeleton className="w-full h-full" />
@@ -50,16 +50,16 @@ export function TopicAndMemes({
   const showMems = memes.slice(0, 2);
   return (
     <div className="w-full">
-      <div className="w-full flex flex-row gap-4 max-sm:flex-col">
+      <div className="w-full flex flex-row gap-4 max-md:flex-col">
         {/* Left box - 50% width */}
-        <div className="aspect-square w-[30%] max-sm:w-full">
+        <div className="aspect-square w-[30%] max-md:w-full">
           <TopicCard topic={topic} />
         </div>
 
         {/* Right section - 2x2 grid */}
         <div
           className={cn(
-            "flex-1 w-full grid grid-rows-2 gap-4 max-sm:grid-rows-1"
+            "flex-1 w-full grid grid-rows-2 gap-4 max-md:grid-rows-1"
           )}
         >
           {showMems.map((item, idx) => {
@@ -68,7 +68,7 @@ export function TopicAndMemes({
                 key={`${item.id}_${idx}`}
                 className={cn(
                   "h-full flex-1 aspect-auto",
-                  idx > 1 && "max-sm:hidden"
+                  idx > 1 && "max-md:hidden"
                 )}
               >
                 <MemeCard meme={item} />

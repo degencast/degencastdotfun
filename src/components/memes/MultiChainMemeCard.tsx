@@ -21,6 +21,7 @@ import CopyAddress from "../CopyAddress";
 import MemeSwapDialogWithUniswap from "./MemeSwapDialogWithUniswap";
 import { MemeSwapDialogWithJupiter } from "./MemeSwapDialogWithJupiter";
 import { DEFAULT_CHAIN } from "@/constants/chain";
+import { CAST_TOKEN_ADDRESS } from "@/constants";
 
 export function MemeCard({
   meme,
@@ -43,25 +44,27 @@ export function MemeCard({
   const memeInfo = (
     <div className="flex flex-row gap-3 ">
       {" "}
-      <div className="h-[94px] aspect-square ">
+      <div className="h-[94px] aspect-square max-md:h-[70px]">
         <Avatar className="w-full h-full object-cover rounded-lg">
           <AvatarImage
             src={meme.image}
             className="hover:scale-105 transition-all"
           />
           <AvatarFallback className="w-full h-full object-cover rounded-lg">
-            <span className="text-3xl font-bold text-secondary">
+            <span className="text-3xl font-bold text-secondary max-md:text-xl">
               {meme.name[0].toUpperCase()}
             </span>
           </AvatarFallback>
         </Avatar>
       </div>
       <div className="flex-1 flex flex-col gap-2">
-        <span className="text-primary text-2xl font-bold line-clamp-1 max-sm:text-base">
+        <span className="text-primary text-2xl font-bold line-clamp-1 max-md:text-base">
           {meme.name} (${meme.symbol})
         </span>
         <div className="flex items-center gap-3">
-          <div className="font-bold text-secondary">Total Market Cap</div>
+          <div className="font-bold text-secondary max-md:text-xs">
+            Total Market Cap
+          </div>
           <div className="text-xs">
             {new Intl.NumberFormat("en-US", {
               style: "currency",
@@ -74,25 +77,39 @@ export function MemeCard({
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="font-bold text-secondary">Created By</div>
-          {deployerAddress && (
+          <div className="font-bold text-secondary  max-md:text-xs">
+            Created By
+          </div>
+          {baseToken.tokenAddress === CAST_TOKEN_ADDRESS ? (
             <Link
               className="flex items-center gap-1"
-              href={`/u/${deployerAddress}`}
+              href="https://degencast.ai"
               onClick={(e) => e.stopPropagation()}
+              target="_blank"
             >
-              <DefaultUserAvatar
-                address={deployerAddress}
-                className="w-6 h-6 rounded-full"
-              />
-              <span className="text-xs">{shortPubKey(deployerAddress)}</span>
+              <span className="text-xs font-bold">degencast.ai</span>
               <div className="text-xs">{dayjs(meme.createdAt).fromNow()}</div>
             </Link>
+          ) : (
+            deployerAddress && (
+              <Link
+                className="flex items-center gap-1"
+                href={`/u/${deployerAddress}`}
+                onClick={(e) => e.stopPropagation()}
+              >
+                <DefaultUserAvatar
+                  address={deployerAddress}
+                  className="w-6 h-6 rounded-full"
+                />
+                <span className="text-xs">{shortPubKey(deployerAddress)}</span>
+                <div className="text-xs">{dayjs(meme.createdAt).fromNow()}</div>
+              </Link>
+            )
           )}
         </div>
       </div>
       {!hideShare && (
-        <div className="ml-auto">
+        <div className="ml-auto max-md:hidden">
           <MemeShareButton meme={meme} />
         </div>
       )}
@@ -117,7 +134,7 @@ export function MemeCard({
           <Separator className="h-1 w-full bg-primary my-3" />
         )}
 
-        <div className="flex flex-row gap-3 ">
+        <div className="flex flex-row gap-3 max-md:flex-col">
           {baseToken && (
             <div className="flex-1">
               <MemeInfoOnChain
@@ -144,7 +161,7 @@ export function MemeCard({
           )}
 
           {baseToken && solToken && (
-            <Separator className="h-auto w-1 bg-primary" />
+            <Separator className="h-auto w-1 bg-primary max-md:w-full max-md:h-1" />
           )}
 
           {solToken && (
@@ -196,8 +213,10 @@ function MemeInfoOnChain({
 }) {
   return (
     <div className="w-full flex flex-col gap-2">
-      <div className="flex items-center gap-3">
-        <div className="font-bold text-secondary">{chainName} Market Cap</div>
+      <div className="flex items-center gap-3 max-md:gap-2">
+        <div className="font-bold text-secondary max-md:text-xs">
+          {chainName} Market Cap
+        </div>
         <div className="text-xs">
           {new Intl.NumberFormat("en-US", {
             style: "currency",
@@ -209,13 +228,15 @@ function MemeInfoOnChain({
         </div>
       </div>
 
-      <div className="flex items-center gap-3">
-        <div className="font-bold text-secondary">{chainName} Address</div>
+      <div className="flex items-center gap-3 max-md:gap-2">
+        <div className="font-bold text-secondary max-md:text-xs">
+          {chainName} Address
+        </div>
         {/* <span className="text-xs">{shortPubKey(token?.tokenAddress)}</span> */}
         <CopyAddress address={token?.tokenAddress} size="small" />
       </div>
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 max-md:gap-1">
         <MemeLinkButton label={scanName} href={scanUrl} iconUrl={scanIconUrl} />
         <MemeLinkButton
           label={"Dexscreener"}
@@ -244,18 +265,18 @@ function MemeLinkButton({
     <Link href={href} target={href.startsWith("http") ? "_blank" : ""}>
       <Button
         variant={"secondary"}
-        className="flex flex-row gap-1 items-center px-3 py-1"
+        className="flex flex-row gap-1 items-center px-3 py-1 max-md:px-1"
         onClick={(e) => e.stopPropagation()}
       >
         {icon ? (
           icon
         ) : iconUrl ? (
-          <Avatar className="w-6 h-6">
+          <Avatar className="size-6">
             <AvatarImage src={iconUrl} className="w-full h-full" />
             <AvatarFallback className="w-full h-full"></AvatarFallback>
           </Avatar>
         ) : null}
-        <span className="font-normal line-clamp-1">{label}</span>
+        <span className="font-normal line-clamp-1 max-md:text-xs">{label}</span>
       </Button>
     </Link>
   );

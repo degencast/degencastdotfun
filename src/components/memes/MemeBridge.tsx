@@ -8,6 +8,7 @@ import WormholeConnect, {
   nttRoutes,
 } from "@wormhole-foundation/wormhole-connect";
 import { SOLANA_ENDPOINT } from "@/constants/solana";
+import { PropsWithChildren, useEffect, useRef } from "react";
 
 const isTestNet = process.env.NEXT_PUBLIC_TESTNET === "true";
 export default function MemeBridge({
@@ -43,12 +44,12 @@ export default function MemeBridge({
   const chain = isTestNet ? "BaseSepolia" : "Base";
   const wormholeConfig: WormholeConnectConfig = {
     network,
-    // rpcs: {
-    //   Solana: SOLANA_ENDPOINT,
-    //   Sepolia: "https://eth-sepolia.api.onfinality.io/public",
-    //   Base: "wss://base.callstaticrpc.com",
-    //   BaseSepolia: "wss://base-sepolia-rpc.publicnode.com",
-    // },
+    rpcs: {
+      Solana: SOLANA_ENDPOINT,
+      // Sepolia: "https://eth-sepolia.api.onfinality.io/public",
+      // Base: "wss://base.callstaticrpc.com",
+      // BaseSepolia: "wss://base-sepolia-rpc.publicnode.com",
+    },
     chains: [chain, "Solana"],
     tokens: ["WSVevm", "WSVsol"],
     ui: {
@@ -119,7 +120,7 @@ export default function MemeBridge({
 
   return (
     <Card className={cn("w-full min-h-[400px] border-secondary")}>
-      <CardContent className="w-full h-full p-0">
+      <CardContent className="w-full h-full p-0 max-md:p-0">
         <style>
           {`
           .MuiScopedCssBaseline-root div{

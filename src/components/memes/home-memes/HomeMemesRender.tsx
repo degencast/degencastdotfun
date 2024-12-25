@@ -27,7 +27,7 @@ export default function HomeMemesRender({
           >
             <Card key={meme.id} className="w-full border-secondary">
               <CardContent className="w-full flex-col gap-2 flex p-3 bg-background">
-                <span className="w-full flex gap-1 text-primary text-2xl font-bold  max-sm:text-base">
+                <span className="w-full flex gap-1 text-primary text-2xl font-bold  max-md:text-base">
                   <span className="line-clamp-1">{meme.name}</span>
                   <span>(${meme.symbol})</span>
                 </span>
