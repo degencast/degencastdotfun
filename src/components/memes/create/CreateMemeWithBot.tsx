@@ -4,8 +4,10 @@ import { getCreateCastWebUrl, shareToWarpcast } from "@/lib/sharing/warpcast";
 import Link from "next/link";
 import Image from "next/image";
 
-const botText = `
-  @degencast.eth Launch a new token!
+export const getBotText = (opts?: { botName?: string }) => {
+  const botName = opts?.botName || "degencast.eth";
+
+  return `@${botName} Launch a new token!
   Name: memename
   Symbol: SYMBOL
 
@@ -14,11 +16,12 @@ const botText = `
 
   [Attach Meme Image]
 `;
+};
 export function CreateMemeWithWarpcast() {
   return (
     <Link
       className="block w-full h-full"
-      href={getCreateCastWebUrl([], "", botText)}
+      href={getCreateCastWebUrl([], "", getBotText())}
       target="_blank"
     >
       <div className="w-full h-full rounded-full relative overflow-hidden">
@@ -32,7 +35,7 @@ export function CreateMemeWithTwitter() {
   return (
     <Link
       className="block w-full h-full"
-      href={getCreateTweetWebUrl("", botText)}
+      href={getCreateTweetWebUrl("", getBotText())}
       target="_blank"
     >
       <div className="w-full h-full rounded-full relative overflow-hidden">
