@@ -1,31 +1,24 @@
 "use client";
 
-import { ReactNode, useEffect } from "react";
+import { ReactNode } from "react";
 import Link from "next/link";
 import MessageMarquee from "../message/MessageMarquee";
 import AboutDialogButton from "../About";
 import { Button } from "../ui/button";
 import { ChevronLeft, Home } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { useAccount } from "wagmi";
 import { cn } from "@/lib/utils";
-import { SearchInput } from "../ui/search-input";
-import useSearchTerms from "@/hooks/app/useSearchTerms";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import { CAST_TOKEN_ADDRESS } from "@/constants";
 import { toast } from "@/hooks/use-toast";
+import { LaunchTokenButton } from "../memes/create/LaunchTokenButton";
 
 export function DefaultHeader() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const router = useRouter();
-  const account = useAccount();
   const showMessageMarquee = isHomePage || pathname.startsWith("/memes");
-  const { setSearchTerms } = useSearchTerms();
-  useEffect(() => {
-    setSearchTerms("");
-  }, [pathname]);
   return (
     <>
       {" "}
@@ -66,14 +59,6 @@ export function DefaultHeader() {
             </div>
           )}
 
-          {isHomePage && (
-            <SearchInput
-              placeholder="Search meme..."
-              className="flex-1 max-md:hidden"
-              onChange={(e) => setSearchTerms(e.target.value)}
-            />
-          )}
-
           <div className="flex items-center gap-4 z-20 ml-auto max-md:gap-2">
             <Button
               className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6"
@@ -92,6 +77,7 @@ export function DefaultHeader() {
               <span>$CAST</span>
             </Button>
             <AboutDialogButton />
+            <LaunchTokenButton />
             {/* <div className="max-md:hidden">
               <Share2EarnDialogButton />
             </div> */}
