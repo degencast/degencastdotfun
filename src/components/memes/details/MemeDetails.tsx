@@ -57,6 +57,9 @@ const tradeActionOptions = [
   { value: "bridge", label: "Bridge" },
 ];
 export default function MemeDetails({ addr }: { addr: string }) {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [addr]);
   const [chainType, setChainType] = useState("evm");
   const [tradeActionType, setTradeActionType] = useState("trade");
   const isSol = chainType === "sol";

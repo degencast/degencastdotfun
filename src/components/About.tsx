@@ -13,7 +13,7 @@ export default function AboutDialogButton() {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <CircleHelp className="fill-primary-foreground stroke-primary size-16 -mx-2 cursor-pointer hover:scale-105 transition-transform" />
+        <CircleHelp className="fill-primary-foreground stroke-primary size-16 -mx-2 cursor-pointer hover:scale-105 transition-transform max-md:size-12 max-md:mx-0" />
       </DialogTrigger>
       <DialogContent className="sm:max-w-[816px] max-h-[90vh] gap-8 max-md:h-screen flex flex-col">
         <DialogHeader>
