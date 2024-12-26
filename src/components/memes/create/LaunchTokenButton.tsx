@@ -43,76 +43,10 @@ export function LaunchTokenButton() {
             <DialogTitle>Token Launch</DialogTitle>
           </DialogHeader>
           <ScrollArea className="flex-1 overflow-y-auto">
-            <div className="w-full flex flex-col justify-start items-center gap-6">
-              <span className="text-2xl font-normal max-md:text-base self-start">
-                Launch, Grow, Cross-Chain.! 🎉
-              </span>
-              <span className="text-2xl font-normal max-md:text-base self-start">
-                Launch your token on <b>Base</b> and <b>Solana</b> at the same
-                time with <b>DegenCast</b>. When the market cap hits <b>$1</b>{" "}
-                million, cross-chain trading is enabled automatically.
-              </span>
-              <div className="w-full">
-                {" "}
-                <p className="text-2xl font-bold text-secondary self-start mb-4">
-                  Holder Requirement:
-                </p>
-                <HolderRequirement />
-              </div>
-              <div className="w-full">
-                <p className="text-2xl font-bold text-secondary self-start mb-4">
-                  Launch From:
-                </p>
-                <div className="w-full shrink-0 justify-center items-start flex sm:gap-12 max-md:justify-evenly">
-                  <LaunchItem
-                    icon="/images/logo.png"
-                    name="DegenCast"
-                    onClick={() => {
-                      setOpen(false);
-                      setOpenLaunchDailog(true);
-                    }}
-                  />
-                  <LaunchItem
-                    icon="/images/warpcast.png"
-                    name="Warpcast"
-                    onClick={() => {
-                      window.open(
-                        getCreateCastWebUrl([], "", getBotText()),
-                        "_blank"
-                      );
-                    }}
-                  />
-                  <LaunchItem
-                    icon="/images/clanker.png"
-                    name="Clanker"
-                    onClick={() => {
-                      window.open(
-                        getCreateCastWebUrl(
-                          [],
-                          "",
-                          getBotText({ botName: "clanker" })
-                        ),
-                        "_blank"
-                      );
-                    }}
-                  />
-                  <LaunchItem
-                    icon="/images/larry.png"
-                    name="Larry"
-                    onClick={() => {
-                      window.open(
-                        getCreateCastWebUrl(
-                          [],
-                          "",
-                          getBotText({ botName: "larrybot" })
-                        ),
-                        "_blank"
-                      );
-                    }}
-                  />
-                </div>
-              </div>
-            </div>
+            <LaunchTokenContent
+              setOpen={setOpen}
+              setOpenLaunchDailog={setOpenLaunchDailog}
+            />
           </ScrollArea>
         </DialogContent>
       </Dialog>
@@ -124,9 +58,93 @@ export function LaunchTokenButton() {
   );
 }
 
-function HolderRequirement() {
-  const router = useRouter();
+function LaunchTokenContent({
+  setOpen,
+  setOpenLaunchDailog,
+}: {
+  setOpen: (open: boolean) => void;
+  setOpenLaunchDailog: (open: boolean) => void;
+}) {
   const holdingAmount = 10000;
+  return (
+    <div className="w-full flex flex-col justify-start items-center gap-6">
+      <span className="text-2xl font-normal max-md:text-base self-start">
+        Launch, Grow, Cross-Chain.! 🎉
+      </span>
+      <span className="text-2xl font-normal max-md:text-base self-start">
+        Launch your token on <b>Base</b> and <b>Solana</b> at the same time with{" "}
+        <b>DegenCast</b>. When the market cap hits <b>$1</b> million,
+        cross-chain trading is enabled automatically.
+      </span>
+      <div className="w-full">
+        {" "}
+        <p className="text-2xl font-bold text-secondary self-start mb-4">
+          Holder Requirement:
+        </p>
+        <HolderRequirement
+          holdingAmount={holdingAmount}
+          onClose={() => setOpen(false)}
+        />
+      </div>
+      <div className="w-full">
+        <p className="text-2xl font-bold text-secondary self-start mb-4">
+          Launch From:
+        </p>
+        <div className="w-full shrink-0 justify-center items-start flex sm:gap-12 max-md:justify-evenly">
+          <LaunchItem
+            icon="/images/logo.png"
+            name="DegenCast"
+            disabled={holdingAmount < 10000}
+            onClick={() => {
+              setOpen(false);
+              setOpenLaunchDailog(true);
+            }}
+          />
+          <LaunchItem
+            icon="/images/warpcast.png"
+            name="Warpcast"
+            onClick={() => {
+              window.open(getCreateCastWebUrl([], "", getBotText()), "_blank");
+            }}
+          />
+          <LaunchItem
+            icon="/images/clanker.png"
+            name="Clanker"
+            onClick={() => {
+              window.open(
+                getCreateCastWebUrl([], "", getBotText({ botName: "clanker" })),
+                "_blank"
+              );
+            }}
+          />
+          <LaunchItem
+            icon="/images/larry.png"
+            name="Larry"
+            onClick={() => {
+              window.open(
+                getCreateCastWebUrl(
+                  [],
+                  "",
+                  getBotText({ botName: "larrybot" })
+                ),
+                "_blank"
+              );
+            }}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function HolderRequirement({
+  holdingAmount,
+  onClose,
+}: {
+  holdingAmount: number;
+  onClose: () => void;
+}) {
+  const router = useRouter();
   return (
     <div className="w-full flex flex-row justify-between items-center">
       <div className="flex flex-row items-center gap-1">
@@ -180,6 +198,7 @@ function HolderRequirement() {
       <Button
         className="md:px-6 md:py-3 text-2xl h-auto text-center max-md:text-xs"
         onClick={() => {
+          onClose();
           if (!CAST_TOKEN_ADDRESS) {
             toast({
               description: "CAST Token Address not found",
@@ -229,10 +248,12 @@ function LaunchItem({
   icon,
   name,
   onClick,
+  disabled,
 }: {
   icon: string;
   name: string;
   onClick?: () => void;
+  disabled?: boolean;
 }) {
   return (
     <div className="flex-col justify-start items-center gap-6 flex cursor-pointer">
@@ -244,6 +265,7 @@ function LaunchItem({
       <Button
         className="md:px-6 md:py-3 text-2xl h-auto text-center max-md:text-xs"
         onClick={onClick}
+        disabled={disabled}
       >
         {name}
       </Button>
