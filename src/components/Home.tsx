@@ -4,25 +4,10 @@ import MemeList from "@/components/memes/MemeList";
 import { SortBy } from "@/services/meme/types";
 import Search from "./Search";
 
-import { useEffect, useCallback, useState } from "react";
-import sdk, { type FrameContext } from "@farcaster/frame-sdk";
-
 const capitalizeFirstLetter = (str: string) =>
 	str[0].toUpperCase() + str.slice(1);
 
 export default function Home() {
-	const [isSDKLoaded, setIsSDKLoaded] = useState(false);
-
-	useEffect(() => {
-		const load = async () => {
-			sdk.actions.ready();
-		};
-		if (sdk && !isSDKLoaded) {
-			setIsSDKLoaded(true);
-			load();
-		}
-	}, [isSDKLoaded]);
-
 	const tabs = [
 		{ name: capitalizeFirstLetter(SortBy.trending), value: SortBy.trending },
 		{ name: capitalizeFirstLetter(SortBy.newest), value: SortBy.newest },
