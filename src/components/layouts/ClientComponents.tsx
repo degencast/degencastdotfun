@@ -8,11 +8,12 @@ import { Button } from "../ui/button";
 import { ChevronLeft, Home } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { ConnectButton } from "@rainbow-me/rainbowkit";
 import Image from "next/image";
 import { CAST_TOKEN_ADDRESS } from "@/constants";
 import { toast } from "@/hooks/use-toast";
 import { LaunchTokenButton } from "../memes/create/LaunchTokenButton";
+import { SharePageButton } from "../Share";
+import { ConnectButton } from "../ConnectButton";
 
 export function DefaultHeader() {
   const pathname = usePathname();
@@ -34,7 +35,7 @@ export function DefaultHeader() {
                 <Image src="/images/logo.png" alt="logo" fill />
               </div>
 
-              <span className="text-primary-foreground text-4xl font-bold max-md:text-2xl">
+              <span className="text-primary-foreground text-4xl font-bold max-md:hidden">
                 degencast.fun✨
               </span>
             </Link>
@@ -58,52 +59,58 @@ export function DefaultHeader() {
               </Button>
             </div>
           )}
-
-          <div className="flex items-center gap-4 z-20 ml-auto max-md:gap-2">
-            <Button
-              className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6"
-              onClick={() => {
-                if (!CAST_TOKEN_ADDRESS) {
-                  toast({
-                    description: "CAST Token Address not found",
-                    duration: 5000,
-                  });
-                  return;
-                }
-                router.push(`/memes/${CAST_TOKEN_ADDRESS}`);
-              }}
-            >
-              <span>Buy</span>
-              <span>$CAST</span>
-            </Button>
+          <div
+            className={cn(
+              "flex items-center gap-4 z-20 ml-auto max-md:gap-2",
+              !isHomePage && "max-md:hidden"
+            )}
+          >
+            <div className="max-md:hidden">
+              <Button
+                className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6"
+                onClick={() => {
+                  if (!CAST_TOKEN_ADDRESS) {
+                    toast({
+                      description: "CAST Token Address not found",
+                      duration: 5000,
+                    });
+                    return;
+                  }
+                  router.push(`/memes/${CAST_TOKEN_ADDRESS}`);
+                }}
+              >
+                <span>Buy</span>
+                <span>$CAST</span>
+              </Button>
+            </div>
             <AboutDialogButton />
-            <LaunchTokenButton />
-            {/* <div className="max-md:hidden">
-              <Share2EarnDialogButton />
-            </div> */}
+            <div className="max-md:hidden">
+              <LaunchTokenButton />
+            </div>
             <div>
-              <style jsx global>{`
-                [data-testid="rk-connect-button"],
-                [data-testid="rk-account-button"] {
-                  height: 52px !important;
-                  font-size: 24px !important;
-                  font-weight: 700 !important;
-                  padding: 12px !important;
-                  padding-left: 24px !important;
-                  padding-right: 24px !important;
-                }
-                [data-testid="rk-connect-button"] > div,
-                [data-testid="rk-account-button"] > div {
-                  padding: 0px !important;
-                }
-              `}</style>
-              <ConnectButton
-                showBalance={false}
-                chainStatus={"none"}
-                label="Connect"
-              />
+              <div className="max-md:hidden">
+                <ConnectButton
+                  showBalance={false}
+                  chainStatus={"none"}
+                  label="Connect"
+                />
+              </div>
+
+              <div className="hidden max-md:block">
+                <ConnectButton
+                  showBalance={false}
+                  chainStatus={"none"}
+                  accountStatus={"avatar"}
+                  label="Connect"
+                />
+              </div>
             </div>
           </div>
+          {!isHomePage && (
+            <div className="ml-auto hidden max-md:block">
+              <SharePageButton />
+            </div>
+          )}
         </div>
       </header>
       <div
