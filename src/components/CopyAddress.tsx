@@ -19,7 +19,7 @@ export default function CopyAddress({
   }
   const copyEl = (
     <div
-      className="flex flex-row items-center gap-2 line-clamp-1 w-fit cursor-pointer "
+      className="flex flex-row items-center gap-2 line-clamp-1 w-fit cursor-pointer"
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -33,7 +33,7 @@ export default function CopyAddress({
       <span className={cn("font-normal", size === "small" && "text-xs")}>
         {shortPubKey(address)}
       </span>
-      <Copy className={cn(" size-6", size === "small" && "size-4")} />
+      <Copy className={cn(" size-5", size === "small" && "size-4")} />
     </div>
   );
   if (!label) {

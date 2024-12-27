@@ -2,7 +2,6 @@
 
 import { ReactNode } from "react";
 import Link from "next/link";
-import MessageMarquee from "../message/MessageMarquee";
 import AboutDialogButton from "../About";
 import { Button } from "../ui/button";
 import { ChevronLeft, Home } from "lucide-react";
@@ -19,12 +18,11 @@ export function DefaultHeader() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
   const router = useRouter();
-  const showMessageMarquee = isHomePage || pathname.startsWith("/memes");
   return (
     <>
       {" "}
       <header className="w-screen h-[80px]  fixed top-0 left-0 bg-primary z-10 max-md:h-[70px]">
-        <div className="w-full max-w-screen-2xl mx-auto h-full flex shrink-0 items-center px-6 gap-2 box-border max-md:px-3">
+        <div className="w-ful mx-auto h-full flex shrink-0 items-center px-6 gap-2 box-border max-md:px-3">
           {isHomePage ? (
             <Link
               className="h-12 justify-start items-center gap-4 inline-flex hover:no-underline"
@@ -113,28 +111,16 @@ export function DefaultHeader() {
           )}
         </div>
       </header>
-      <div
-        className={cn(
-          "w-screen  fixed  left-0 bg-secondary z-10 h-[58px] top-[80px] max-md:h-[40px] max-md:top-[70px] border-b-4 border-primary",
-          !showMessageMarquee && "hidden"
-        )}
-      >
-        <MessageMarquee />
-      </div>
     </>
   );
 }
 
 export function DefaultMain({ children }: { children: ReactNode }) {
-  const pathname = usePathname();
-  const isHomePage = pathname === "/";
-  const showMessageMarquee = isHomePage || pathname.startsWith("/memes");
   return (
     <main
       className={cn(
-        "w-screen  max-w-screen-2xl mx-auto box-border overflow-hidden mt-[80px] max-md:mt-[70px] p-6 max-md:p-3 relative",
-        "min-h-[calc(100vh-80px)] max-md:min-h-[calc(100vh-70px)]",
-        showMessageMarquee && "mt-[138px] max-md:mt-[110px]"
+        "w-screen mx-auto box-border overflow-hidden p-6 max-md:p-3 relative",
+        "min-h-screen mt-[80px] max-md:mt-[70px]"
       )}
     >
       {children}
