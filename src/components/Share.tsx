@@ -14,6 +14,7 @@ import { shareToTwitter } from "@/lib/sharing/twitter";
 import { shareToWarpcast } from "@/lib/sharing/warpcast";
 import { shareToWhatsApp } from "@/lib/sharing/whatsapp";
 import { Copy, Share2 } from "lucide-react";
+import { useEffect, useState } from "react";
 
 export function SharePageButton({
   className,
@@ -22,6 +23,12 @@ export function SharePageButton({
   className?: string;
   link?: string;
 }) {
+  const [win, setWin] = useState<Window | null>(null);
+  useEffect(() => {
+    if (window) {
+      setWin(window);
+    }
+  }, []);
   return (
     <Dialog>
       <DialogTrigger asChild>
@@ -33,7 +40,7 @@ export function SharePageButton({
         <DialogHeader>
           <DialogTitle>Share</DialogTitle>
         </DialogHeader>
-        <ShareLinkContent link={link || window.location.href} />
+        <ShareLinkContent link={link || win?.location?.href || ""} />
       </DialogContent>
     </Dialog>
   );
