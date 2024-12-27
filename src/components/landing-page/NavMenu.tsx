@@ -81,7 +81,7 @@ export function NavMenuMobile({ className }: { className?: string }) {
             <Link href="/buy">Buy $CAST</Link>
           </DropdownMenuItem>
 
-          {/* <DropdownMenuItem className="bg-white rounded-none text-xl font-normal">
+          <DropdownMenuItem className="bg-white rounded-none text-xl font-normal">
             <Link
               className="justify-start items-center gap-2 flex w-full p-4"
               href={TG_LINK}
@@ -96,7 +96,7 @@ export function NavMenuMobile({ className }: { className?: string }) {
               </div>
               <span className="text-xl font-normal">Telegram</span>
             </Link>
-          </DropdownMenuItem> */}
+          </DropdownMenuItem>
           <DropdownMenuItem className=" bg-white rounded-none text-xl font-normal">
             <Link
               className="justify-start items-center gap-2 flex w-full p-4"
