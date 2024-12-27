@@ -14,5 +14,5 @@ export default function InitSdk() {
 		}
 	}, [isSDKLoaded]);
 
-	return null;
+	return <div id="framesdk" />;
 }
