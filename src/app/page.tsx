@@ -4,7 +4,8 @@ import LandingPageHome from "@/components/landing-page/LandingPageHome";
 import Home from "@/components/Home";
 import { CAST_LANDING_PAGE } from "@/constants";
 
-const appUrl = "https://degencast.ai"; //process.env.NEXT_PUBLIC_URL;
+const appUrl =
+	CAST_LANDING_PAGE === true ? "https://degencast.ai" : "https://degencast.fun"; //process.env.NEXT_PUBLIC_URL;
 
 const frame = {
 	version: "next",
