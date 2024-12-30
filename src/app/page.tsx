@@ -9,7 +9,7 @@ const appUrl =
 
 const frame = {
 	version: "next",
-	imageUrl: `${appUrl}/images/switchChainGuide.png`,
+	imageUrl: `${appUrl}/images/frame-cover.png`,
 	button: {
 		title: "Launch",
 		action: {
