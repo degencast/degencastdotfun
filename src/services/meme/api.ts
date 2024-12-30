@@ -8,6 +8,7 @@ import { MemeData, SortBy } from "./types";
 export function getMemes(params: {
   pageSize?: number;
   pageNumber?: number;
+  chainName?: string;
   sortBy?: SortBy;
 }): RequestPromise<ApiResp<Array<MemeData>>> {
   return request({

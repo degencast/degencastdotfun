@@ -33,6 +33,8 @@ a span:hover {
     --primary-foreground: 0 0% 100%;
     --secondary: 195, 100%, 51%;
     --secondary-foreground: 0, 0%, 100%;
+    --tertiary: 54, 100%, 90%;
+    --tertiary-foreground: 327, 100%, 54%;
     --muted: 240 4.8% 95.9%;
     --muted-foreground: 240 3.8% 46.1%;
     --accent: 240 4.8% 95.9%;

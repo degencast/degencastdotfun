@@ -6,12 +6,14 @@ import { useRef, useState } from "react";
 const PAGE_SIZE = 20;
 
 export default function useLoadMemes(props?: {
+  chainName?: string;
   sortBy?: SortBy;
   topicId?: number;
   query?: string;
 }) {
   const [items, setItems] = useState<MemeData[]>([]);
   const [status, setStatus] = useState(AsyncRequestStatus.IDLE);
+  const chainNameRef = useRef(props?.chainName);
   const sortByRef = useRef(props?.sortBy);
   const topicIdRef = useRef(props?.topicId);
   const queryRef = useRef(props?.query);
@@ -23,6 +25,7 @@ export default function useLoadMemes(props?: {
   const loading = status === AsyncRequestStatus.PENDING;
 
   const loadItems = async (isQueryChange?: boolean) => {
+    const chainName = chainNameRef.current;
     const sortBy = sortByRef.current;
     const topicId = topicIdRef.current;
     const query = queryRef.current;
@@ -43,6 +46,7 @@ export default function useLoadMemes(props?: {
       const params = {
         pageSize: PAGE_SIZE,
         pageNumber: nextPageNumber,
+        ...(chainName ? { chainName } : {}),
         ...(sortBy ? { sortBy } : {}),
         ...(topicId ? { topicId } : {}),
         query: query || "",

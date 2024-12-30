@@ -33,6 +33,10 @@ const config: Config = {
           DEFAULT: "hsla(var(--secondary))",
           foreground: "hsla(var(--secondary-foreground))",
         },
+        tertiary: {
+          DEFAULT: "hsla(var(--tertiary))",
+          foreground: "hsla(var(--tertiary-foreground))",
+        },
         muted: {
           DEFAULT: "hsla(var(--muted))",
           foreground: "hsla(var(--muted-foreground))",
