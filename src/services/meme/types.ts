@@ -4,6 +4,11 @@ export enum DeployPlatform {
   DEGENCAST = "DEGENCAST",
   CLANKER = "CLANKER",
 }
+export enum ChainType {
+  All = "all",
+  Base = "base",
+  Sol = "sol",
+}
 export type MemeData = {
   // Meme 基本信息
   id: number;
