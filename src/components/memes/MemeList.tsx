@@ -6,17 +6,17 @@ import useLoadMemes from "@/hooks/meme/useLoadMemes";
 import { SortBy } from "@/services/meme/types";
 import { useInView } from "react-cool-inview";
 import { cn } from "@/lib/utils";
-import { MemeCard } from "./MultiChainMemeCard";
 import useSearchTerms from "@/hooks/app/useSearchTerms";
+import { MemeCard } from "./MemeCard";
 
 export default function MemeList({
   sortBy,
   topicId,
-  column = 1,
+  chainName,
 }: {
   sortBy: SortBy;
   topicId?: number;
-  column?: number;
+  chainName?: string;
 }) {
   const { searchTerms } = useSearchTerms();
   const { items, loading, loadItems } = useLoadMemes({
@@ -52,20 +52,24 @@ export default function MemeList({
     },
   });
   return (
-    <div className={cn("grid gap-6", `grid-cols-${column}`)}>
+    <div
+      className={cn(
+        "grid gap-3 grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1"
+      )}
+    >
       {items.map((item, idx) => {
         return (
           <div
             key={`${item.id}_${idx}`}
             ref={idx === items.length - 1 ? observe : null}
           >
-            <MemeCard key={item.id} meme={item} hideShare />
+            <MemeCard meme={item} />
           </div>
         );
       })}
       {loading
         ? Array.from({ length: 8 }).map((_, index) => (
-            <Skeleton key={index} className="h-[240px] rounded-[20px]" />
+            <Skeleton key={index} className="h-[184px] rounded-[20px]" />
           ))
         : null}
     </div>
