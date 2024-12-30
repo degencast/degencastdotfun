@@ -1,5 +1,9 @@
 import type { TopicData } from "../topic/types";
 
+export enum DeployPlatform {
+  DEGENCAST = "DEGENCAST",
+  CLANKER = "CLANKER",
+}
 export type MemeData = {
   // Meme 基本信息
   id: number;
@@ -10,6 +14,7 @@ export type MemeData = {
   createdAt: Date;
   tgPostLink?: string; // tg channel post link
   topic?: TopicData;
+  platform?: DeployPlatform;
 
   deployerEVMAddress: string;
   deployerSolanaAddress: string;
