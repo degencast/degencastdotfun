@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import useLoadMemes from "@/hooks/meme/useLoadMemes";
-import { SortBy } from "@/services/meme/types";
+import { ChainType, SortBy } from "@/services/meme/types";
 import { useInView } from "react-cool-inview";
 import { cn } from "@/lib/utils";
 import useSearchTerms from "@/hooks/app/useSearchTerms";
@@ -12,17 +12,18 @@ import { MemeCard } from "./MemeCard";
 export default function MemeList({
   sortBy,
   topicId,
-  chainName,
+  chain,
 }: {
   sortBy: SortBy;
   topicId?: number;
-  chainName?: string;
+  chain?: ChainType;
 }) {
   const { searchTerms } = useSearchTerms();
   const { items, loading, loadItems } = useLoadMemes({
     sortBy,
     topicId,
     query: searchTerms,
+    chain,
   });
 
   const [mounted, setMounted] = useState(false);

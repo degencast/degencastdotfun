@@ -57,3 +57,45 @@ export default function ButtonToggle({
     </div>
   );
 }
+
+export function ButtonToggle2({
+  value,
+  options,
+  onChange,
+  disabledValues,
+  onClickDisableOption,
+}: ToggleProps) {
+  const selected = value || options[0].value;
+
+  const handleClick = (value: any) => {
+    onChange && onChange(value);
+  };
+
+  return (
+    <div className="flex rounded-lg bg-tertiary w-full h-[52px] max-sm:h-[30px] overflow-hidden">
+      {options.map((option) => (
+        <button
+          key={option.value}
+          // disabled={disabledValues?.includes(option.value)}
+          onClick={() => {
+            if (disabledValues?.includes(option.value)) {
+              onClickDisableOption && onClickDisableOption(option);
+            } else {
+              handleClick(option.value);
+            }
+          }}
+          className={cn(
+            "text-[24px] font-bold transition-colors flex justify-center items-center gap-2 px-6 min-w-[140px] max-md:px-2 max-md:min-w-[80px]",
+            "max-sm:text-xs",
+            selected === option.value
+              ? "bg-primary text-primary-foreground"
+              : "bg-tertiary text-tertiary-foreground"
+          )}
+        >
+          {option.icon}
+          {option.label}
+        </button>
+      ))}
+    </div>
+  );
+}
