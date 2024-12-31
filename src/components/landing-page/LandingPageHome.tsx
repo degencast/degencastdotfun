@@ -11,6 +11,17 @@ import { Card, CardContent } from "../ui/card";
 import CastDao from "./CastDao";
 
 export default function LandingPageHome() {
+  const claimLink = (
+    <Link
+      href={getCreateCastWebUrl([], "", `@degencast.eth claim $CAST airdrop!`)}
+      target="_blank"
+      className="mx-auto"
+    >
+      <Button className="w-full h-[65px] px-6 py-3 rounded-[30px] gap-6 flex">
+        <div className=" text-4xl font-bold max-md:text-3xl">Claim $CAST</div>
+      </Button>
+    </Link>
+  );
   return (
     <div className="min-h-screen">
       <section className={cn("mt-[42px] ", "max-md:mt-0")}>
@@ -36,6 +47,7 @@ export default function LandingPageHome() {
                   Build, Trade, Earn – All in DegenCast
                 </span>
               </h1>
+              <div className="w-full hidden max-md:block">{claimLink}</div>
               <span className=" text-[36px] font-bold leading-[120%] max-md:text-[24px]">
                 Claim $CAST and Unlock Web3 Opportunities
               </span>
@@ -44,21 +56,7 @@ export default function LandingPageHome() {
                 utility. Powering the future of Web3, $CAST unlocks endless
                 possibilities—start your journey today!
               </span>
-              <Link
-                href={getCreateCastWebUrl(
-                  [],
-                  "",
-                  `@degencast.eth claim $CAST airdrop!`
-                )}
-                target="_blank"
-                className="w-full"
-              >
-                <Button className="w-full h-[65px] px-6 py-3 rounded-[30px] gap-6 flex">
-                  <div className=" text-4xl font-bold max-md:text-3xl">
-                    Claim $CAST
-                  </div>
-                </Button>
-              </Link>
+              <div className="w-full max-md:hidden">{claimLink}</div>
               <Link
                 href={`https://newcaster.org/`}
                 target="_blank"
