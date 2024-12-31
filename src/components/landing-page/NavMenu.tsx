@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "../ui/button";
@@ -19,6 +20,8 @@ import {
   X_LINK,
 } from "@/constants/landing-page";
 import { PositionLink } from "../PositionLink";
+import useFrameSdk from "@/hooks/frame-sdk/useFrameSdk";
+import OpenLink2 from "../OpenLink2";
 
 export function NavMenu() {
   return (
@@ -54,6 +57,7 @@ export function NavMenu() {
 }
 
 export function NavMenuMobile({ className }: { className?: string }) {
+  const { sdk, isSDKLoaded, context } = useFrameSdk();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -82,10 +86,11 @@ export function NavMenuMobile({ className }: { className?: string }) {
           </DropdownMenuItem>
 
           <DropdownMenuItem className="bg-white rounded-none text-xl font-normal">
-            <Link
+            <OpenLink2
+              frameSdk={sdk}
+              frameCtx={context}
               className="justify-start items-center gap-2 flex w-full p-4"
               href={TG_LINK}
-              target="_blank"
             >
               <div className="w-6 h-6 relative">
                 <Image
@@ -95,25 +100,27 @@ export function NavMenuMobile({ className }: { className?: string }) {
                 />
               </div>
               <span className="text-xl font-normal">Telegram</span>
-            </Link>
+            </OpenLink2>
           </DropdownMenuItem>
           <DropdownMenuItem className=" bg-white rounded-none text-xl font-normal">
-            <Link
+            <OpenLink2
+              frameSdk={sdk}
+              frameCtx={context}
               className="justify-start items-center gap-2 flex w-full p-4"
               href={X_LINK}
-              target="_blank"
             >
               <div className="w-6 h-6 relative rounded-[10px] overflow-hidden">
                 <Image src="/images/x.png" alt="x" fill />
               </div>
               <span className="text-xl font-normal">X</span>
-            </Link>
+            </OpenLink2>
           </DropdownMenuItem>
           <DropdownMenuItem className="bg-white rounded-none text-xl font-normal">
-            <Link
+            <OpenLink2
+              frameSdk={sdk}
+              frameCtx={context}
               className="justify-start items-center gap-2 flex w-full p-4"
               href={WARPCAST_LINK}
-              target="_blank"
             >
               <div className="w-6 h-6 relative">
                 <Image
@@ -123,13 +130,14 @@ export function NavMenuMobile({ className }: { className?: string }) {
                 />
               </div>
               <span className="text-xl font-normal">Warpcast</span>
-            </Link>
+            </OpenLink2>
           </DropdownMenuItem>
           <DropdownMenuItem className="bg-white rounded-none text-xl font-normal">
-            <Link
+            <OpenLink2
+              frameSdk={sdk}
+              frameCtx={context}
               className="justify-start items-center gap-2 flex w-full p-4"
               href={PARAGRAPH_LINK}
-              target="_blank"
             >
               <div className="w-6 h-6 relative">
                 <Image
@@ -139,7 +147,7 @@ export function NavMenuMobile({ className }: { className?: string }) {
                 />
               </div>
               <span className="text-xl font-normal">Paragraph</span>
-            </Link>
+            </OpenLink2>
           </DropdownMenuItem>
         </div>
       </DropdownMenuContent>
