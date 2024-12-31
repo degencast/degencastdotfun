@@ -22,7 +22,7 @@ export default function LandingPageHome() {
       frameSdk={sdk}
       frameCtx={context}
       href={getCreateCastWebUrl([], "", `@degencast.eth claim $CAST airdrop!`)}
-      className="mx-auto"
+      className="w-full mx-auto"
     >
       <Button className="w-full h-[65px] px-6 py-3 rounded-[30px] gap-6 flex">
         <div className=" text-4xl font-bold max-md:text-3xl">Claim $CAST</div>
