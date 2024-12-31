@@ -32,10 +32,14 @@ export default function LandingPageHome() {
 		<div className="mx-auto">
 			<Button
 				className="w-full h-[65px] px-6 py-3 rounded-[30px] gap-6 flex"
-				onClick={() => {
-					sdk.actions.openUrl(
-						getCreateCastWebUrl([], "", `@degencast.eth claim $CAST airdrop!`),
+				onClick={async () => {
+					const url = getCreateCastWebUrl(
+						[],
+						"",
+						`@degencast.eth claim $CAST airdrop!`,
 					);
+					console.log("url", url);
+					await sdk.actions.openUrl(url);
 				}}
 			>
 				<div className=" text-4xl font-bold max-md:text-3xl">Claim $CAST</div>
