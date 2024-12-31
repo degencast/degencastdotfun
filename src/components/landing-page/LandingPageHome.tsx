@@ -34,7 +34,7 @@ export default function LandingPageHome() {
 				className="w-full h-[65px] px-6 py-3 rounded-[30px] gap-6 flex"
 				onClick={() => {
 					sdk.actions.openUrl(
-						'getCreateCastWebUrl([], "", `@degencast.eth claim $CAST airdrop!',
+						getCreateCastWebUrl([], "", `@degencast.eth claim $CAST airdrop!`),
 					);
 				}}
 			>
