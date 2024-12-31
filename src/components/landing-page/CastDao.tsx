@@ -50,6 +50,12 @@ export default function CastDao() {
           >
             <span>Privact Policy</span>
           </Link>
+
+          <Line />
+
+          <Link href={`https://docs.degencast.fun`} target="_blank">
+            <span>Docs</span>
+          </Link>
         </div>
       </div>
       <div className="flex flex-col justify-start gap-6 max-md:hidden">
