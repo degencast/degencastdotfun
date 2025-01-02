@@ -94,14 +94,14 @@ export default function LandingPageHome() {
         <SectionTitle>✨ Airdrop Rules ✨</SectionTitle>
         <AirdropRules />
       </section> */}
-      <section className=" " id="tokenomics">
+      {/* <section className=" " id="tokenomics">
         <SectionTitle>📊 TOKENOMICS 📊</SectionTitle>
         <Card className="w-full h-fit overflow-hidden rounded-[30px]">
           <CardContent>
             <Tokenomics />
           </CardContent>
         </Card>
-      </section>
+      </section> */}
       <section className=" " id="roadmap">
         <SectionTitle>🗺️ Roadmap 🗺️</SectionTitle>
         <Card className="w-full h-fit overflow-hidden rounded-[30px]">
