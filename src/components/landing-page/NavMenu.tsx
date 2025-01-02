@@ -24,6 +24,7 @@ import useFrameSdk from "@/hooks/frame-sdk/useFrameSdk";
 import OpenLink2 from "../OpenLink2";
 
 export function NavMenu() {
+  const { sdk, isSDKLoaded, context } = useFrameSdk();
   return (
     <div className="flex items-center gap-4 z-20 ml-auto max-md:gap-2">
       {/* <PositionLink href="#rules" className="max-md:hidden">
@@ -49,6 +50,24 @@ export function NavMenu() {
           <div>Buy $CAST</div>
         </Button>
       </Link>
+
+      <OpenLink2
+        frameSdk={sdk}
+        frameCtx={context}
+        href={TG_LINK}
+        className="max-md:hidden"
+      >
+        <Button className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6">
+          <div className="w-6 h-6 relative">
+            <Image
+              src="/landing-page/images/telegram.png"
+              alt="telegram"
+              fill
+            />
+          </div>
+          <span>Join Us</span>
+        </Button>
+      </OpenLink2>
 
       <AudioBtn className="max-md:w-[40px] max-md:h-[40px]" />
       <NavMenuMobile className="hidden max-md:block" />
