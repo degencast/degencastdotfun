@@ -33,11 +33,11 @@ export function NavMenu() {
         </Button>
       </PositionLink> */}
 
-      <PositionLink href="#tokenomics" className="max-md:hidden">
+      {/* <PositionLink href="#tokenomics" className="max-md:hidden">
         <Button className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6">
           Tokenomics
         </Button>
-      </PositionLink>
+      </PositionLink> */}
 
       <PositionLink href="#roadmap" className="max-md:hidden">
         <Button className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6">
@@ -94,9 +94,9 @@ export function NavMenuMobile({ className }: { className?: string }) {
           {/* <DropdownMenuItem className="p-4 bg-white rounded-none text-xl font-normal justify-center">
             <PositionLink href="#rules">Rules</PositionLink>
           </DropdownMenuItem> */}
-          <DropdownMenuItem className="p-4 bg-white rounded-none text-xl font-normal justify-center">
+          {/* <DropdownMenuItem className="p-4 bg-white rounded-none text-xl font-normal justify-center">
             <PositionLink href="#tokenomics">Tokenomics</PositionLink>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
           <DropdownMenuItem className="p-4 bg-white rounded-none text-xl font-normal justify-center">
             <PositionLink href="#roadmap">Roadmap</PositionLink>
           </DropdownMenuItem>
