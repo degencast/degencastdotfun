@@ -34,11 +34,18 @@ export type MemeData = {
   solToken: TokenData; // 部署在sol上的token
 };
 
+export enum ChainName {
+  Base = "base",
+  Solana = "solana",
+}
 export type TokenData = {
+  chainName: ChainName;
   tokenAddress: string;
   poolAddress: string;
   symbol: string;
   name: string;
+  image?: string;
+  memeData?: MemeData;
   marketCap: number;
   priceNative: string;
   priceUsd: string;
@@ -47,12 +54,14 @@ export type TokenData = {
     h6: number;
     h1: number;
     m5: number;
+    m1: number;
   };
   priceChange: {
     h24: number;
     h6: number;
     h1: number;
     m5: number;
+    m1: number;
   };
   txns: {
     h24: {

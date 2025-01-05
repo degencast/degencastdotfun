@@ -7,12 +7,7 @@ import { ChainType } from "@/services/meme/types";
 
 const chainOptions = [
   {
-    value: ChainType.All,
-    label: "All",
-  },
-  {
     value: ChainType.Base,
-    label: "Base",
     icon: (
       <img
         src="/images/chain/base.png"
@@ -23,7 +18,6 @@ const chainOptions = [
   },
   {
     value: ChainType.Sol,
-    label: "Solana",
     icon: (
       <img
         src="/images/chain/solana.png"
