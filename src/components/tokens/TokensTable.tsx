@@ -12,9 +12,8 @@ import {
   getSortedRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { ArrowUpDown, Filter } from "lucide-react";
+import { Filter } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import {
   Table,
   TableBody,
@@ -24,7 +23,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Input } from "@/components/ui/input";
-import { TokenData } from "@/services/meme/types";
+import { MemeData, SortBy, TokenData } from "@/services/meme/types";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { shortPubKey } from "@/lib/shortAddress";
 import useLoadTokens from "@/hooks/token/useLoadTokens";
@@ -32,21 +31,54 @@ import { useEffect, useState } from "react";
 import useSearchTerms from "@/hooks/app/useSearchTerms";
 import { useInView } from "react-cool-inview";
 import dayjs from "dayjs";
+import useLoadMemes from "@/hooks/meme/useLoadMemes";
 
-const columns: ColumnDef<TokenData>[] = [
+function ArrowUpDownIcon({
+  className,
+  status,
+}: {
+  className?: string;
+  status?: "up" | "down";
+}) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      className={className}
+    >
+      <path
+        d="M8 9L11.6464 5.35355C11.8417 5.15829 12.1583 5.15829 12.3536 5.35355L16 9"
+        strokeWidth="2"
+        strokeLinecap="round"
+        className={status === "up" ? "stroke-primary" : "stroke-foreground"}
+      />
+      <path
+        d="M8 15L11.6464 18.6464C11.8417 18.8417 12.1583 18.8417 12.3536 18.6464L16 15"
+        strokeWidth="2"
+        strokeLinecap="round"
+        className={status === "down" ? "stroke-primary" : "stroke-foreground"}
+      />
+    </svg>
+  );
+}
+const columns: ColumnDef<MemeData>[] = [
   {
     accessorKey: "name",
     header: ({ column }) => {
       return (
         <button className="text-foreground flex flex-row gap-2 items-center">
           Token
-          <Filter className="ml-2 h-4 w-4" />
+          {/* <Filter className="ml-2 h-4 w-4" /> */}
         </button>
       );
     },
     cell: ({ row }) => {
-      const token = row.original;
-      const meme = token?.memeData;
+      const meme = row.original;
+      const baseToken = meme?.baseToken;
+      const solToken = meme?.solToken;
       return (
         <div className="flex items-center gap-2">
           <Avatar className="size-[50px] object-cover rounded-full">
@@ -56,16 +88,17 @@ const columns: ColumnDef<TokenData>[] = [
             />
             <AvatarFallback className="w-full h-full object-cover rounded-lg">
               <span className="text-3xl font-bold text-secondary max-md:text-xl">
-                {token?.name[0].toUpperCase()}
+                {meme?.name[0].toUpperCase()}
               </span>
             </AvatarFallback>
           </Avatar>
           <div>
             <div className="font-medium">
-              {token?.name} ({token?.symbol})
+              {meme?.name} ({meme?.symbol})
             </div>
-            <div className="text-sm text-gray-500">
-              {shortPubKey(token.tokenAddress)}
+            <div className="text-sm text-gray-500 flex flex-row items-center gap-5">
+              <span>{shortPubKey(baseToken.tokenAddress)}</span>
+              <span>{shortPubKey(solToken.tokenAddress)}</span>
             </div>
           </div>
         </div>
@@ -73,7 +106,7 @@ const columns: ColumnDef<TokenData>[] = [
     },
   },
   {
-    accessorKey: "age",
+    accessorKey: SortBy.launchTime,
     header: ({ column }) => {
       return (
         <button
@@ -81,13 +114,13 @@ const columns: ColumnDef<TokenData>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Age
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDownIcon className="ml-2 h-4 w-4" />
         </button>
       );
     },
     cell: ({ row }) => {
-      const token = row.original;
-      const meme = token?.memeData;
+      const meme = row.original;
+      const token = meme?.baseToken || meme?.solToken;
       return <span>{dayjs(meme?.createdAt).fromNow()}</span>;
     },
   },
@@ -100,13 +133,13 @@ const columns: ColumnDef<TokenData>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           MC
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDownIcon className="ml-2 h-4 w-4" />
         </button>
       );
     },
     cell: ({ row }) => {
-      const token = row.original;
-      const meme = token?.memeData;
+      const meme = row.original;
+      const token = meme?.baseToken || meme?.solToken;
       return (
         <span>
           {" "}
@@ -121,36 +154,36 @@ const columns: ColumnDef<TokenData>[] = [
       );
     },
   },
-  {
-    accessorKey: "transactions",
-    header: ({ column }) => {
-      return (
-        <button
-          className="text-foreground flex flex-row gap-2 items-center"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          TXs
-          <ArrowUpDown className="ml-2 h-4 w-4" />
-        </button>
-      );
-    },
-    cell: ({ row }) => {
-      const token = row.original;
-      const meme = token?.memeData;
-      return (
-        <span>
-          {" "}
-          {new Intl.NumberFormat("en-US", {
-            style: "currency",
-            currency: "USD",
-            maximumFractionDigits: 2,
-            minimumFractionDigits: 0,
-            notation: "compact",
-          }).format(token?.marketCap || 0)}{" "}
-        </span>
-      );
-    },
-  },
+  // {
+  //   accessorKey: "txns",
+  //   header: ({ column }) => {
+  //     return (
+  //       <button
+  //         className="text-foreground flex flex-row gap-2 items-center"
+  //         onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+  //       >
+  //         TXs
+  //         <ArrowUpDownIcon className="ml-2 h-4 w-4" />
+  //       </button>
+  //     );
+  //   },
+  //   cell: ({ row }) => {
+  //     const meme = row.original;
+  //     const token = meme?.baseToken || meme?.solToken;
+  //     return (
+  //       <span>
+  //         {" "}
+  //         {new Intl.NumberFormat("en-US", {
+  //           style: "currency",
+  //           currency: "USD",
+  //           maximumFractionDigits: 2,
+  //           minimumFractionDigits: 0,
+  //           notation: "compact",
+  //         }).format(token?.marketCap || 0)}{" "}
+  //       </span>
+  //     );
+  //   },
+  // },
   {
     accessorKey: "volume",
     header: ({ column }) => {
@@ -160,13 +193,13 @@ const columns: ColumnDef<TokenData>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Vol
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDownIcon className="ml-2 h-4 w-4" />
         </button>
       );
     },
     cell: ({ row }) => {
-      const token = row.original;
-      const meme = token?.memeData;
+      const meme = row.original;
+      const token = meme?.baseToken || meme?.solToken;
       return (
         <span>
           {" "}
@@ -190,13 +223,13 @@ const columns: ColumnDef<TokenData>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           Price
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDownIcon className="ml-2 h-4 w-4" />
         </button>
       );
     },
     cell: ({ row }) => {
-      const token = row.original;
-      const meme = token?.memeData;
+      const meme = row.original;
+      const token = meme?.baseToken || meme?.solToken;
       return (
         <span>
           {" "}
@@ -212,7 +245,7 @@ const columns: ColumnDef<TokenData>[] = [
     },
   },
   {
-    accessorKey: "change1m",
+    accessorKey: SortBy.priceChangeM1,
     header: ({ column }) => {
       return (
         <button
@@ -220,13 +253,13 @@ const columns: ColumnDef<TokenData>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           1m
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDownIcon className="ml-2 h-4 w-4" />
         </button>
       );
     },
     cell: ({ row }) => {
-      const token = row.original;
-      const meme = token?.memeData;
+      const meme = row.original;
+      const token = meme?.baseToken || meme?.solToken;
       const priceChange = token?.priceChange?.m1 || 0;
       return (
         <div className={priceChange > 0 ? "text-green-500" : "text-red-500"}>
@@ -237,7 +270,7 @@ const columns: ColumnDef<TokenData>[] = [
     },
   },
   {
-    accessorKey: "change5m",
+    accessorKey: SortBy.priceChangeM5,
     header: ({ column }) => {
       return (
         <button
@@ -245,13 +278,13 @@ const columns: ColumnDef<TokenData>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           5m
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDownIcon className="ml-2 h-4 w-4" />
         </button>
       );
     },
     cell: ({ row }) => {
-      const token = row.original;
-      const meme = token?.memeData;
+      const meme = row.original;
+      const token = meme?.baseToken || meme?.solToken;
       const priceChange = token?.priceChange?.m5 || 0;
       return (
         <div className={priceChange > 0 ? "text-green-500" : "text-red-500"}>
@@ -262,7 +295,7 @@ const columns: ColumnDef<TokenData>[] = [
     },
   },
   {
-    accessorKey: "change1h",
+    accessorKey: SortBy.priceChangeH1,
     header: ({ column }) => {
       return (
         <button
@@ -270,14 +303,14 @@ const columns: ColumnDef<TokenData>[] = [
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
           1h
-          <ArrowUpDown className="ml-2 h-4 w-4" />
+          <ArrowUpDownIcon className="ml-2 h-4 w-4" />
         </button>
       );
     },
 
     cell: ({ row }) => {
-      const token = row.original;
-      const meme = token?.memeData;
+      const meme = row.original;
+      const token = meme?.baseToken || meme?.solToken;
       const priceChange = token?.priceChange?.h1 || 0;
       return (
         <div className={priceChange > 0 ? "text-green-500" : "text-red-500"}>
@@ -295,7 +328,7 @@ export default function TokensTable() {
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
-  const { items, loadItems, loading } = useLoadTokens();
+  const { items, loadItems, loading } = useLoadMemes();
 
   const [mounted, setMounted] = useState(false);
 

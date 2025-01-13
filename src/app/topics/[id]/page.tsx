@@ -18,7 +18,6 @@ export default function TopicDetails({
   const tabs = [
     { name: capitalizeFirstLetter(SortBy.trending), value: SortBy.trending },
     { name: capitalizeFirstLetter(SortBy.newest), value: SortBy.newest },
-    // { name: capitalizeFirstLetter(SortBy.launching), value: SortBy.launching },
     { name: capitalizeFirstLetter(SortBy.marketCap), value: SortBy.marketCap },
   ];
   return (

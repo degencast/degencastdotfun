@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 type ToggleOption = {
   value: any;
-  label?: string;
+  label?: any;
   icon?: React.ReactNode;
   activeIcon?: React.ReactNode;
 };
@@ -75,7 +75,7 @@ export function ButtonToggle2({
   };
 
   return (
-    <div className="flex rounded-lg bg-tertiary h-[52px] max-sm:h-[30px] overflow-hidden">
+    <div className="flex rounded-xl bg-tertiary border-4 border-primary h-[52px] max-sm:h-[30px] overflow-hidden">
       {options.map((option) => (
         <button
           key={option.value}
