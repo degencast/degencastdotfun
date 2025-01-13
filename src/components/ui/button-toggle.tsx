@@ -5,8 +5,9 @@ import { cn } from "@/lib/utils";
 
 type ToggleOption = {
   value: any;
-  label: string;
+  label?: any;
   icon?: React.ReactNode;
+  activeIcon?: React.ReactNode;
 };
 interface ToggleProps {
   value: any;
@@ -50,7 +51,9 @@ export default function ButtonToggle({
               : "bg-primary text-primary-foreground"
           )}
         >
-          {option.icon}
+          {selected === option.value
+            ? option.activeIcon || option.icon
+            : option.icon}
           {option.label}
         </button>
       ))}
@@ -72,7 +75,7 @@ export function ButtonToggle2({
   };
 
   return (
-    <div className="flex rounded-lg bg-tertiary w-full h-[52px] max-sm:h-[30px] overflow-hidden">
+    <div className="flex rounded-xl bg-tertiary border-4 border-primary h-[52px] max-sm:h-[30px] overflow-hidden">
       {options.map((option) => (
         <button
           key={option.value}
@@ -85,14 +88,16 @@ export function ButtonToggle2({
             }
           }}
           className={cn(
-            "text-[24px] font-bold transition-colors flex justify-center items-center gap-2 px-6 min-w-[140px] max-md:px-2 max-md:min-w-[80px]",
+            "text-[24px] font-bold transition-colors flex justify-center items-center gap-2 px-3 max-md:px-2",
             "max-sm:text-xs",
             selected === option.value
               ? "bg-primary text-primary-foreground"
               : "bg-tertiary text-tertiary-foreground"
           )}
         >
-          {option.icon}
+          {selected === option.value
+            ? option.activeIcon || option.icon
+            : option.icon}
           {option.label}
         </button>
       ))}

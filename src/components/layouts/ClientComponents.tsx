@@ -13,6 +13,7 @@ import { toast } from "@/hooks/use-toast";
 import { LaunchTokenButton } from "../memes/create/LaunchTokenButton";
 import { SharePageButton } from "../Share";
 import { ConnectButton } from "../ConnectButton";
+import Search from "../Search";
 
 export function DefaultHeader() {
   const pathname = usePathname();
@@ -63,7 +64,11 @@ export function DefaultHeader() {
               !isHomePage && "max-md:hidden"
             )}
           >
-            <div className="max-md:hidden">
+            <div className="min-w-[340px]">
+              <Search />
+            </div>
+
+            {/* <div className="max-md:hidden">
               <Button
                 className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6"
                 onClick={() => {
@@ -80,7 +85,7 @@ export function DefaultHeader() {
                 <span>Buy</span>
                 <span>$CAST</span>
               </Button>
-            </div>
+            </div> */}
             <AboutDialogButton />
             <div className="max-md:hidden">
               <LaunchTokenButton />

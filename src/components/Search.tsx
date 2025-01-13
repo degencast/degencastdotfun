@@ -15,7 +15,7 @@ export default function Search() {
   return (
     <SearchInput
       placeholder="Search meme..."
-      className={cn("max-sm:h-[32px] w-full")}
+      className={cn("h-[58px] max-sm:h-[32px] w-full")}
       onChange={(e) => setSearchTerms(e.target.value)}
     />
   );
