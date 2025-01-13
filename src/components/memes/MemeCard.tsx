@@ -151,15 +151,19 @@ function MemeInfo({ meme }: { meme: MemeData }) {
 }
 
 function PlatformInfo({ meme }: { meme: MemeData }) {
-  const platform = meme.platform || DeployPlatform.DEGENCAST;
+  const platform = meme.platform || DeployPlatform.Degencast;
   const platforms = {
-    [DeployPlatform.DEGENCAST]: {
+    [DeployPlatform.Degencast]: {
       name: "DegenCast",
       icon: "/images/logo.png",
     },
-    [DeployPlatform.CLANKER]: {
+    [DeployPlatform.Clanker]: {
       name: "Clanker",
       icon: "/images/clanker.png",
+    },
+    [DeployPlatform.Virtuals]: {
+      name: "Virtuals",
+      icon: "",
     },
   };
   const platformInfo = platforms[platform];

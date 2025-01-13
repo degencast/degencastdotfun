@@ -15,7 +15,7 @@ export default function BuyCastFloatingBtn() {
     address: CAST_TOKEN_ADDRESS!,
   });
   return (
-    <Link href={`/buy`} className="fixed bottom-24 right-20">
+    <Link href={`/buy`} className="fixed bottom-20 right-20">
       <Button className=" flex flex-row items-center gap-6 p-6">
         <div className="flex flex-row items-center gap-2">
           <Avatar className="size-6 object-cover rounded-full">
@@ -27,7 +27,9 @@ export default function BuyCastFloatingBtn() {
             </AvatarFallback>
           </Avatar>
           <span className="text-2xl font-bold">${meme?.symbol || "CAST"}</span>
-          <div className="font-bold">${meme?.symbol || "CAST"}</div>
+          {meme?.baseToken.priceUsd && (
+            <div className="font-bold">${meme?.baseToken.priceUsd}</div>
+          )}
         </div>
 
         <div className="bg-white px-2 py-1 text-base font-bold rounded-full text-primary min-w-[42px]">

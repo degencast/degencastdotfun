@@ -26,12 +26,12 @@ import { Input } from "@/components/ui/input";
 import { MemeData, SortBy, TokenData } from "@/services/meme/types";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { shortPubKey } from "@/lib/shortAddress";
-import useLoadTokens from "@/hooks/token/useLoadTokens";
 import { useEffect, useState } from "react";
 import useSearchTerms from "@/hooks/app/useSearchTerms";
 import { useInView } from "react-cool-inview";
 import dayjs from "dayjs";
 import useLoadMemes from "@/hooks/meme/useLoadMemes";
+import { useRouter } from "next/navigation";
 
 function ArrowUpDownIcon({
   className,
@@ -209,7 +209,7 @@ const columns: ColumnDef<MemeData>[] = [
             maximumFractionDigits: 2,
             minimumFractionDigits: 0,
             notation: "compact",
-          }).format(token?.marketCap || 0)}{" "}
+          }).format(token?.volume?.h24 || 0)}{" "}
         </span>
       );
     },
@@ -239,7 +239,7 @@ const columns: ColumnDef<MemeData>[] = [
             maximumFractionDigits: 2,
             minimumFractionDigits: 0,
             notation: "compact",
-          }).format(token?.marketCap || 0)}{" "}
+          }).format(Number(token?.priceUsd) || 0)}{" "}
         </span>
       );
     },
@@ -323,6 +323,7 @@ const columns: ColumnDef<MemeData>[] = [
 ];
 
 export default function TokensTable() {
+  const router = useRouter();
   const { searchTerms } = useSearchTerms();
   const [sorting, setSorting] = React.useState<SortingState>([]);
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
@@ -399,6 +400,19 @@ export default function TokensTable() {
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  className="cursor-pointer"
+                  onClick={() => {
+                    const meme = row.original;
+                    const baseToken = meme?.baseToken;
+                    const solToken = meme?.solToken;
+                    router.push(
+                      `/memes/${
+                        baseToken?.tokenAddress ||
+                        solToken.tokenAddress ||
+                        meme.id
+                      }`
+                    );
+                  }}
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

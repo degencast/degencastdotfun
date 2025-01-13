@@ -1,4 +1,5 @@
 "use client";
+
 import * as React from "react";
 import MemeList from "@/components/memes/MemeList";
 import { ChainType, DeployPlatform, SortBy } from "@/services/meme/types";
@@ -15,10 +16,11 @@ enum ListStyle {
   List = "list",
 }
 const getStorageDefaultListStyle = () => {
-  return window.localStorage.getItem("listStyle") || ListStyle.Grid;
+  // return window.localStorage.getItem("listStyle") || ListStyle.Grid;
+  return ListStyle.Grid;
 };
 const setStorageDefaultListStyle = (listStyle: ListStyle) => {
-  window.localStorage.setItem("listStyle", listStyle);
+  // window.localStorage.setItem("listStyle", listStyle);
 };
 
 const ListStyleOptions = [
@@ -94,11 +96,13 @@ export default function Home() {
             options={PlatformOptions}
             onChange={setPlatform}
           /> */}
-          <ButtonToggle2
-            value={sortBy}
-            options={SortByOptions}
-            onChange={setSortBy}
-          />
+          {listStyle === ListStyle.Grid ? (
+            <ButtonToggle2
+              value={sortBy}
+              options={SortByOptions}
+              onChange={setSortBy}
+            />
+          ) : null}
           {/* {listStyle === ListStyle.Grid ? (
             <ButtonToggle2
               value={sortBy}

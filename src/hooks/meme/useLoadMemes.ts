@@ -1,6 +1,7 @@
 import { getMemes } from "@/services/meme/api";
 import { ChainType, MemeData, SortBy } from "@/services/meme/types";
 import { ApiRespCode, AsyncRequestStatus } from "@/services/types";
+import { uniqBy } from "lodash";
 import { useRef, useState } from "react";
 
 const PAGE_SIZE = 20;
@@ -56,7 +57,7 @@ export default function useLoadMemes(props?: {
       if (code !== ApiRespCode.SUCCESS) {
         throw new Error(msg);
       }
-      setItems((pre) => [...pre, ...data]);
+      setItems((pre) => uniqBy([...pre, ...data], "id"));
       pageInfoRef.current = {
         hasNextPage: data.length === PAGE_SIZE,
         nextPageNumber: nextPageNumber + 1,
