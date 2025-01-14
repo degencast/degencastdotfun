@@ -1,5 +1,5 @@
 import Loading from "@/components/Loading";
-import { Button } from "@/components/ui/button";
+import { Button, ButtonProps } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -13,20 +13,25 @@ import { shareToTelegramWeb } from "@/lib/sharing/telegram";
 import { shareToTwitter } from "@/lib/sharing/twitter";
 import { shareToWarpcast } from "@/lib/sharing/warpcast";
 import { shareToWhatsApp } from "@/lib/sharing/whatsapp";
+import { cn } from "@/lib/utils";
 import { MemeData } from "@/services/meme/types";
 import { Copy } from "lucide-react";
 
 export default function MemeShareButton({
   meme,
   className,
-}: {
+  ...props
+}: ButtonProps & {
   meme: MemeData;
-  className?: string;
 }) {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button size={"lg"} className="w-full max-md:text-base">
+        <Button
+          size={"lg"}
+          className={cn("w-full max-md:text-base", className)}
+          {...props}
+        >
           Share
         </Button>
       </DialogTrigger>
