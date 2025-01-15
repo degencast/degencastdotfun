@@ -11,15 +11,17 @@ import { DEFAULT_CHAIN } from "@/constants/chain";
 export default function MemeSwap({
   meme,
   isSol,
+  className,
 }: {
   meme: MemeData;
   isSol?: boolean;
+  className?: string;
 }) {
   const baseToken = meme?.baseToken;
   const solToken = meme?.solToken;
 
   return (
-    <Card className={cn("w-full min-h-[400px] border-primary p-0")}>
+    <Card className={cn("w-full min-h-[400px] border-primary p-0", className)}>
       <CardContent className="w-full p-0 max-md:p-0">
         {baseToken && (
           <div className={cn("w-full h-[560px]", isSol ? "hidden" : "block")}>

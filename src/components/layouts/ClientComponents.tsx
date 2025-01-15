@@ -1,6 +1,6 @@
 "use client";
 
-import { ReactNode } from "react";
+import { PropsWithChildren, ReactNode } from "react";
 import Link from "next/link";
 import AboutDialogButton from "../About";
 import { Button } from "../ui/button";
@@ -64,7 +64,7 @@ export function DefaultHeader() {
               !isHomePage && "max-md:hidden"
             )}
           >
-            <div className="min-w-[340px]">
+            <div className="min-w-[340px] max-md:hidden">
               <Search />
             </div>
 
@@ -120,12 +120,15 @@ export function DefaultHeader() {
   );
 }
 
-export function DefaultMain({ children }: { children: ReactNode }) {
+export function DefaultMain({ children }: PropsWithChildren) {
+  const pathname = usePathname();
+  const isMemeDetails = pathname.includes("/memes/");
   return (
     <main
       className={cn(
         "w-screen mx-auto box-border overflow-hidden p-6 max-md:p-3 relative",
-        "min-h-screen mt-[80px] max-md:mt-[70px]"
+        "min-h-screen mt-[80px] max-md:mt-[70px]",
+        isMemeDetails && "max-md:p-0"
       )}
     >
       {children}

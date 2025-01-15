@@ -19,7 +19,7 @@ export default function MemeTradeChart({
   const solDexUrl = getDexTokenWidgetUrl("sol", meme?.solToken?.poolAddress);
 
   return (
-    <Card className="w-full">
+    <Card className="w-full max-md:rounded-none">
       <CardContent className="w-full flex flex-col justify-start items-start gap-3 p-0">
         <div className="w-full aspect-[1/1] max-md:aspect-[1/1.5]">
           {isSol ? (

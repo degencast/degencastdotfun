@@ -77,19 +77,21 @@ export default function Home() {
     <div className="w-full">
       <div className="w-full flex flex-row justify-between gap-6 max-lg:flex-col max-md:gap-3">
         <div className="flex gap-6 max-lg:justify-between max-sm:flex-col max-sm:gap-3">
-          <ButtonToggle2
-            value={listStyle}
-            options={ListStyleOptions}
-            onChange={(v) => {
-              setListStyle(v);
-              // if (v === ListStyle.Grid) {
-              //   setSortBy(SortBy.marketCap);
-              // } else {
-              //   setSortBy(SortBy.volumeh24);
-              // }
-              setStorageDefaultListStyle(v);
-            }}
-          />
+          <div className="max-md:hidden">
+            <ButtonToggle2
+              value={listStyle}
+              options={ListStyleOptions}
+              onChange={(v) => {
+                setListStyle(v);
+                // if (v === ListStyle.Grid) {
+                //   setSortBy(SortBy.marketCap);
+                // } else {
+                //   setSortBy(SortBy.volumeh24);
+                // }
+                setStorageDefaultListStyle(v);
+              }}
+            />
+          </div>
           {/* <ChainSelector chain={chain} onChangeChain={setChain} />
           <ButtonToggle2
             value={platform}
