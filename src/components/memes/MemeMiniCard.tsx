@@ -35,7 +35,7 @@ export function MemeMiniCard({
   const solToken = meme.solToken;
   const castHash = meme?.castHash;
   return (
-    <Card className="w-full h-fit overflow-hidden">
+    <Card className="w-full h-fit overflow-hidden max-md:rounded-none">
       <CardContent className="w-full overflow-hidden p-2 bg-white">
         <MemeInfo meme={meme} />
         {!castHash && <div className="">{meme.description}</div>}
@@ -43,10 +43,10 @@ export function MemeMiniCard({
           <Separator className="h-1 w-full bg-primary my-3" />
         )}
 
-        <div className="flex flex-row gap-3 max-md:flex-col">
+        <div className="flex flex-row gap-3">
           <PlatformInfo meme={meme} />
           {(!!baseToken || !!solToken) && (
-            <Separator className="h-auto w-1 bg-primary max-md:w-full max-md:h-1" />
+            <Separator className="h-auto w-1 bg-primary" />
           )}
           {baseToken && (
             <MemeInfoOnChain
@@ -67,7 +67,7 @@ export function MemeMiniCard({
           )}
 
           {baseToken && solToken && (
-            <Separator className="h-auto w-1 bg-primary max-md:w-full max-md:h-1" />
+            <Separator className="h-auto w-1 bg-primary" />
           )}
 
           {solToken && (
@@ -81,7 +81,7 @@ export function MemeMiniCard({
               gmgnUrl={getGmgnTokenUrl("sol", solToken?.tokenAddress!)}
             />
           )}
-          <div className="ml-auto max-md:hidden">
+          <div className="ml-auto">
             <MemeShareButton
               meme={meme}
               size={"sm"}
@@ -173,10 +173,10 @@ function MemeInfo({ meme }: { meme: MemeData }) {
         <div className="flex items-center gap-3">
           <div className="font-bold text-primary  max-md:text-xs">Address</div>
           {baseToken?.tokenAddress && (
-            <CopyAddress address={baseToken.tokenAddress} />
+            <CopyAddress address={baseToken.tokenAddress} len={3} />
           )}
           {solToken?.tokenAddress && (
-            <CopyAddress address={solToken.tokenAddress} />
+            <CopyAddress address={solToken.tokenAddress} len={3} />
           )}
         </div>
       </div>

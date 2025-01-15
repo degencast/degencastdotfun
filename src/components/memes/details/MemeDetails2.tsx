@@ -80,12 +80,15 @@ export default function MemeDetails({ addr }: { addr: string }) {
     );
   }
   const memeBaseInfoEl = <MemeBaseInfo meme={meme} />;
-  const SwapEl = <MemeSwap meme={meme} isSol={isSol} />;
+  const SwapEl = (
+    <MemeSwap meme={meme} isSol={isSol} className="max-md:rounded-none" />
+  );
   const enableBridge = !!baseToke?.nttConnect && !!solToken?.nttConnect;
   const tradeActionTab = (
     <>
       {enableBridge && (
         <ButtonToggle
+          className="max-md:rounded-none"
           options={tradeActionOptions}
           value={tradeActionType}
           onChange={setTradeActionType}
@@ -105,6 +108,7 @@ export default function MemeDetails({ addr }: { addr: string }) {
   );
   const chainToggle = (
     <ButtonToggle
+      className="max-md:rounded-none"
       options={chainOptions}
       value={chainType}
       onChange={setChainType}
@@ -121,39 +125,35 @@ export default function MemeDetails({ addr }: { addr: string }) {
   const joinTgButton = meme?.tgPostLink ? (
     <JoinTelegramButton link={meme?.tgPostLink} />
   ) : null;
-  return (
+  const pcEl = (
     <>
-      {" "}
-      <div id="chart" className="w-full max-md:hidden mb-6">
-        {chainToggle}
-      </div>
-      <div className="w-full flex flex-row gap-6 max-md:flex-col max-md:gap-3">
-        <div className="flex-1 flex flex-col justify-start items-start gap-6 max-md:gap-3">
+      <div className="w-full mb-6">{chainToggle}</div>
+      <div className="w-full flex flex-row gap-6">
+        <div className="flex-1 flex flex-col justify-start items-start gap-6">
           <MemeTradeChart meme={meme} isSol={isSol} />
-
-          <div className="w-full flex-col gap-6 hidden max-md:flex max-md:gap-3">
-            <div id="swap" className="w-full flex flex-col gap-3">
-              {tradeActionTab}
-            </div>
-            <div id="posts" className="w-full">
-              {memePosts}
-            </div>
-          </div>
         </div>
-        <div className="w-[430px] flex flex-col gap-6 max-md:hidden">
-          <div id="info" className="w-full">
-            {memeInfo}
-          </div>
+        <div className="w-[430px] flex flex-col gap-6">
+          {memeInfo}
           {joinTgButton}
-
-          <div id="chart" className="w-full hidden max-md:block">
-            {chainToggle}
-          </div>
           {tradeActionTab}
           {memePosts}
         </div>
       </div>
-      <div className="w-full h-[56px] hidden max-md:block">
+    </>
+  );
+  const mobileEl = (
+    <>
+      {" "}
+      <div id="info">{memeInfo}</div>
+      <div id="chart">{chainToggle}</div>
+      <MemeTradeChart meme={meme} isSol={isSol} />
+      <div id="swap" className="w-full flex flex-col gap-3">
+        {tradeActionTab}
+      </div>
+      <div id="posts" className="w-full">
+        {memePosts}
+      </div>
+      <div className="w-full h-[56px]">
         <div className="w-screen p-3 flex flex-row items-center justify-evenly fixed bottom-0 left-0 bg-primary text-white text-2xl font-bold">
           <PositionLink href="#info" topOffset={80}>
             Info
@@ -169,6 +169,12 @@ export default function MemeDetails({ addr }: { addr: string }) {
           </PositionLink>
         </div>
       </div>
+    </>
+  );
+  return (
+    <>
+      <div className="max-md:hidden">{pcEl}</div>
+      <div className="hidden max-md:block">{mobileEl}</div>
     </>
   );
 }

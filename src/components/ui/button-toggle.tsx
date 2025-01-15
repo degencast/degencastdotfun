@@ -23,7 +23,10 @@ export default function ButtonToggle({
   onChange,
   disabledValues,
   onClickDisableOption,
-}: ToggleProps) {
+  className,
+}: ToggleProps & {
+  className?: string;
+}) {
   const selected = value || options[0].value;
 
   const handleClick = (value: any) => {
@@ -31,7 +34,12 @@ export default function ButtonToggle({
   };
 
   return (
-    <div className="flex rounded-lg bg-primary p-1 w-full h-[68px] max-sm:h-[42px]">
+    <div
+      className={cn(
+        "flex rounded-lg bg-primary p-1 w-full h-[68px] max-sm:h-[42px]",
+        className
+      )}
+    >
       {options.map((option) => (
         <button
           key={option.value}

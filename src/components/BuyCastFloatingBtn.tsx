@@ -15,7 +15,10 @@ export default function BuyCastFloatingBtn() {
     address: CAST_TOKEN_ADDRESS!,
   });
   return (
-    <Link href={`/buy`} className="fixed bottom-20 right-20">
+    <Link
+      href={`/buy`}
+      className="fixed bottom-20 right-20 max-md:right-4 max-md:bottom-4"
+    >
       <Button className=" flex flex-row items-center gap-6 p-6">
         <div className="flex flex-row items-center gap-2">
           <Avatar className="size-6 object-cover rounded-full">
