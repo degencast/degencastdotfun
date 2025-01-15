@@ -1,7 +1,7 @@
 import type { Metadata, ResolvingMetadata } from "next";
-import MemeDetails from "@/components/memes/details/MemeDetails";
 import { getMeme } from "@/services/meme/api";
 import { ApiRespCode } from "@/services/types";
+import MemeDetails2 from "@/components/memes/details/MemeDetails2";
 
 type Props = {
   params: Promise<{ addr: string }>;
@@ -44,5 +44,5 @@ export async function generateMetadata(
 
 export default async function MemePage({ params, searchParams }: Props) {
   const addr = (await params).addr;
-  return <MemeDetails addr={addr} />;
+  return <MemeDetails2 addr={addr} />;
 }
