@@ -28,8 +28,7 @@ export function UserCard({ user, following, onAction }: UserCardProps) {
             <CopyAddress address={user.address} size="small" />
           </div>
         </div>
-        <Button 
-          variant={following ? 'destructive' : 'default'} 
+        <Button
           size="sm"
           onClick={onAction}
           className="rounded-full"
