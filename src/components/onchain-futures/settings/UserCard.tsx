@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Web3BioUser } from "@/services/settings/types";
-import { shortPubKey } from "@/lib/shortAddress";
 import CopyAddress from "@/components/CopyAddress";
 
 interface UserCardProps {
