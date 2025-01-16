@@ -14,6 +14,11 @@ export default function Settings() {
   const { mutate: followUserMutation } = useFollowUser();
   const router = useRouter();
 
+  // 检查用户是否已关注
+  const isFollowing = (user: Web3BioUser) => {
+    return followingUsers?.some(following => following.address === user.address) ?? false;
+  };
+
   return (
     <div className="flex flex-col gap-6 p-4 max-w-7xl mx-auto w-full">
       <div className="flex flex-row justify-center items-stretch gap-6 max-md:flex-col">
@@ -28,8 +33,8 @@ export default function Settings() {
           </div>
 
           <div className="flex-1 mt-4">
-            <h1 className="text-2xl font-semibold mb-4 text-primary">Recommended Users ✨</h1>
-            {isLoadingRecommended ? (
+            <h1 className="text-2xl font-bold mb-4 text-primary">Recommended Users ✨</h1>
+            {isLoadingRecommended || isLoadingFollowing ? (
               <div>Loading...</div>
             ) : (
               <div className="grid grid-cols-2 gap-3 max-md:grid-cols-1">
@@ -37,7 +42,7 @@ export default function Settings() {
                   <UserCard
                     key={user.address}
                     user={user}
-                    following={false}
+                    following={isFollowing(user)}
                     onAction={() => followUserMutation(user.address)}
                   />
                 ))}
@@ -51,7 +56,7 @@ export default function Settings() {
           {/* Following Card */}
           <Card className="p-4 bg-white flex-1 border-4 border-primary">
             <div className="h-full flex flex-col">
-              <h2 className="text-2xl font-semibold mb-4 text-primary">Following 🎯</h2>
+              <h1 className="text-2xl font-bold mb-4 text-primary">Following 🎯</h1>
               <div className="flex-1 flex flex-col gap-3">
                 {isLoadingFollowing ? (
                   <div>Loading...</div>
