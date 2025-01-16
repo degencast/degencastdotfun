@@ -25,7 +25,7 @@ export default function Settings() {
         {/* Left Column - Recommended Users */}
         <Card className="p-4 w-2/3 max-md:w-full bg-white border-4 border-primary">
           <div className="flex flex-col gap-4">
-            <h1 className="text-2xl font-bold text-primary">Follow Trading Address</h1>
+            <h1 className="text-2xl font-bold text-primary">Follow Trading Address 🔗</h1>
             <SearchInput
               placeholder="Search wallet address, ENS name, Solana name service or Farcaster..."
               className="w-full"
