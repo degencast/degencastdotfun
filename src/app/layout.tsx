@@ -6,8 +6,12 @@ import Providers from "@/components/Providers";
 import { Toaster } from "@/components/ui/toaster";
 import { Comic_Neue as ComicNeueFont } from "next/font/google";
 import LandingPageRootLayout from "@/components/landing-page/LandingPageRootLayout";
+import OnchainFuturesRootLayout from "@/components/onchain-futures/layout/RootLayout";
 import Script from "next/script";
-import { DEGENCAST_APP_LANDING_PAGE } from "@/constants";
+import {
+  DEGENCAST_APP_LANDING_PAGE,
+  DEGENCAST_APP_ONCHAIN_FUTURES,
+} from "@/constants";
 import InitSdk from "@/components/InitSdk";
 
 export const metadata: Metadata = DEGENCAST_APP_LANDING_PAGE
@@ -42,6 +46,10 @@ export default function RootLayout({
       <body className={`${font.className} antialiased`}>
         {DEGENCAST_APP_LANDING_PAGE ? (
           <LandingPageRootLayout>{children}</LandingPageRootLayout>
+        ) : DEGENCAST_APP_ONCHAIN_FUTURES ? (
+          <Providers>
+            <OnchainFuturesRootLayout>{children}</OnchainFuturesRootLayout>
+          </Providers>
         ) : (
           <Providers>
             <DefaultRootLayout>{children}</DefaultRootLayout>
