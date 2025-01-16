@@ -4,14 +4,13 @@ import { SearchInput } from "@/components/ui/search-input";
 import { UserCard } from "@/components/onchain-futures/settings/UserCard";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { useRecommendedUsers, useFollowingUsers, useFollowUser } from "@/hooks/useSettingsUsers";
+import { useRecommendedUsers, useFollowingUsers } from "@/hooks/useSettingsUsers";
 import { Web3BioUser } from "@/services/settings/types";
 import { useRouter } from "next/navigation";
 
 export default function Settings() {
   const { data: recommendedUsers, isLoading: isLoadingRecommended } = useRecommendedUsers();
   const { data: followingUsers, isLoading: isLoadingFollowing } = useFollowingUsers();
-  const { mutate: followUserMutation } = useFollowUser();
   const router = useRouter();
 
   // 检查用户是否已关注
@@ -25,7 +24,7 @@ export default function Settings() {
         {/* Left Column - Recommended Users */}
         <Card className="p-4 w-2/3 max-md:w-full bg-white border-4 border-primary">
           <div className="flex flex-col gap-4">
-            <h1 className="text-2xl font-bold text-primary">Follow Trading Address 🔗</h1>
+            <h1 className="text-2xl font-bold text-primary">Follow Trading Address</h1>
             <SearchInput
               placeholder="Search wallet address, ENS name, Solana name service or Farcaster..."
               className="w-full"
@@ -43,7 +42,6 @@ export default function Settings() {
                     key={user.address}
                     user={user}
                     following={isFollowing(user)}
-                    onAction={() => followUserMutation(user.address)}
                   />
                 ))}
               </div>
@@ -66,7 +64,6 @@ export default function Settings() {
                       key={user.address}
                       user={user}
                       following={true}
-                      onAction={() => followUserMutation(user.address)}
                     />
                   ))
                 ) : (

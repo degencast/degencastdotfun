@@ -1,16 +1,15 @@
-import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Web3BioUser } from "@/services/settings/types";
 import CopyAddress from "@/components/CopyAddress";
+import { FollowButton } from "./FollowButton";
 
 interface UserCardProps {
   user: Web3BioUser;
   following: boolean;
-  onAction?: () => void;
 }
 
-export function UserCard({ user, following, onAction }: UserCardProps) {
+export function UserCard({ user, following }: UserCardProps) {
   const nameInitials = user.name.slice(0, 2).toUpperCase();
 
   return (
@@ -28,13 +27,7 @@ export function UserCard({ user, following, onAction }: UserCardProps) {
             <CopyAddress address={user.address} size="small" />
           </div>
         </div>
-        <Button
-          size="sm"
-          onClick={onAction}
-          className="rounded-full"
-        >
-          {following ? 'Remove' : 'Follow'}
-        </Button>
+        <FollowButton address={user.address} following={following} />
       </div>
     </Card>
   );
