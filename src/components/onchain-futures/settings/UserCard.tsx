@@ -3,6 +3,7 @@ import { Card } from "@/components/ui/card";
 import { Avatar } from "@/components/ui/avatar";
 import { Web3BioUser } from "@/services/settings/types";
 import { shortPubKey } from "@/lib/shortAddress";
+import CopyAddress from "@/components/CopyAddress";
 
 interface UserCardProps {
   user: Web3BioUser;
@@ -20,10 +21,11 @@ export function UserCard({ user, following, onAction }: UserCardProps) {
           </Avatar>
           <div className="flex flex-col">
             <span className="font-semibold">{user.name}</span>
-            <span className="text-sm text-muted-foreground">{shortPubKey(user.address)}</span>
+            <CopyAddress address={user.address} size="small" />
           </div>
         </div>
-        <Button
+        <Button 
+          variant={following ? 'destructive' : 'default'} 
           size="sm"
           onClick={onAction}
           className="rounded-full"
