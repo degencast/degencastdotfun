@@ -4,7 +4,7 @@ import { PropsWithChildren, ReactNode } from "react";
 import Link from "next/link";
 import AboutDialogButton from "../About";
 import { Button } from "../ui/button";
-import { ChevronLeft, Home } from "lucide-react";
+import { ChevronLeft, Home, User2 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -70,7 +70,7 @@ export function DefaultHeader() {
             <div className="max-md:hidden">
               <LaunchTokenButton />
             </div>
-            <UserPill size={40} />
+            <UserPill size={60} label={logoImageElement} />
           </div>
           {!isHomePage && (
             <div className="ml-auto hidden max-md:block">
@@ -82,7 +82,7 @@ export function DefaultHeader() {
     </>
   );
 }
-
+const logoImageElement = <User2 className="size-12 rounded-full" />;
 export function DefaultMain({ children }: PropsWithChildren) {
   const pathname = usePathname();
   const isMemeDetails = pathname.includes("/memes/");
