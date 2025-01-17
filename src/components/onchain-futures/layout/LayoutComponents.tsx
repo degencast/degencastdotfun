@@ -8,6 +8,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { TG_LINK } from "@/constants/landing-page";
+import BuyCastFloatingBtn from "@/components/BuyCastFloatingBtn";
 import { UserPill } from "@privy-io/react-auth/ui";
 
 export function DefaultHeader() {
@@ -65,10 +66,10 @@ export function DefaultHeader() {
     </>
   );
 }
-const logoImageElement = (
-  <User2 className="size-12 rounded-full" />
-);
+const logoImageElement = <User2 className="size-12 rounded-full" />;
 export function DefaultMain({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const isSettingsPage = pathname === "/settings";
   return (
     <main
       className={cn(
@@ -77,6 +78,7 @@ export function DefaultMain({ children }: { children: ReactNode }) {
       )}
     >
       {children}
+      {!isSettingsPage && <BuyCastFloatingBtn />}
     </main>
   );
 }

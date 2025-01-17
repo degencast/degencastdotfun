@@ -8,6 +8,10 @@ import { Provider } from "react-redux";
 import { store } from "@/store/store";
 import AsyncData from "./AsyncData";
 
+import dayjs from "dayjs";
+import relativeTime from "dayjs/plugin/relativeTime";
+dayjs.extend(relativeTime);
+
 export default function PrivyProvider({
   children,
 }: {
