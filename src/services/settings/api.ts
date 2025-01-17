@@ -75,3 +75,28 @@ export function followUser({
     data: { address }
   });
 }
+
+export function unfollowUser({
+  address,
+}: {
+  address: string;
+}): RequestPromise<ApiResp<Web3BioProfile[]>> {
+  if (MOCK) {
+    // 模拟关注/取消关注操作
+    const mockResponse = {
+      code: ApiRespCode.SUCCESS,
+      msg: "success",
+      data: mockFollowingUsers
+    };
+    return Promise.resolve(mockAxiosResponse(mockResponse));
+  }
+
+  return request({
+    url: `/memes/traders/following`,
+    method: "delete",
+    headers: {
+      needToken: true,
+    },
+    data: { address }
+  });
+}
