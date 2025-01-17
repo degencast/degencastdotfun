@@ -26,6 +26,7 @@ export type MemeData = {
 };
 
 export type TokenData = {
+  chainId: number;
   chainName: ChainName;
   tokenAddress: string;
   poolAddress: string;

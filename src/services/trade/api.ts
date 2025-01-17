@@ -1,6 +1,6 @@
 import request, { RequestPromise } from "../request";
 import { ApiResp } from "../types";
-import { OhlctData, TradeData } from "./types";
+import { OhlctData, TradeData, TradeData2 } from "./types";
 
 export function getMemeTrades({
   address,
@@ -13,6 +13,28 @@ export function getMemeTrades({
   });
 }
 
+export function getFollowingTrades(params: {
+  pageSize?: number;
+  pageNumber?: number;
+  tokenAddress?: string;
+}): RequestPromise<ApiResp<TradeData2[]>> {
+  return request({
+    url: `/memes/trades/following`,
+    method: "get",
+    params,
+  });
+}
+export function getTrendingTrades(params: {
+  pageSize?: number;
+  pageNumber?: number;
+  tokenAddress?: string;
+}): RequestPromise<ApiResp<TradeData2[]>> {
+  return request({
+    url: `/memes/trades/trending`,
+    method: "get",
+    params,
+  });
+}
 export function getUserTrades({
   address,
 }: {

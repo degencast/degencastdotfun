@@ -9,6 +9,7 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { TG_LINK } from "@/constants/landing-page";
 import { ConnectButton } from "@/components/ConnectButton";
+import BuyCastFloatingBtn from "@/components/BuyCastFloatingBtn";
 
 export function DefaultHeader() {
   const pathname = usePathname();
@@ -85,6 +86,8 @@ export function DefaultHeader() {
 }
 
 export function DefaultMain({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const isSettingsPage = pathname === "/settings";
   return (
     <main
       className={cn(
@@ -93,6 +96,7 @@ export function DefaultMain({ children }: { children: ReactNode }) {
       )}
     >
       {children}
+      {!isSettingsPage && <BuyCastFloatingBtn />}
     </main>
   );
 }

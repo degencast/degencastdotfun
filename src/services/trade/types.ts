@@ -1,4 +1,5 @@
-import { MemeData } from "../meme/types";
+import { MemeData, TokenData } from "../meme/types";
+import { Web3BioUser } from "../settings/types";
 
 export type TradeData = {
   user: {
@@ -21,4 +22,18 @@ export type OhlctData = {
   low: number;
   close: number;
   time: number;
+};
+
+export type TradeData2 = {
+  txType: "buy" | "sell";
+  token: TokenData;
+  amount: number;
+  priceUsd: string;
+
+  swapToken: TokenData;
+  swapAmount: number;
+
+  date: number;
+  txHash: string;
+  user: Web3BioUser;
 };
