@@ -3,7 +3,7 @@
 import { ReactNode, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, User2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
@@ -58,16 +58,16 @@ export function DefaultHeader() {
                 <span>Join Us</span>
               </Button>
             </Link>
-            <div>
-              <UserPill />
-            </div>
+            <UserPill size={60} label={logoImageElement} />
           </div>
         </div>
       </header>
     </>
   );
 }
-
+const logoImageElement = (
+  <User2 className="size-12 rounded-full" />
+);
 export function DefaultMain({ children }: { children: ReactNode }) {
   return (
     <main

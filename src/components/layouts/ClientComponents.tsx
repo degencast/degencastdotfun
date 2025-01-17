@@ -70,9 +70,7 @@ export function DefaultHeader() {
             <div className="max-md:hidden">
               <LaunchTokenButton />
             </div>
-            <div>
-              <UserPill />
-            </div>
+            <UserPill size={40} />
           </div>
           {!isHomePage && (
             <div className="ml-auto hidden max-md:block">
