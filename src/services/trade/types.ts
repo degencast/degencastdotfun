@@ -1,5 +1,5 @@
 import { MemeData, TokenData } from "../meme/types";
-import { Web3BioUser } from "../settings/types";
+import { Web3BioProfile } from "../settings/types";
 
 export type TradeData = {
   user: {
@@ -35,5 +35,5 @@ export type TradeData2 = {
 
   date: number;
   txHash: string;
-  user: Web3BioUser;
+  user: Web3BioProfile;
 };

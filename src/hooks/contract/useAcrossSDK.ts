@@ -45,7 +45,7 @@ export function useAcrossRouteInfo(chainId: number | undefined) {
 
 const client = createAcrossClient({
   integratorId: "0xdead", // 2-byte hex string
-  chains: config.chains,
+  chains: [...config.chains],
   useTestnet: true,
 });
 

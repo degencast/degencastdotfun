@@ -1,6 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
-import { Web3BioUser } from "@/services/settings/types";
+import { Web3BioProfile } from "@/services/settings/types";
 import CopyAddress from "@/components/CopyAddress";
 import { FollowButton } from "../settings/FollowButton";
 import { TokenData } from "@/services/meme/types";
@@ -15,7 +15,7 @@ import MemeSwapDialogWithUniswap from "@/components/memes/MemeSwapDialogWithUnis
 import { MemeSwapDialogWithJupiter } from "@/components/memes/MemeSwapDialogWithJupiter";
 
 interface TradeCardProps {
-  user: Web3BioUser;
+  user: Web3BioProfile;
   following: boolean;
   tradeInfo: TradeData2;
 }
@@ -36,13 +36,13 @@ export function TradeCard({ user, following, tradeInfo }: TradeCardProps) {
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Avatar>
-            <AvatarImage src={user.avatarUrl} alt={user.name} />
+            <AvatarImage src={user.avatar} alt={user.displayName} />
             <AvatarFallback className="bg-primary/60 text-primary-foreground">
-              {user?.name?.slice(0, 2)?.toUpperCase()}
+              {user?.displayName?.slice(0, 2)?.toUpperCase()}
             </AvatarFallback>
           </Avatar>
           <div className="flex flex-col">
-            <span className="font-semibold">{user.name}</span>
+            <span className="font-semibold">{user.displayName}</span>
             <CopyAddress address={user.address} size="small" />
           </div>
         </div>
