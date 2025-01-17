@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import "@rainbow-me/rainbowkit/styles.css";
 import DefaultRootLayout from "@/components/layouts/DefaultRootLayout";
-import Providers from "@/components/Providers";
+import PrivyProvider from "@/components/PrivyProvider";
 import { Toaster } from "@/components/ui/toaster";
 import { Comic_Neue as ComicNeueFont } from "next/font/google";
 import LandingPageRootLayout from "@/components/landing-page/LandingPageRootLayout";
@@ -47,13 +46,13 @@ export default function RootLayout({
         {DEGENCAST_APP_LANDING_PAGE ? (
           <LandingPageRootLayout>{children}</LandingPageRootLayout>
         ) : DEGENCAST_APP_ONCHAIN_FUTURES ? (
-          <Providers>
+          <PrivyProvider>
             <OnchainFuturesRootLayout>{children}</OnchainFuturesRootLayout>
-          </Providers>
+          </PrivyProvider>
         ) : (
-          <Providers>
+          <PrivyProvider>
             <DefaultRootLayout>{children}</DefaultRootLayout>
-          </Providers>
+          </PrivyProvider>
         )}
         <Toaster />
         <InitSdk />

@@ -3,13 +3,13 @@
 import { ReactNode, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft } from "lucide-react";
+import { ChevronLeft, User2 } from "lucide-react";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { TG_LINK } from "@/constants/landing-page";
-import { ConnectButton } from "@/components/ConnectButton";
 import BuyCastFloatingBtn from "@/components/BuyCastFloatingBtn";
+import { UserPill } from "@privy-io/react-auth/ui";
 
 export function DefaultHeader() {
   const pathname = usePathname();
@@ -21,7 +21,6 @@ export function DefaultHeader() {
         <div className="w-full max-w-screen-2xl mx-auto h-full flex shrink-0 items-center px-6 gap-2 box-border max-md:px-3">
           {isHomePage ? (
             <div className="h-12 justify-start items-center gap-4 inline-flex hover:no-underline max-md:gap-2">
-              {/* <img src="/images/logo.png" className="size-12 max-md:size-10" /> */}
               <Link href="/">
                 <div className="size-12 max-md:size-10 relative">
                   <Image src="/landing-page/images/logo.png" alt="logo" fill />
@@ -60,31 +59,14 @@ export function DefaultHeader() {
                 <span>Join Us</span>
               </Button>
             </Link>
-            <div>
-              <div className="max-md:hidden">
-                <ConnectButton
-                  showBalance={false}
-                  chainStatus={"none"}
-                  label="Connect"
-                />
-              </div>
-
-              <div className="hidden max-md:block">
-                <ConnectButton
-                  showBalance={false}
-                  chainStatus={"none"}
-                  accountStatus={"avatar"}
-                  label="Connect"
-                />
-              </div>
-            </div>
+            <UserPill size={60} label={logoImageElement} />
           </div>
         </div>
       </header>
     </>
   );
 }
-
+const logoImageElement = <User2 className="size-12 rounded-full" />;
 export function DefaultMain({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const isSettingsPage = pathname === "/settings";

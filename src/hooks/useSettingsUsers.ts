@@ -1,48 +1,45 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getRecommendedUsers, getFollowingUsers, followUser } from '@/services/settings/api';
-import { Web3BioUser } from '@/services/settings/types';
-import { ApiResp } from '@/services/types';
-import { useAccount } from 'wagmi';
+import { Web3BioProfile } from '@/services/settings/types';
 
 export function useRecommendedUsers() {
-  const { address } = useAccount();
-
-  return useQuery<Web3BioUser[], Error>({
-    queryKey: ['recommendedUsers', address],
+  return useQuery<Web3BioProfile[], Error>({
+    queryKey: ['recommendedUsers'],
     queryFn: async () => {
-      const response = await getRecommendedUsers({ address: address || '' });
+      const response = await getRecommendedUsers();
       return response.data.data;
     },
-    enabled: !!address,
   });
 }
 
-export function useFollowingUsers() {
-  const { address } = useAccount();
-
-  return useQuery<Web3BioUser[], Error>({
-    queryKey: ['followingUsers', address],
+export function useFollowingUsers(userId: string | undefined) {
+  return useQuery<Web3BioProfile[], Error>({
+    queryKey: ['followingUsers', userId],
     queryFn: async () => {
-      const response = await getFollowingUsers({ address: address || '' });
+      const response = await getFollowingUsers();
       return response.data.data;
     },
-    enabled: !!address,
+    enabled: !!userId,
+    initialData: [],
   });
 }
 
-export function useFollowUser() {
+export function useFollowUser(userId: string | undefined) {
   const queryClient = useQueryClient();
-  const { address } = useAccount();
-
-  return useMutation<Web3BioUser[], Error, string>({
+  const mutation = useMutation<Web3BioProfile[], Error, string>({
     mutationFn: async (targetAddress: string) => {
       const response = await followUser({ address: targetAddress });
       return response.data.data;
     },
     onSuccess: () => {
-      // 更新推荐用户和关注用户的缓存
-      queryClient.invalidateQueries({ queryKey: ['recommendedUsers', address] });
-      queryClient.invalidateQueries({ queryKey: ['followingUsers', address] });
+      queryClient.invalidateQueries({ queryKey: ['recommendedUsers'] });
+      queryClient.invalidateQueries({ queryKey: ['followingUsers', userId] });
     },
   });
+
+  if (!userId) {
+    return { mutate: () => {}, isLoading: false };
+  }
+
+  return mutation;
 } 

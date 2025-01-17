@@ -1,7 +1,3 @@
-import { Address } from "viem";
+import { SearchResult } from "./search/types";
 
-export type Web3BioUser = {
-  name: string;
-  address: Address;
-  avatarUrl?: string;
-}
+export type { SearchResult as Web3BioProfile };
