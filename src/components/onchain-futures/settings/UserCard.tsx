@@ -13,7 +13,6 @@ export function UserCard({ user, following }: UserCardProps) {
   const nameInitials = user.displayName.slice(0, 2).toUpperCase();
 
   return (
-    <Card className="p-4 bg-white border-4 border-primary">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-3">
           <Avatar>
@@ -29,6 +28,5 @@ export function UserCard({ user, following }: UserCardProps) {
         </div>
         <FollowButton address={user.address} following={following} />
       </div>
-    </Card>
   );
 } 

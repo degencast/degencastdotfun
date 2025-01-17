@@ -47,7 +47,7 @@ export function SearchResultList({
     }
     return (
       <div className="absolute z-10 w-full mt-2 bg-white border-4 border-primary rounded-xl p-2">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4 p-2">
           {results.map((result) => (
             <UserCard key={result.address} user={result} following={isFollowing(result)} />
           ))}
