@@ -1,4 +1,5 @@
 import { API_BASE_URL } from "@/constants";
+import { getAccessToken } from "@privy-io/react-auth";
 import axios, {
   AxiosPromise,
   AxiosRequestConfig,
@@ -37,7 +38,8 @@ axiosInstance.interceptors.request.use(
     if (config.headers?.token) {
       config.headers["Authorization"] = config.headers?.token;
     } else if (config.headers?.needToken) {
-      config.headers["Authorization"] = authToken;
+      const privyToken = await getAccessToken(); // privy token时效1小时所以必须实时获取privy token，不能使用injectUserToken注入
+      config.headers["Authorization"] = privyToken;
       delete config.headers.needToken;
     }
     return config;

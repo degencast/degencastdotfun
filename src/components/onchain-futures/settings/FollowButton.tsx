@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { useFollowUser } from "@/hooks/useSettingsUsers";
+import { usePrivy } from "@privy-io/react-auth";
 
 interface FollowButtonProps {
   address: string;
@@ -7,12 +8,19 @@ interface FollowButtonProps {
 }
 
 export function FollowButton({ address, following }: FollowButtonProps) {
-  const { mutate: followUserMutation } = useFollowUser();
+  const { user, login } = usePrivy();
+  const { mutate: followUserMutation } = useFollowUser(user?.id);
 
   return (
     <Button
       size="sm"
-      onClick={() => followUserMutation(address)}
+      onClick={() => {
+        if (user?.id) {
+          followUserMutation(address);
+        }else{
+          login();
+        }
+      }}
       className="rounded-full"
     >
       {following ? 'Remove' : 'Follow'}
