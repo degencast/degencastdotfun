@@ -1,20 +1,20 @@
 'use client';
 
-import { SearchInput } from "@/components/ui/search-input";
 import { UserCard } from "@/components/onchain-futures/settings/UserCard";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useRecommendedUsers, useFollowingUsers } from "@/hooks/useSettingsUsers";
-import { Web3BioUser } from "@/services/settings/types";
+import { Web3BioProfile } from "@/services/settings/types";
 import { useRouter } from "next/navigation";
+import { SearchInput } from "@/components/onchain-futures/settings/search/SearchInput";
 
 export default function Settings() {
-  const { data: recommendedUsers, isLoading: isLoadingRecommended } = useRecommendedUsers();
-  const { data: followingUsers, isLoading: isLoadingFollowing } = useFollowingUsers();
   const router = useRouter();
 
+  const { data: recommendedUsers, isLoading: isLoadingRecommended } = useRecommendedUsers();
+  const { data: followingUsers, isLoading: isLoadingFollowing } = useFollowingUsers();
   // 检查用户是否已关注
-  const isFollowing = (user: Web3BioUser) => {
+  const isFollowing = (user: Web3BioProfile) => {
     return followingUsers?.some(following => following.address === user.address) ?? false;
   };
 
@@ -37,7 +37,7 @@ export default function Settings() {
               <div>Loading...</div>
             ) : (
               <div className="grid grid-cols-2 gap-3 max-md:grid-cols-1">
-                {recommendedUsers?.map((user: Web3BioUser) => (
+                {recommendedUsers?.map((user: Web3BioProfile) => (
                   <UserCard
                     key={user.address}
                     user={user}
@@ -59,7 +59,7 @@ export default function Settings() {
                 {isLoadingFollowing ? (
                   <div>Loading...</div>
                 ) : followingUsers?.length ? (
-                  followingUsers.map((user: Web3BioUser) => (
+                  followingUsers.map((user: Web3BioProfile) => (
                     <UserCard
                       key={user.address}
                       user={user}
