@@ -1,6 +1,7 @@
 import { SearchError, SearchResult } from "@/services/settings/search/types";
 import { UserCard } from "../UserCard";
 import { useFollowingUsers } from "@/hooks/useSettingsUsers";
+import { usePrivy } from "@privy-io/react-auth";
 
 interface SearchResultListProps {
   results: SearchResult[] | SearchError;
@@ -11,8 +12,8 @@ export function SearchResultList({
   results,
   loading,
 }: SearchResultListProps) {
-  
-  const { data: followingUsers, isLoading: isLoadingFollowing } = useFollowingUsers();
+  const { user } = usePrivy();
+  const { data: followingUsers, isLoading: isLoadingFollowing } = useFollowingUsers(user?.id);
   // 检查用户是否已关注
   const isFollowing = (user: SearchResult) => {
     return followingUsers?.some(following => following.address === user.address) ?? false;

@@ -10,14 +10,16 @@ import {
 import { Web3BioProfile } from "@/services/settings/types";
 import { useRouter } from "next/navigation";
 import { SearchInput } from "@/components/onchain-futures/settings/search/SearchInput";
+import { usePrivy } from "@privy-io/react-auth";
 
 export default function Settings() {
   const router = useRouter();
-
+  const { user } = usePrivy();
+  
   const { data: recommendedUsers, isLoading: isLoadingRecommended } =
     useRecommendedUsers();
   const { data: followingUsers, isLoading: isLoadingFollowing } =
-    useFollowingUsers();
+    useFollowingUsers(user?.id);
   // 检查用户是否已关注
   const isFollowing = (user: Web3BioProfile) => {
     return (

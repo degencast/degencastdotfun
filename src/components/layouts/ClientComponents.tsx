@@ -12,7 +12,7 @@ import { CAST_TOKEN_ADDRESS } from "@/constants";
 import { toast } from "@/hooks/use-toast";
 import { LaunchTokenButton } from "../memes/create/LaunchTokenButton";
 import { SharePageButton } from "../Share";
-import { ConnectButton } from "../ConnectButton";
+import { UserPill } from "@privy-io/react-auth/ui";
 import Search from "../Search";
 
 export function DefaultHeader() {
@@ -29,7 +29,6 @@ export function DefaultHeader() {
               className="h-12 justify-start items-center gap-4 inline-flex hover:no-underline"
               href="/"
             >
-              {/* <img src="/images/logo.png" className="size-12 max-md:size-10" /> */}
               <div className="size-12 max-md:size-10 relative">
                 <Image src="/images/logo.png" alt="logo" fill />
               </div>
@@ -67,47 +66,11 @@ export function DefaultHeader() {
             <div className="min-w-[340px] max-md:hidden">
               <Search />
             </div>
-
-            {/* <div className="max-md:hidden">
-              <Button
-                className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6"
-                onClick={() => {
-                  if (!CAST_TOKEN_ADDRESS) {
-                    toast({
-                      description: "CAST Token Address not found",
-                      duration: 5000,
-                    });
-                    return;
-                  }
-                  router.push(`/memes/${CAST_TOKEN_ADDRESS}`);
-                }}
-              >
-                <span>Buy</span>
-                <span>$CAST</span>
-              </Button>
-            </div> */}
             <AboutDialogButton />
             <div className="max-md:hidden">
               <LaunchTokenButton />
             </div>
-            <div>
-              <div className="max-md:hidden">
-                <ConnectButton
-                  showBalance={false}
-                  chainStatus={"none"}
-                  label="Connect"
-                />
-              </div>
-
-              <div className="hidden max-md:block">
-                <ConnectButton
-                  showBalance={false}
-                  chainStatus={"none"}
-                  accountStatus={"avatar"}
-                  label="Connect"
-                />
-              </div>
-            </div>
+            <UserPill size={40} />
           </div>
           {!isHomePage && (
             <div className="ml-auto hidden max-md:block">

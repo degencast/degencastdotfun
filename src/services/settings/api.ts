@@ -14,11 +14,7 @@ const mockAxiosResponse = <T>(data: T): AxiosResponse<T> => ({
   config: { headers: {} } as any
 });
 
-export function getRecommendedUsers({
-  address,
-}: {
-  address: string;
-}): RequestPromise<ApiResp<Web3BioProfile[]>> {
+export function getRecommendedUsers(): RequestPromise<ApiResp<Web3BioProfile[]>> {
   if (MOCK) {
     // 返回mock数据
     const mockResponse = {
@@ -35,11 +31,7 @@ export function getRecommendedUsers({
   });
 }
 
-export function getFollowingUsers({
-  address,
-}: {
-  address: string;
-}): RequestPromise<ApiResp<Web3BioProfile[]>> {
+export function getFollowingUsers(): RequestPromise<ApiResp<Web3BioProfile[]>> {
   if (MOCK) {
     // 返回mock数据
     const mockResponse = {
@@ -53,6 +45,9 @@ export function getFollowingUsers({
   return request({
     url: `/users/following`,
     method: "get",
+    headers: {
+      needToken: true,
+    },
   });
 }
 
@@ -74,6 +69,9 @@ export function followUser({
   return request({
     url: `/users/follow`,
     method: "post",
+    headers: {
+      needToken: true,
+    },
     data: { address }
   });
 }

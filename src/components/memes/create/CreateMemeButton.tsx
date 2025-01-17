@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
+import { usePrivy } from "@privy-io/react-auth";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -16,7 +16,7 @@ import { CreateMemeFormWithApi } from "./CreateMemeFormWithApi";
 import Image from "next/image";
 
 export function CreateMemeButton() {
-  const { openConnectModal } = useConnectModal();
+  const { login, authenticated } = usePrivy();
   const router = useRouter();
   const [open, setOpen] = useState(false);
   const createBtnContent = (
@@ -24,12 +24,12 @@ export function CreateMemeButton() {
       <Image src="/images/logo.png" alt="logo" fill />
     </div>
   );
-  if (openConnectModal) {
+  if (!authenticated) {
     return (
       <Button
         className="p-0 m-0 w-full h-full"
         onClick={() => {
-          openConnectModal();
+          login();
         }}
       >
         {createBtnContent}
