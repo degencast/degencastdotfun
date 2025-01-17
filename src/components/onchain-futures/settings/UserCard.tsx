@@ -10,7 +10,7 @@ interface UserCardProps {
 }
 
 export function UserCard({ user, following }: UserCardProps) {
-  const nameInitials = user.displayName.slice(0, 2).toUpperCase();
+  const nameInitials = user.displayName?.slice(0, 2).toUpperCase();
 
   return (
       <div className="flex items-center justify-between">

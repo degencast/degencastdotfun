@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { getRecommendedUsers, getFollowingUsers, followUser } from '@/services/settings/api';
+import { getRecommendedUsers, getFollowingUsers, followUser, unfollowUser } from '@/services/settings/api';
 import { Web3BioProfile } from '@/services/settings/types';
 
 export function useRecommendedUsers() {
@@ -38,8 +38,28 @@ export function useFollowUser(userId: string | undefined) {
   });
 
   if (!userId) {
-    return { mutate: () => {}, isLoading: false };
+    return { mutate: () => {}, isLoading: false } as const;
   }
 
-  return mutation;
+  return { mutate: mutation.mutate, isLoading: mutation.isPending } as const;
+}
+
+export function useUnfollowUser(userId: string | undefined) {
+  const queryClient = useQueryClient();
+  const mutation = useMutation<Web3BioProfile[], Error, string>({
+    mutationFn: async (targetAddress: string) => {
+      const response = await unfollowUser({ address: targetAddress });
+      return response.data.data;
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['recommendedUsers'] });
+      queryClient.invalidateQueries({ queryKey: ['followingUsers', userId] });
+    },
+  });
+
+  if (!userId) {
+    return { mutate: () => {}, isLoading: false } as const;
+  }
+
+  return { mutate: mutation.mutate, isLoading: mutation.isPending } as const;
 } 

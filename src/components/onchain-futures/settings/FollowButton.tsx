@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { useFollowUser } from "@/hooks/useSettingsUsers";
+import { useFollowUser, useUnfollowUser } from "@/hooks/useSettingsUsers";
 import { usePrivy } from "@privy-io/react-auth";
 
 interface FollowButtonProps {
@@ -9,21 +9,37 @@ interface FollowButtonProps {
 
 export function FollowButton({ address, following }: FollowButtonProps) {
   const { user, login } = usePrivy();
-  const { mutate: followUserMutation } = useFollowUser(user?.id);
+  const { mutate: followUserMutation, isLoading: isFollowing } = useFollowUser(user?.id);
+  const { mutate: unfollowUserMutation, isLoading: isUnfollowing } = useUnfollowUser(user?.id);
+
+  const isLoading = isFollowing || isUnfollowing;
+
+  const handleClick = () => {
+    if (!user?.id) {
+      login();
+      return;
+    }
+
+    if (following) {
+      unfollowUserMutation(address);
+    } else {
+      followUserMutation(address);
+    }
+  };
 
   return (
     <Button
       size="sm"
-      onClick={() => {
-        if (user?.id) {
-          followUserMutation(address);
-        }else{
-          login();
-        }
-      }}
-      className="rounded-full"
+      onClick={handleClick}
+      className="rounded-full min-w-[90px]"
+      variant={following ? "outline" : "default"}
+      disabled={isLoading}
     >
-      {following ? 'Remove' : 'Follow'}
+      {isLoading ? (
+        following ? 'Unfollowing...' : 'Following...'
+      ) : (
+        following ? 'Following' : 'Follow'
+      )}
     </Button>
   );
 } 

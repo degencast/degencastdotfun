@@ -4,7 +4,7 @@ import { ApiResp, ApiRespCode } from "../types";
 import { Web3BioProfile } from "./types";
 import { mockRecommendedUsers, mockFollowingUsers } from "./mock";
 
-const MOCK = true; // 控制是否使用mock数据
+const MOCK = false; // 控制是否使用mock数据
 
 const mockAxiosResponse = <T>(data: T): AxiosResponse<T> => ({
   data,
@@ -26,7 +26,7 @@ export function getRecommendedUsers(): RequestPromise<ApiResp<Web3BioProfile[]>>
   }
 
   return request({
-    url: `/users/recommended`,
+    url: `/memes/traders/recommended`,
     method: "get",
   });
 }
@@ -43,7 +43,7 @@ export function getFollowingUsers(): RequestPromise<ApiResp<Web3BioProfile[]>> {
   }
 
   return request({
-    url: `/users/following`,
+    url: `/memes/traders/following`,
     method: "get",
     headers: {
       needToken: true,
@@ -67,8 +67,33 @@ export function followUser({
   }
 
   return request({
-    url: `/users/follow`,
+    url: `/memes/traders/following`,
     method: "post",
+    headers: {
+      needToken: true,
+    },
+    data: { address }
+  });
+}
+
+export function unfollowUser({
+  address,
+}: {
+  address: string;
+}): RequestPromise<ApiResp<Web3BioProfile[]>> {
+  if (MOCK) {
+    // 模拟关注/取消关注操作
+    const mockResponse = {
+      code: ApiRespCode.SUCCESS,
+      msg: "success",
+      data: mockFollowingUsers
+    };
+    return Promise.resolve(mockAxiosResponse(mockResponse));
+  }
+
+  return request({
+    url: `/memes/traders/following`,
+    method: "delete",
     headers: {
       needToken: true,
     },
