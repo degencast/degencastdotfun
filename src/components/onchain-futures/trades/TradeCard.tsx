@@ -50,7 +50,7 @@ export function TradeCard({ user, following, tradeInfo }: TradeCardProps) {
         </div>
         <div className="flex flex-col gap-2">
           <span className="font-normal text-[#7E7E7E]">
-            {dayjs(date).fromNow()}
+            {dayjs(Number(date)).fromNow()}
           </span>
           <FollowButton address={user.address} following={following} />
         </div>
