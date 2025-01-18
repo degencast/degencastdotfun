@@ -1,3 +1,5 @@
+"use client";
+
 import { Card } from "@/components/ui/card";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { Web3BioProfile } from "@/services/settings/types";
@@ -67,6 +69,7 @@ export function TradeCard({ user, following, tradeInfo }: TradeCardProps) {
         <div className="border-2 border-primary rounded-2xl h-[72px] px-4 py-2 flex flex-row items-center gap-[136px]">
           <div className="flex flex-row items-center">
             <TokenIcon url={token.image!} />
+            {"  "}
             <span className="text-3xl font-bold">{token.symbol}</span>
           </div>
           <div className="flex flex-col items-end leading-normal">
@@ -80,7 +83,7 @@ export function TradeCard({ user, following, tradeInfo }: TradeCardProps) {
               {new Intl.NumberFormat("en-US", {
                 notation: "compact",
               }).format(Number(amount))}
-              {` `}
+              {"  "}
               {token.symbol}
             </span>
             <span className="text-[#7E7E7E]">
@@ -95,13 +98,14 @@ export function TradeCard({ user, following, tradeInfo }: TradeCardProps) {
           <span>with</span>
           <div className="flex flex-row items-center">
             <TokenIcon url={swapToken.image!} />
+            {"  "}
             <span>{swapToken.name}</span>
           </div>
           <span>
             {new Intl.NumberFormat("en-US", {
               notation: "compact",
             }).format(Number(swapAmount))}
-            {` `}
+            {"  "}
             {swapToken.symbol}
           </span>
         </div>
@@ -122,7 +126,11 @@ export function TradeCard({ user, following, tradeInfo }: TradeCardProps) {
               size="sm"
               className="rounded-full bg-black hover:bg-black/90 h-[30px]"
             >
-              <TokenIcon url={token.image!} className="size-5" />
+              <TokenIcon
+                chainId={token.chainName}
+                url={token.image!}
+                className="size-5"
+              />
               <span className="font-bold">{token.name}</span>
             </Button>
           </Link>
@@ -178,7 +186,7 @@ function TokenIcon({
 }) {
   return (
     <div className={cn("relative")}>
-      <Avatar className={cn("size-6 z-10", className)}>
+      <Avatar className={cn("size-6", className)}>
         <AvatarImage src={url} className="w-full h-full" />
         <AvatarFallback className="w-full h-full"></AvatarFallback>
       </Avatar>
@@ -186,7 +194,7 @@ function TokenIcon({
         <ChainIcon
           chainId={chainId}
           chainName={chainName}
-          className="absolute bottom-0 right-0 size-[8px] z-20"
+          className="absolute bottom-0 right-0 size-[8px]"
         />
       )}
     </div>

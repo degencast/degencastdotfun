@@ -3,9 +3,16 @@ import TradeList from "./TradeList";
 import { TradeData2 } from "@/services/trade/types";
 import { useEffect, useState } from "react";
 import { useInView } from "react-cool-inview";
+import FollowingTradesEmpty from "./FollowingTradesEmpty";
 
-export default function FollowingTrades() {
-  const { items, loadItems, loading } = useLoadFollowingTrades();
+export default function FollowingTrades({
+  tokenAddress,
+}: {
+  tokenAddress?: string;
+}) {
+  const { items, loadItems, loading } = useLoadFollowingTrades({
+    tokenAddress,
+  });
 
   const [mounted, setMounted] = useState(false);
 
@@ -32,6 +39,7 @@ export default function FollowingTrades() {
   return (
     <div>
       <TradeList items={items} />
+      {items.length === 0 && !loading && <FollowingTradesEmpty />}
 
       <div ref={observe} className="h-10 flex items-center justify-center">
         {loading && (

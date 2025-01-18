@@ -4,8 +4,14 @@ import { TradeData2 } from "@/services/trade/types";
 import { useEffect, useState } from "react";
 import { useInView } from "react-cool-inview";
 
-export default function TrendingTrades() {
-  const { items, loadItems, loading } = useLoadTrendingTrades();
+export default function TrendingTrades({
+  tokenAddress,
+}: {
+  tokenAddress?: string;
+}) {
+  const { items, loadItems, loading } = useLoadTrendingTrades({
+    tokenAddress,
+  });
 
   const [mounted, setMounted] = useState(false);
 
