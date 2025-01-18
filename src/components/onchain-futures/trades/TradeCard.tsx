@@ -122,7 +122,11 @@ export function TradeCard({ user, following, tradeInfo }: TradeCardProps) {
               size="sm"
               className="rounded-full bg-black hover:bg-black/90 h-[30px]"
             >
-              <TokenIcon url={token.image!} className="size-5" />
+              <TokenIcon
+                chainId={token.chainName}
+                url={token.image!}
+                className="size-5"
+              />
               <span className="font-bold">{token.name}</span>
             </Button>
           </Link>
