@@ -3,13 +3,13 @@
 import CopyAddress from "@/components/CopyAddress";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent } from "@/components/ui/card";
-import useLoadEnsProfile from "@/hooks/user/useLoadEnsProfile";
+import useLoadWeb3BioProfile from "@/hooks/user/useLoadWeb3BioProfile";
 import { useEffect, useState } from "react";
 import DefaultUserAvatar from "../DefaultUserAvatar";
 import { OpenLink } from "@/components/OpenLink";
 
 export default function UserBaseInfo({ address }: { address: string }) {
-  const { profiles, loadProfiles, pending } = useLoadEnsProfile({
+  const { profiles, loadProfiles, pending } = useLoadWeb3BioProfile({
     address,
   });
 

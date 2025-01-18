@@ -1,10 +1,14 @@
 import { AsyncRequestStatus } from "@/services/types";
-import { getEnsProfile } from "@/services/user/api";
-import { EnsProfile } from "@/services/user/types";
+import { getWeb3BioProfile } from "@/services/user/api";
+import { Web3BioProfile } from "@/services/user/types";
 import { useRef, useState } from "react";
 
-export default function useLoadEnsProfile({ address }: { address: string }) {
-  const [profiles, setProfiles] = useState<EnsProfile[]>([]);
+export default function useLoadWeb3BioProfile({
+  address,
+}: {
+  address: string;
+}) {
+  const [profiles, setProfiles] = useState<Web3BioProfile[]>([]);
   const [status, setStatus] = useState(AsyncRequestStatus.IDLE);
   const addressRef = useRef(address);
 
@@ -20,7 +24,7 @@ export default function useLoadEnsProfile({ address }: { address: string }) {
     }
     setStatus(AsyncRequestStatus.PENDING);
     try {
-      const resp = await getEnsProfile({
+      const resp = await getWeb3BioProfile({
         address,
       });
       const profiles = resp?.data || [];
