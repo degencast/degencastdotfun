@@ -40,17 +40,14 @@ export default function FollowingTrades({
   });
   return (
     <div>
-      <TradeList items={items} />
+      <TradeList items={items} lastItemRef={observe} />
       {items.length === 0 && !loading && <FollowingTradesEmpty />}
 
-      <div
-        ref={items.length > 0 ? observe : null}
-        className="h-10 flex items-center justify-center"
-      >
-        {loading && (
+      {loading && (
+        <div className="h-24 flex items-center justify-center">
           <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full" />
-        )}
-      </div>
+        </div>
+      )}
     </div>
   );
 }
