@@ -6,14 +6,19 @@ import {
   X_LINK,
 } from "@/constants/landing-page";
 import Image from "next/image";
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import OpenLink2 from "../OpenLink2";
+import useFrameSdk from "@/hooks/frame-sdk/useFrameSdk";
 
 export default function CastDao() {
   const [windowObj, setWindowObj] = useState<Window & typeof globalThis>();
+
   useEffect(() => {
     setWindowObj(window);
   }, []);
+
+  const { sdk, isSDKLoaded, context } = useFrameSdk();
+
   return (
     <div className="w-full flex flex-row gap-[48px]">
       <div className="flex-1">
@@ -30,35 +35,48 @@ export default function CastDao() {
           in the US unless exempt from or not subject to registration under the
           Securities Act and complies with applicable US securities laws.
         </div>
-        <div className="flex flex-row items-center gap-6 text-2xl font-normal mt-[48px] max-md:mt-[16px] max-md:text-base">
-          <Link
+        <div className="flex flex-row items-center gap-6 text-2xl font-normal mt-[48px] max-md:mt-[16px] max-md:text-base max-md:justify-between max-md:gap-4">
+          <OpenLink2
+            frameSdk={sdk}
+            frameCtx={context}
             href={`${
               windowObj && windowObj.location.origin
             }/pdf/TERMS_OF_SERVICE_OF_DEGENCAST.pdf`}
-            target="_blank"
           >
             <span>Terms of Service</span>
-          </Link>
+          </OpenLink2>
 
           <Line />
 
-          <Link
+          <OpenLink2
+            frameSdk={sdk}
+            frameCtx={context}
             href={`${
               windowObj && windowObj.location.origin
             }/pdf/PRIVACY_POLICY_OF_DEGENCAST.pdf`}
-            target="_blank"
           >
             <span>Privact Policy</span>
-          </Link>
+          </OpenLink2>
+
+          <Line />
+
+          <OpenLink2
+            frameSdk={sdk}
+            frameCtx={context}
+            href={`https://docs.degencast.fun`}
+          >
+            <span>Docs</span>
+          </OpenLink2>
         </div>
       </div>
       <div className="flex flex-col justify-start gap-6 max-md:hidden">
-        {/* <Link
+        <OpenLink2
+          frameSdk={sdk}
+          frameCtx={context}
           className="justify-start items-center gap-2 flex"
           href={TG_LINK}
-          target="_blank"
         >
-          <div className="w-8 h-8 relative">
+          <div className="w-8 h-8 relative rounded-[10px] overflow-hidden">
             <Image
               src="/landing-page/images/telegram.png"
               alt="telegram"
@@ -66,22 +84,24 @@ export default function CastDao() {
             />
           </div>
           <span className="text-3xl font-normal">Telegram</span>
-        </Link> */}
-        <Link
+        </OpenLink2>
+        <OpenLink2
+          frameSdk={sdk}
+          frameCtx={context}
           className="justify-start items-center gap-2 flex"
           href={X_LINK}
-          target="_blank"
         >
           <div className="w-8 h-8 relative rounded-[10px] overflow-hidden">
             <Image src="/images/x.png" alt="telegram" fill />
           </div>
           <span className="text-3xl font-normal">X</span>
-        </Link>
+        </OpenLink2>
 
-        <Link
+        <OpenLink2
+          frameSdk={sdk}
+          frameCtx={context}
           className="justify-start items-center gap-2 flex"
           href={WARPCAST_LINK}
-          target="_blank"
         >
           <div className="w-8 h-8 relative">
             <Image
@@ -91,18 +111,19 @@ export default function CastDao() {
             />
           </div>
           <span className="text-3xl font-normal">Warpcast</span>
-        </Link>
+        </OpenLink2>
 
-        <Link
+        <OpenLink2
+          frameSdk={sdk}
+          frameCtx={context}
           className="justify-start items-center gap-2 flex"
           href={PARAGRAPH_LINK}
-          target="_blank"
         >
           <div className="w-8 h-8 relative">
             <Image src="/landing-page/images/logo.png" alt="paragraph" fill />
           </div>
           <span className="text-3xl font-normal">Paragraph</span>
-        </Link>
+        </OpenLink2>
       </div>
     </div>
   );

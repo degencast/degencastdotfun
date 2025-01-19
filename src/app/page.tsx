@@ -17,7 +17,7 @@ const frame = {
   version: "next",
   imageUrl: `${appUrl}/images/frame-cover.jpg`,
   button: {
-    title: "Launch",
+    title: "Claim",
     action: {
       type: "launch_frame",
       name: "DegencastAI",
