@@ -44,16 +44,16 @@ export default function Home() {
               </div>
               <div className="w-[435px] h-[435px] relative max-md:hidden rounded-[30px] overflow-hidden">
                 <Image
-                  src="/landing-page/images/claim-banner.png"
-                  alt="landing-page-home"
+                  src="/onchain-futures/images/home-banner.png"
+                  alt="onchain-futures-home"
                   fill
                 />
               </div>
               <div className="hidden w-full max-md:block ">
                 <img
                   className="w-full rounded-[30px]"
-                  src="/landing-page/images/claim-banner.png"
-                  alt="landing-page-home"
+                  src="/onchain-futures/images/home-banner.png"
+                  alt="onchain-futures-home"
                 />
               </div>
             </div>

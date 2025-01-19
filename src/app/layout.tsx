@@ -21,6 +21,14 @@ export const metadata: Metadata = DEGENCAST_APP_LANDING_PAGE
         icon: "/landing-page/images/logo.png",
       },
     }
+  : DEGENCAST_APP_ONCHAIN_FUTURES
+  ? {
+      title: "DegenCast",
+      description: "Welcome to DegenCast✨",
+      icons: {
+        icon: "/onchain-futures/images/logo.png",
+      },
+    }
   : {
       title: "degencast.fun",
       description: "Welcome to degencast.fun✨",
