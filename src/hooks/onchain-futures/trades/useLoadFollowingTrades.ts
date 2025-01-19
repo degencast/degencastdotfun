@@ -92,15 +92,25 @@ export default function useLoadFollowingTrades(props?: {
 
       setItems((pre) => {
         return pre.map((item, index) => {
+          const tokenInfo = tokenInfos.find(
+            (info) =>
+              info[0]?.baseToken.address.toLowerCase() ===
+              item.token.tokenAddress.toLowerCase()
+          );
+          const swapTokenInfo = swapTokenInfos.find(
+            (info) =>
+              info[0]?.baseToken.address.toLowerCase() ===
+              item.swapToken.tokenAddress.toLowerCase()
+          );
           return {
             ...item,
             token: {
               ...item.token,
-              image: tokenInfos[index]?.[0]?.info?.imageUrl || "",
+              image: tokenInfo?.[0]?.info?.imageUrl || "",
             },
             swapToken: {
               ...item.swapToken,
-              image: swapTokenInfos[index]?.[0]?.info?.imageUrl || "",
+              image: swapTokenInfo?.[0]?.info?.imageUrl || "",
             },
           };
         });
