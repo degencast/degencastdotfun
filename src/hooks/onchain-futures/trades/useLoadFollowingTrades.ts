@@ -1,4 +1,8 @@
-import { getFollowingTrades, getTrendingTrades } from "@/services/trade/api";
+import {
+  getFollowingTrades,
+  getTokenInfoWithDexscreener,
+  getTrendingTrades,
+} from "@/services/trade/api";
 import { TradeData2 } from "@/services/trade/types";
 import { ApiRespCode, AsyncRequestStatus } from "@/services/types";
 import { getWeb3BioProfileWithBatch } from "@/services/user/api";
@@ -63,6 +67,40 @@ export default function useLoadFollowingTrades(props?: {
               ...item.user,
               avatar: profile?.avatar || "",
               displayName: profile?.displayName || "",
+            },
+          };
+        });
+      });
+
+      // update token image
+      const tokenInfos = await Promise.all(
+        data.map((item) =>
+          getTokenInfoWithDexscreener(
+            item.token.chainName,
+            item.token.tokenAddress
+          ).then((resp) => resp.data)
+        )
+      );
+      const swapTokenInfos = await Promise.all(
+        data.map((item) =>
+          getTokenInfoWithDexscreener(
+            item.swapToken.chainName,
+            item.swapToken.tokenAddress
+          ).then((resp) => resp.data)
+        )
+      );
+
+      setItems((pre) => {
+        return pre.map((item, index) => {
+          return {
+            ...item,
+            token: {
+              ...item.token,
+              image: tokenInfos[index]?.[0]?.info?.imageUrl || "",
+            },
+            swapToken: {
+              ...item.swapToken,
+              image: swapTokenInfos[index]?.[0]?.info?.imageUrl || "",
             },
           };
         });
