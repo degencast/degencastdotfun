@@ -46,11 +46,11 @@ export function NavMenu() {
         </Button>
       </PositionLink>
 
-      <Link href="/buy" className="max-md:hidden">
+      {/* <Link href="/buy" className="max-md:hidden">
         <Button className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6">
           <div>Buy $CAST</div>
         </Button>
-      </Link>
+      </Link> */}
 
       <OpenLink2
         frameSdk={sdk}
@@ -110,9 +110,9 @@ export function NavMenuMobile({ className }: { className?: string }) {
           <DropdownMenuItem className="p-4 bg-white rounded-none text-xl font-normal justify-center">
             <PositionLink href="#roadmap">Roadmap</PositionLink>
           </DropdownMenuItem>
-          <DropdownMenuItem className="p-4 bg-white rounded-none text-xl font-normal justify-center">
+          {/* <DropdownMenuItem className="p-4 bg-white rounded-none text-xl font-normal justify-center">
             <Link href="/buy">Buy $CAST</Link>
-          </DropdownMenuItem>
+          </DropdownMenuItem> */}
 
           <DropdownMenuItem className="bg-white rounded-none text-xl font-normal">
             <OpenLink2
