@@ -17,7 +17,7 @@ const frame = {
   version: "next",
   imageUrl: `${appUrl}/images/frame-cover.jpg`,
   button: {
-    title: "Launch",
+    title: "Claim",
     action: {
       type: "launch_frame",
       name: "DegencastAI",
@@ -31,16 +31,14 @@ const frame = {
 export const revalidate = 300;
 
 export async function generateMetadata(): Promise<Metadata> {
-  return {
-    title: "DegencastAI",
-    openGraph: {
-      title: "DegencastAI",
-      description: "A DegencastAI app.",
-    },
-    other: {
-      "fc:frame": JSON.stringify(frame),
-    },
-  };
+  if (DEGENCAST_APP_LANDING_PAGE) {
+    return {
+      other: {
+        "fc:frame": JSON.stringify(frame),
+      },
+    };
+  }
+  return {};
 }
 
 export default function HomePage() {

@@ -7,7 +7,7 @@ import { ChevronLeft, Home, User2 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import { TG_LINK } from "@/constants/landing-page";
+import { TG_LINK } from "@/constants";
 import BuyCastFloatingBtn from "@/components/BuyCastFloatingBtn";
 import { UserPill } from "@privy-io/react-auth/ui";
 import AboutDialogButton from "../About";
@@ -25,7 +25,11 @@ export function DefaultHeader() {
             <div className="h-12 justify-start items-center gap-4 inline-flex hover:no-underline max-md:gap-2">
               <Link href="/">
                 <div className="size-12 max-md:size-10 relative">
-                  <Image src="/landing-page/images/logo.png" alt="logo" fill />
+                  <Image
+                    src="/onchain-futures/images/logo.png"
+                    alt="logo"
+                    fill
+                  />
                 </div>
               </Link>
 
@@ -64,11 +68,7 @@ export function DefaultHeader() {
             <Link href={TG_LINK} target="_blank" className="max-md:hidden">
               <Button className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6">
                 <div className="w-6 h-6 relative">
-                  <Image
-                    src="/landing-page/images/telegram.png"
-                    alt="telegram"
-                    fill
-                  />
+                  <Image src="/images/telegram.png" alt="telegram" fill />
                 </div>
                 <span>Join Us</span>
               </Button>
