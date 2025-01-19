@@ -1,8 +1,4 @@
-"use client";
-
 import { WALLET_CONNECT_PROJECT_ID } from "@/constants";
-import { getDefaultConfig } from "@rainbow-me/rainbowkit";
-import "@rainbow-me/rainbowkit/styles.css";
 import {
   arbitrum,
   arbitrumSepolia,
@@ -14,10 +10,8 @@ import {
   sepolia,
 } from "viem/chains";
 import { http } from "wagmi";
-
-export const config = getDefaultConfig({
-  appName: "pgf.meme",
-  projectId: WALLET_CONNECT_PROJECT_ID,
+import { createConfig } from "@privy-io/wagmi";
+export const config = createConfig({
   chains: [
     base,
     mainnet,
@@ -30,10 +24,12 @@ export const config = getDefaultConfig({
   ],
   transports: {
     [base.id]: http("https://base-rpc.publicnode.com"),
+    [mainnet.id]: http("https://ethereum-rpc.publicnode.com"),
+    [optimism.id]: http("https://optimism-rpc.publicnode.com"),
+    [arbitrum.id]: http("https://arbitrum-one-rpc.publicnode.com"),
     [sepolia.id]: http("https://ethereum-sepolia-rpc.publicnode.com"),
     [baseSepolia.id]: http("https://base-sepolia-rpc.publicnode.com"),
     [arbitrumSepolia.id]: http("https://arbitrum-sepolia-rpc.publicnode.com"),
     [optimismSepolia.id]: http("https://optimism-sepolia-rpc.publicnode.com"),
   },
-  // ssr: true, // If your dApp uses server side rendering (SSR)
-});
+}); 

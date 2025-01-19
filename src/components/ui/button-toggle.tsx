@@ -5,8 +5,9 @@ import { cn } from "@/lib/utils";
 
 type ToggleOption = {
   value: any;
-  label: string;
+  label?: any;
   icon?: React.ReactNode;
+  activeIcon?: React.ReactNode;
 };
 interface ToggleProps {
   value: any;
@@ -22,7 +23,10 @@ export default function ButtonToggle({
   onChange,
   disabledValues,
   onClickDisableOption,
-}: ToggleProps) {
+  className,
+}: ToggleProps & {
+  className?: string;
+}) {
   const selected = value || options[0].value;
 
   const handleClick = (value: any) => {
@@ -30,7 +34,12 @@ export default function ButtonToggle({
   };
 
   return (
-    <div className="flex rounded-lg bg-primary p-1 w-full h-[68px] max-sm:h-[42px]">
+    <div
+      className={cn(
+        "flex rounded-lg bg-primary p-1 w-full h-[68px] max-sm:h-[42px]",
+        className
+      )}
+    >
       {options.map((option) => (
         <button
           key={option.value}
@@ -50,7 +59,53 @@ export default function ButtonToggle({
               : "bg-primary text-primary-foreground"
           )}
         >
-          {option.icon}
+          {selected === option.value
+            ? option.activeIcon || option.icon
+            : option.icon}
+          {option.label}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+export function ButtonToggle2({
+  value,
+  options,
+  onChange,
+  disabledValues,
+  onClickDisableOption,
+}: ToggleProps) {
+  const selected = value || options[0].value;
+
+  const handleClick = (value: any) => {
+    onChange && onChange(value);
+  };
+
+  return (
+    <div className="flex rounded-xl bg-tertiary border-4 border-primary h-[52px] max-sm:h-[30px] overflow-hidden">
+      {options.map((option) => (
+        <button
+          key={option.value}
+          // disabled={disabledValues?.includes(option.value)}
+          onClick={() => {
+            if (disabledValues?.includes(option.value)) {
+              onClickDisableOption && onClickDisableOption(option);
+            } else {
+              handleClick(option.value);
+            }
+          }}
+          className={cn(
+            "text-[24px] font-bold transition-colors flex justify-center items-center gap-2 px-3 max-md:px-2",
+            "max-sm:text-xs",
+            selected === option.value
+              ? "bg-primary text-primary-foreground"
+              : "bg-tertiary text-tertiary-foreground"
+          )}
+        >
+          {selected === option.value
+            ? option.activeIcon || option.icon
+            : option.icon}
           {option.label}
         </button>
       ))}

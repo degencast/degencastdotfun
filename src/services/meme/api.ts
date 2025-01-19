@@ -3,12 +3,25 @@ import { PGFToken } from "../contract/types";
 import request, { RequestPromise } from "../request";
 import { ApiResp } from "../types";
 import { UserLeaderboardData } from "../user/types";
-import { MemeData, SortBy } from "./types";
+import { ChainType, MemeData, SortBy } from "./types";
 
 export function getMemes(params: {
   pageSize?: number;
   pageNumber?: number;
-  chainName?: string;
+  chain?: ChainType;
+  sortBy?: SortBy;
+}): RequestPromise<ApiResp<Array<MemeData>>> {
+  return request({
+    url: `/memes`,
+    method: "get",
+    params,
+  });
+}
+
+export function getTokens(params: {
+  pageSize?: number;
+  pageNumber?: number;
+  chain?: ChainType;
   sortBy?: SortBy;
 }): RequestPromise<ApiResp<Array<MemeData>>> {
   return request({

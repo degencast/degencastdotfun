@@ -8,10 +8,12 @@ export default function CopyAddress({
   address,
   label,
   size = "default",
+  len,
 }: {
   address: string;
   label?: string;
   size?: "default" | "small";
+  len?: number;
 }) {
   const { toast } = useToast();
   if (!address) {
@@ -19,7 +21,7 @@ export default function CopyAddress({
   }
   const copyEl = (
     <div
-      className="flex flex-row items-center gap-2 line-clamp-1 w-fit cursor-pointer"
+      className="flex flex-row items-center gap-2 line-clamp-1 w-fit cursor-pointer max-sm:gap-1"
       onClick={(e) => {
         e.stopPropagation();
         e.preventDefault();
@@ -31,9 +33,11 @@ export default function CopyAddress({
       }}
     >
       <span className={cn("font-normal", size === "small" && "text-xs")}>
-        {shortPubKey(address)}
+        {shortPubKey(address, { len })}
       </span>
-      <Copy className={cn(" size-5", size === "small" && "size-4")} />
+      <Copy
+        className={cn(" size-5 max-sm:size-4", size === "small" && "size-4")}
+      />
     </div>
   );
   if (!label) {

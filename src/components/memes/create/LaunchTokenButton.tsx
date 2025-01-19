@@ -8,7 +8,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { useConnectModal } from "@rainbow-me/rainbowkit";
+import { usePrivy } from "@privy-io/react-auth";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -20,7 +20,7 @@ import { CAST_TOKEN_ADDRESS } from "@/constants";
 import { toast } from "@/hooks/use-toast";
 
 export function LaunchTokenButton() {
-  const { openConnectModal } = useConnectModal();
+  const { login, authenticated } = usePrivy();
   const [open, setOpen] = useState(false);
   const [openLaunchDailog, setOpenLaunchDailog] = useState(false);
   return (
@@ -28,8 +28,8 @@ export function LaunchTokenButton() {
       <Button
         className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6"
         onClick={() => {
-          if (openConnectModal) {
-            openConnectModal();
+          if (!authenticated) {
+            login();
           } else {
             setOpen(true);
           }

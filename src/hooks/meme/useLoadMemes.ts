@@ -1,22 +1,23 @@
 import { getMemes } from "@/services/meme/api";
-import { MemeData, SortBy } from "@/services/meme/types";
+import { ChainType, MemeData, SortBy } from "@/services/meme/types";
 import { ApiRespCode, AsyncRequestStatus } from "@/services/types";
+import { uniqBy } from "lodash";
 import { useRef, useState } from "react";
 
 const PAGE_SIZE = 20;
 
 export default function useLoadMemes(props?: {
-  chainName?: string;
   sortBy?: SortBy;
   topicId?: number;
   query?: string;
+  chain?: ChainType;
 }) {
   const [items, setItems] = useState<MemeData[]>([]);
   const [status, setStatus] = useState(AsyncRequestStatus.IDLE);
-  const chainNameRef = useRef(props?.chainName);
   const sortByRef = useRef(props?.sortBy);
   const topicIdRef = useRef(props?.topicId);
   const queryRef = useRef(props?.query);
+  const chainRef = useRef(props?.chain);
   const pageInfoRef = useRef({
     hasNextPage: true,
     nextPageNumber: 1,
@@ -25,7 +26,7 @@ export default function useLoadMemes(props?: {
   const loading = status === AsyncRequestStatus.PENDING;
 
   const loadItems = async (isQueryChange?: boolean) => {
-    const chainName = chainNameRef.current;
+    const chain = chainRef.current;
     const sortBy = sortByRef.current;
     const topicId = topicIdRef.current;
     const query = queryRef.current;
@@ -46,7 +47,7 @@ export default function useLoadMemes(props?: {
       const params = {
         pageSize: PAGE_SIZE,
         pageNumber: nextPageNumber,
-        ...(chainName ? { chainName } : {}),
+        ...(chain ? { chain } : {}),
         ...(sortBy ? { sortBy } : {}),
         ...(topicId ? { topicId } : {}),
         query: query || "",
@@ -56,7 +57,7 @@ export default function useLoadMemes(props?: {
       if (code !== ApiRespCode.SUCCESS) {
         throw new Error(msg);
       }
-      setItems((pre) => [...pre, ...data]);
+      setItems((pre) => uniqBy([...pre, ...data], "id"));
       pageInfoRef.current = {
         hasNextPage: data.length === PAGE_SIZE,
         nextPageNumber: nextPageNumber + 1,

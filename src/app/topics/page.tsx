@@ -1,6 +1,5 @@
 import * as React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { SortBy } from "@/services/meme/types";
 import { TopicSortBy } from "@/services/topic/types";
 import TopicList from "@/components/topic/TopicList";
 import { SearchInput } from "@/components/ui/search-input";
@@ -26,7 +25,7 @@ export default function Topics() {
   ];
   return (
     <div className="w-full">
-      <Tabs defaultValue={SortBy.trending} className="w-full">
+      <Tabs defaultValue={TopicSortBy.trending} className="w-full">
         <TabsList className="w-full mb-6 max-md:mb-3">
           <div className="flex-1 flex flex-row items-center overflow-x-auto gap-6 max-md:gap-2">
             {tabs.map((tab) => (

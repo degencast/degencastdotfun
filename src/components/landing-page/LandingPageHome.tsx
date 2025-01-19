@@ -13,6 +13,7 @@ import { Card, CardContent } from "../ui/card";
 import CastDao from "./CastDao";
 import OpenLink2 from "../OpenLink2";
 import useFrameSdk from "@/hooks/frame-sdk/useFrameSdk";
+import Products from "./Products";
 
 export default function LandingPageHome() {
   const { sdk, isSDKLoaded, context } = useFrameSdk();
@@ -87,6 +88,14 @@ export default function LandingPageHome() {
                 alt="landing-page-home"
               />
             </div>
+          </CardContent>
+        </Card>
+      </section>
+      <section className=" ">
+        <SectionTitle>👍 Products 👍</SectionTitle>
+        <Card className="w-full h-fit overflow-hidden rounded-[30px]">
+          <CardContent>
+            <Products />
           </CardContent>
         </Card>
       </section>

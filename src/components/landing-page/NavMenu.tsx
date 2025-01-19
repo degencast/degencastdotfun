@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 import {
+  DOCS_LINK,
   PARAGRAPH_LINK,
   TG_LINK,
   WARPCAST_LINK,
@@ -68,7 +69,16 @@ export function NavMenu() {
           <span>Join Us</span>
         </Button>
       </OpenLink2>
-
+      <OpenLink2
+        frameSdk={sdk}
+        frameCtx={context}
+        href={TG_LINK}
+        className="max-md:hidden"
+      >
+        <Button className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6">
+          <span>Docs</span>
+        </Button>
+      </OpenLink2>
       <AudioBtn className="max-md:w-[40px] max-md:h-[40px]" />
       <NavMenuMobile className="hidden max-md:block" />
     </div>
@@ -166,6 +176,11 @@ export function NavMenuMobile({ className }: { className?: string }) {
                 />
               </div>
               <span className="text-xl font-normal">Paragraph</span>
+            </OpenLink2>
+          </DropdownMenuItem>
+          <DropdownMenuItem className="p-4 bg-white rounded-none text-xl font-normal justify-center">
+            <OpenLink2 frameSdk={sdk} frameCtx={context} href={DOCS_LINK}>
+              Docs
             </OpenLink2>
           </DropdownMenuItem>
         </div>

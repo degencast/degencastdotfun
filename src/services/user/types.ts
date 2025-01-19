@@ -37,7 +37,7 @@ export type OwnedMemeData = {
   };
 };
 
-export type EnsProfile = {
+export type Web3BioProfile = {
   address: string;
   identity: string;
   platform: string;
