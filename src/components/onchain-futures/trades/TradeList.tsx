@@ -1,3 +1,5 @@
+"use client";
+
 import { useFollowingUsers } from "@/hooks/useSettingsUsers";
 import { Web3BioProfile } from "@/services/settings/types";
 import { TradeData2 } from "@/services/trade/types";

@@ -1,6 +1,7 @@
 import { getFollowingTrades, getTrendingTrades } from "@/services/trade/api";
 import { TradeData2 } from "@/services/trade/types";
 import { ApiRespCode, AsyncRequestStatus } from "@/services/types";
+import { getWeb3BioProfileWithBatch } from "@/services/user/api";
 import { uniqBy } from "lodash";
 import { useRef, useState } from "react";
 
@@ -43,6 +44,29 @@ export default function useLoadFollowingTrades(props?: {
         nextPageNumber: nextPageNumber + 1,
       };
       setStatus(AsyncRequestStatus.FULFILLED);
+
+      // update user profile
+      const web3bioParams = data.map((item) => ({
+        platform: item.token.chainName === "solana" ? "solana" : "ethereum",
+        address: item.user.address,
+      }));
+      const profileResp = await getWeb3BioProfileWithBatch(web3bioParams);
+      const profiles = profileResp?.data || [];
+      setItems((pre) => {
+        return pre.map((item) => {
+          const profile = profiles.find(
+            (p) => p.address.toLowerCase() === item.user.address.toLowerCase()
+          );
+          return {
+            ...item,
+            user: {
+              ...item.user,
+              avatar: profile?.avatar || "",
+              displayName: profile?.displayName || "",
+            },
+          };
+        });
+      });
     } catch (err) {
       console.error(err);
       setStatus(AsyncRequestStatus.REJECTED);

@@ -22,6 +22,9 @@ export function getFollowingTrades(params: {
     url: `/memes/trades/following`,
     method: "get",
     params,
+    headers: {
+      needToken: true,
+    },
   });
 }
 export function getTrendingTrades(params: {

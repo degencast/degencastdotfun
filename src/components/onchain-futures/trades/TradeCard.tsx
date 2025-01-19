@@ -50,7 +50,7 @@ export function TradeCard({ user, following, tradeInfo }: TradeCardProps) {
         </div>
         <div className="flex flex-col gap-2">
           <span className="font-normal text-[#7E7E7E]">
-            {dayjs(date).fromNow()}
+            {dayjs(Number(date)).fromNow()}
           </span>
           <FollowButton address={user.address} following={following} />
         </div>
@@ -67,11 +67,14 @@ export function TradeCard({ user, following, tradeInfo }: TradeCardProps) {
           {txType === "buy" ? "Bought" : "Sold"}
         </span>
         <div className="border-2 border-primary rounded-2xl h-[72px] px-4 py-2 flex flex-row items-center gap-[136px]">
-          <div className="flex flex-row items-center">
-            <TokenIcon url={token.image!} />
+          <Link
+            href={`/trades/${token.chainName}/${token.tokenAddress}`}
+            className="flex flex-row items-center gap-1"
+          >
+            <TokenIcon url={token.image!} className="size-8" />
             {"  "}
             <span className="text-3xl font-bold">{token.symbol}</span>
-          </div>
+          </Link>
           <div className="flex flex-col items-end leading-normal">
             <span
               className={cn(
@@ -96,7 +99,7 @@ export function TradeCard({ user, following, tradeInfo }: TradeCardProps) {
         </div>
         <div className="flex flex-row items-center gap-3 text-xl font-bold">
           <span>with</span>
-          <div className="flex flex-row items-center">
+          <div className="flex flex-row items-center gap-1">
             <TokenIcon url={swapToken.image!} />
             {"  "}
             <span>{swapToken.name}</span>
