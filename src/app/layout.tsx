@@ -51,17 +51,15 @@ export default function RootLayout({
     <html lang="en">
       <Script src="https://terminal.jup.ag/main-v3.js"></Script>
       <body className={`${font.className} antialiased`}>
-        {DEGENCAST_APP_LANDING_PAGE ? (
-          <LandingPageRootLayout>{children}</LandingPageRootLayout>
-        ) : DEGENCAST_APP_ONCHAIN_FUTURES ? (
-          <PrivyProvider>
+        <PrivyProvider>
+          {DEGENCAST_APP_LANDING_PAGE ? (
+            <LandingPageRootLayout>{children}</LandingPageRootLayout>
+          ) : DEGENCAST_APP_ONCHAIN_FUTURES ? (
             <OnchainFuturesRootLayout>{children}</OnchainFuturesRootLayout>
-          </PrivyProvider>
-        ) : (
-          <PrivyProvider>
+          ) : (
             <DefaultRootLayout>{children}</DefaultRootLayout>
-          </PrivyProvider>
-        )}
+          )}
+        </PrivyProvider>
         <Toaster />
         <InitSdk />
       </body>
