@@ -1,3 +1,5 @@
+"use client";
+
 import useLoadTrendingTrades from "@/hooks/onchain-futures/trades/useLoadTrendingTrades";
 import TradeList from "./TradeList";
 import { TradeData2 } from "@/services/trade/types";
@@ -39,7 +41,10 @@ export default function TrendingTrades({
     <div>
       <TradeList items={items} />
 
-      <div ref={observe} className="h-10 flex items-center justify-center">
+      <div
+        ref={items.length > 0 ? observe : null}
+        className="h-10 flex items-center justify-center"
+      >
         {loading && (
           <div className="animate-spin h-6 w-6 border-2 border-primary border-t-transparent rounded-full" />
         )}

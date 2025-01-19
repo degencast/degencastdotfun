@@ -3,17 +3,19 @@
 import { ReactNode, useEffect, useMemo } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ChevronLeft, User2 } from "lucide-react";
-import { usePathname } from "next/navigation";
+import { ChevronLeft, Home, User2 } from "lucide-react";
+import { usePathname, useRouter } from "next/navigation";
 import { cn } from "@/lib/utils";
 import Image from "next/image";
 import { TG_LINK } from "@/constants/landing-page";
 import BuyCastFloatingBtn from "@/components/BuyCastFloatingBtn";
 import { UserPill } from "@privy-io/react-auth/ui";
+import AboutDialogButton from "../About";
 
 export function DefaultHeader() {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const router = useRouter();
   return (
     <>
       {" "}
@@ -33,11 +35,22 @@ export function DefaultHeader() {
             </div>
           ) : (
             <div className="flex flex-row items-center gap-4">
-              <Link href="/">
-                <Button className="size-14 rounded-xl bg-primary-foreground hover:bg-primary-foreground max-md:size-[46px] p-0">
-                  <ChevronLeft className="stroke-primary hover:stroke-primary  !size-8" />
-                </Button>
-              </Link>
+              <Button
+                className="size-14 rounded-xl bg-primary-foreground hover:bg-primary-foreground max-md:size-11 p-0"
+                onClick={() => {
+                  router.push("/");
+                }}
+              >
+                <Home className="stroke-primary hover:stroke-primary  !size-8" />
+              </Button>
+              <Button
+                className="size-14 rounded-xl bg-primary-foreground hover:bg-primary-foreground max-md:size-11 p-0"
+                onClick={() => {
+                  router.back();
+                }}
+              >
+                <ChevronLeft className="stroke-primary hover:stroke-primary  !size-8" />
+              </Button>
             </div>
           )}
           <div
@@ -47,6 +60,7 @@ export function DefaultHeader() {
             )}
           >
             {" "}
+            <AboutDialogButton />
             <Link href={TG_LINK} target="_blank" className="max-md:hidden">
               <Button className="h-[52px] rounded-full bg-primary-foreground hover:bg-primary-foreground text-primary text-2xl font-bold px-6">
                 <div className="w-6 h-6 relative">
