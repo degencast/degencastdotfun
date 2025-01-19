@@ -92,7 +92,7 @@ export function DefaultMain({ children }: { children: ReactNode }) {
       )}
     >
       {children}
-      {!isSettingsPage && <BuyCastFloatingBtn />}
+      {/* {!isSettingsPage && <BuyCastFloatingBtn />} */}
     </main>
   );
 }
