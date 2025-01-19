@@ -20,7 +20,9 @@ export function TokenCard({ token }: { token: TokenData }) {
               tokenName={token.name}
             />
             <div className="h-full flex flex-col justify-between gap-2">
-              <div className="font-bold text-2xl">{token.name}</div>
+              <div className="font-bold text-2xl line-clamp-1">
+                {token.name}
+              </div>
               <div className="text-base font-normal text-[#7E7E7E]">
                 {new Intl.NumberFormat("en-US", {
                   style: "currency",

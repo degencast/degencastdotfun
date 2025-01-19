@@ -18,7 +18,8 @@ const mockData = Array.from({ length: 6 }).map((_, i) => ({
   },
 })) as unknown as TokenData[];
 export default function useLoadHotTokens() {
-  const url = API_BASE_URL + "/hot-tokens";
+  const url =
+    API_BASE_URL + "/memes/tokens/recommended?pageSize=10&pageNumber=1";
   const {
     data: res,
     error,
@@ -28,7 +29,6 @@ export default function useLoadHotTokens() {
 
   return {
     pending: isLoading,
-    // items: data || [],
-    items: mockData,
+    items: data || [],
   };
 }
