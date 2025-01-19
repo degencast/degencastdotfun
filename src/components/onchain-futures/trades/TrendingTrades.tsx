@@ -5,6 +5,7 @@ import TradeList from "./TradeList";
 import { TradeData2 } from "@/services/trade/types";
 import { useEffect, useState } from "react";
 import { useInView } from "react-cool-inview";
+import { Card, CardContent } from "@/components/ui/card";
 
 export default function TrendingTrades({
   tokenAddress,
@@ -40,6 +41,7 @@ export default function TrendingTrades({
   return (
     <div>
       <TradeList items={items} />
+      {items.length === 0 && !loading && <TradesEmpty />}
 
       <div
         ref={items.length > 0 ? observe : null}
@@ -50,5 +52,19 @@ export default function TrendingTrades({
         )}
       </div>
     </div>
+  );
+}
+
+function TradesEmpty() {
+  return (
+    <Card className="w-full max-md:rounded-none">
+      <CardContent className="w-full p-0">
+        <div className="w-full h-[430px] flex flex-col items-center justify-center gap-8">
+          <span className="text-[#7E7E7E] text-2xl font-normal text-center">
+            No transactions yet
+          </span>
+        </div>
+      </CardContent>
+    </Card>
   );
 }

@@ -1,3 +1,4 @@
+import axios from "axios";
 import request, { RequestPromise } from "../request";
 import { ApiResp } from "../types";
 import { OhlctData, TradeData, TradeData2 } from "./types";
@@ -58,4 +59,23 @@ export function getMemeOhlct({
     url: `/memes/${address}/ohlct`,
     method: "get",
   });
+}
+
+export function getTokenInfoWithDexscreener(
+  chainName: "base" | "solana" | string,
+  tokenAddress: string
+): RequestPromise<
+  Array<{
+    chainId: "base" | "solana" | string;
+    baseToken: {
+      address: string;
+    };
+    info: {
+      imageUrl: string;
+    };
+  }>
+> {
+  return axios.get(
+    `https://api.dexscreener.com/token-pairs/v1/${chainName}/${tokenAddress}`
+  );
 }
