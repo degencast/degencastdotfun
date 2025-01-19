@@ -106,11 +106,14 @@ export default function useLoadFollowingTrades(props?: {
             ...item,
             token: {
               ...item.token,
-              image: tokenInfo?.[0]?.info?.imageUrl || "",
+              image: item.token?.image || tokenInfo?.[0]?.info?.imageUrl || "",
             },
             swapToken: {
               ...item.swapToken,
-              image: swapTokenInfo?.[0]?.info?.imageUrl || "",
+              image:
+                item.swapToken.image ||
+                swapTokenInfo?.[0]?.info?.imageUrl ||
+                "",
             },
           };
         });
