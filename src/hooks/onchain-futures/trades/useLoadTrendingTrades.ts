@@ -1,5 +1,5 @@
 import {
-  getTokenInfoWithDexscreener,
+  getTokenInfoWithGeckoterminal,
   getTrendingTrades,
 } from "@/services/trade/api";
 import { TradeData2 } from "@/services/trade/types";
@@ -74,7 +74,7 @@ export default function useLoadTrendingTrades(props?: {
       // update token image
       const tokenInfos = await Promise.all(
         data.map((item) =>
-          getTokenInfoWithDexscreener(
+          getTokenInfoWithGeckoterminal(
             item.token.chainName,
             item.token.tokenAddress
           ).then((resp) => resp.data)
@@ -82,7 +82,7 @@ export default function useLoadTrendingTrades(props?: {
       );
       const swapTokenInfos = await Promise.all(
         data.map((item) =>
-          getTokenInfoWithDexscreener(
+          getTokenInfoWithGeckoterminal(
             item.swapToken.chainName,
             item.swapToken.tokenAddress
           ).then((resp) => resp.data)
@@ -93,25 +93,26 @@ export default function useLoadTrendingTrades(props?: {
         return pre.map((item, index) => {
           const tokenInfo = tokenInfos.find(
             (info) =>
-              info[0]?.baseToken.address.toLowerCase() ===
+              info.data.attributes.address.toLowerCase() ===
               item.token.tokenAddress.toLowerCase()
           );
           const swapTokenInfo = swapTokenInfos.find(
             (info) =>
-              info[0]?.baseToken.address.toLowerCase() ===
+              info.data.attributes.address.toLowerCase() ===
               item.swapToken.tokenAddress.toLowerCase()
           );
           return {
             ...item,
             token: {
               ...item.token,
-              image: item.token?.image || tokenInfo?.[0]?.info?.imageUrl || "",
+              image:
+                item.token?.image || tokenInfo?.data.attributes.image_url || "",
             },
             swapToken: {
               ...item.swapToken,
               image:
                 item.swapToken.image ||
-                swapTokenInfo?.[0]?.info?.imageUrl ||
+                swapTokenInfo?.data.attributes.image_url ||
                 "",
             },
           };
