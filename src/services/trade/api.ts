@@ -61,21 +61,28 @@ export function getMemeOhlct({
   });
 }
 
-export function getTokenInfoWithDexscreener(
+export function getTokenInfoWithGeckoterminal(
   chainName: "base" | "solana" | string,
   tokenAddress: string
-): RequestPromise<
-  Array<{
-    chainId: "base" | "solana" | string;
-    baseToken: {
+): RequestPromise<{
+  data: {
+    id: string;
+    type: string;
+    attributes: {
       address: string;
+      name: string;
+      symbol: string;
+      image_url: string;
+      coingecko_coin_id: string;
+      websites: string[];
+      description: string;
+      discord_url?: string;
+      telegram_handle?: string;
+      twitter_handle?: string;
     };
-    info: {
-      imageUrl: string;
-    };
-  }>
-> {
+  };
+}> {
   return axios.get(
-    `https://api.dexscreener.com/token-pairs/v1/${chainName}/${tokenAddress}`
+    `https://api.geckoterminal.com/api/v2/networks/${chainName}/tokens/${tokenAddress}/info`
   );
 }
