@@ -27,7 +27,8 @@ export function DefaultHeader() {
           {isHomePage ? (
             <Link
               className="h-12 justify-start items-center gap-4 inline-flex hover:no-underline"
-              href="/"
+              href="https://degencast.fun"
+              target="_blank"
             >
               <div className="size-12 max-md:size-10 relative">
                 <Image src="/images/logo.png" alt="logo" fill />
