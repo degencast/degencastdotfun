@@ -33,9 +33,13 @@ export function DefaultHeader() {
                 </div>
               </Link>
 
-              <div className="text-primary-foreground text-4xl font-bold max-md:text-2xl">
+              <Link
+                href="https://degencast.fun"
+                target="_blank"
+                className="text-primary-foreground text-4xl font-bold max-md:text-2xl"
+              >
                 DegenCast✨
-              </div>
+              </Link>
             </div>
           ) : (
             <div className="flex flex-row items-center gap-4">
