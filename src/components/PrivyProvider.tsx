@@ -22,7 +22,7 @@ export default function PrivyProvider({
     <PrivyProviderBase
       appId={process.env.NEXT_PUBLIC_PRIVY_APP_ID!}
       config={{
-        loginMethods: ["telegram"],
+        loginMethods: ["twitter","telegram"],
         appearance: {
           theme: "light",
           accentColor: "#FF1393",
