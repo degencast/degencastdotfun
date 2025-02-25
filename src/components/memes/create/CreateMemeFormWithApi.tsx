@@ -29,6 +29,7 @@ import { z } from "zod";
 import { useSound } from "use-sound";
 import useLaunchMeme from "@/hooks/meme/useLaunchMeme";
 import { MemeData } from "@/services/meme/types";
+import { usePrivy } from "@privy-io/react-auth";
 
 const FormSchema = z.object({
   name: z.string().min(2, {
@@ -51,6 +52,7 @@ export function CreateMemeFormWithApi({
 }: {
   onSuccess?: (meme: MemeData) => void;
 }) {
+  const { login, authenticated } = usePrivy();
   const { launchMeme, pending } = useLaunchMeme();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -65,6 +67,10 @@ export function CreateMemeFormWithApi({
 
   const [play] = useSound("/audio/V.mp3");
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    if (!authenticated) {
+      login();
+      return;
+    }
     play();
     launchMeme(data, {
       onLaunchSuccess(meme) {
