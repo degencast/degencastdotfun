@@ -29,6 +29,7 @@ import { z } from "zod";
 import { useSound } from "use-sound";
 import useLaunchMeme from "@/hooks/meme/useLaunchMeme";
 import { MemeData } from "@/services/meme/types";
+import { usePrivy } from "@privy-io/react-auth";
 
 const FormSchema = z.object({
   name: z.string().min(2, {
@@ -51,6 +52,7 @@ export function CreateMemeFormWithApi({
 }: {
   onSuccess?: (meme: MemeData) => void;
 }) {
+  const { login, authenticated } = usePrivy();
   const { launchMeme, pending } = useLaunchMeme();
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -65,6 +67,10 @@ export function CreateMemeFormWithApi({
 
   const [play] = useSound("/audio/V.mp3");
   const onSubmit = async (data: z.infer<typeof FormSchema>) => {
+    if (!authenticated) {
+      login();
+      return;
+    }
     play();
     launchMeme(data, {
       onLaunchSuccess(meme) {
@@ -152,7 +158,7 @@ export function CreateMemeFormWithApi({
             </FormItem>
           )}
         />
-        <FormField
+        {/* <FormField
           control={form.control}
           name="topicId"
           render={({ field }) => (
@@ -167,7 +173,7 @@ export function CreateMemeFormWithApi({
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormDescription className="text-center text-base">
           <p>* Transaction fees:pgf (1%), Vitalik (15%), Charity Pool (5%).</p>
           <p>* Your meme coin can be purchased across multiple blockchains.</p>

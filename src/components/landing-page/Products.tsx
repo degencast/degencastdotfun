@@ -5,30 +5,27 @@ import { cn } from "@/lib/utils";
 import { PropsWithChildren } from "react";
 import OpenLink2 from "../OpenLink2";
 import { Button } from "../ui/button";
+import Link from "next/link";
 
 export default function Products() {
   return (
     <div className="w-full flex flex-row gap-12 max-md:flex-col">
       <div className="flex-1 flex flex-col gap-12 items-center justify-between max-md:gap-6">
-        <ProductTitle>launch.degencast.fun</ProductTitle>
+        <ProductTitle>Launch</ProductTitle>
         <ProductDesc>
           The ultimate tool for multi-chain token launches. One click to bring
           your token to life. Multi-platform support coming soon!
         </ProductDesc>
-        <ProductBtn href={`https://launch.degencast.fun`}>
-          Launch Now 🚀
-        </ProductBtn>
+        <FeatureBtn href={`/launch`}>Launch Now 🚀</FeatureBtn>
       </div>
       <div className="flex-1 flex flex-col gap-12 items-center justify-between max-md:gap-6">
-        <ProductTitle>trade.degencast.fun</ProductTitle>
+        <ProductTitle>Trade</ProductTitle>
         <ProductDesc>
           Your go-to token tracking tool. Stay ahead with real-time insights on
           trending assets. Trade smarter, follow the market, and copy trends
           with ease!
         </ProductDesc>
-        <ProductBtn href={`https://trade.degencast.fun`}>
-          Start Trading 💰
-        </ProductBtn>
+        <FeatureBtn href={`/trade`}>Start Trading 💰</FeatureBtn>
       </div>
     </div>
   );
@@ -82,5 +79,20 @@ function ProductBtn({
         <div className=" text-4xl font-bold max-md:text-3xl">{children}</div>
       </Button>
     </OpenLink2>
+  );
+}
+
+function FeatureBtn({
+  children,
+  href,
+}: PropsWithChildren<{
+  href: string;
+}>) {
+  return (
+    <Link href={href} className="w-full block mx-auto">
+      <Button className="w-full h-[65px] px-6 py-3 rounded-[30px] gap-6 flex">
+        <div className=" text-4xl font-bold max-md:text-3xl">{children}</div>
+      </Button>
+    </Link>
   );
 }

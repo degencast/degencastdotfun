@@ -92,7 +92,7 @@ export default function LandingPageHome() {
         </Card>
       </section>
       <section className=" ">
-        <SectionTitle>👍 Products 👍</SectionTitle>
+        <SectionTitle>👍 FEATURES 👍</SectionTitle>
         <Card className="w-full h-fit overflow-hidden rounded-[30px]">
           <CardContent>
             <Products />

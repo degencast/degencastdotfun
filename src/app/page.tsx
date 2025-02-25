@@ -42,11 +42,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export default function HomePage() {
-  if (DEGENCAST_APP_LANDING_PAGE) {
-    return <LandingPageHome />;
-  }
-  if (DEGENCAST_APP_ONCHAIN_FUTURES) {
-    return <OnchainFuturesHome />;
-  }
-  return <Home />;
+  // if (DEGENCAST_APP_LANDING_PAGE) {
+  //   return <LandingPageHome />;
+  // }
+  // if (DEGENCAST_APP_ONCHAIN_FUTURES) {
+  //   return <OnchainFuturesHome />;
+  // }
+  // return <Home />;
+  return <LandingPageHome />;
 }
