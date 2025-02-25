@@ -152,7 +152,7 @@ export function CreateMemeFormWithApi({
             </FormItem>
           )}
         />
-        <FormField
+        {/* <FormField
           control={form.control}
           name="topicId"
           render={({ field }) => (
@@ -167,7 +167,7 @@ export function CreateMemeFormWithApi({
               <FormMessage />
             </FormItem>
           )}
-        />
+        /> */}
         <FormDescription className="text-center text-base">
           <p>* Transaction fees:pgf (1%), Vitalik (15%), Charity Pool (5%).</p>
           <p>* Your meme coin can be purchased across multiple blockchains.</p>

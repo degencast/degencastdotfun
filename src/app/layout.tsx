@@ -12,6 +12,7 @@ import {
   DEGENCAST_APP_ONCHAIN_FUTURES,
 } from "@/constants";
 import InitSdk from "@/components/InitSdk";
+import Layouts from "@/components/layouts/Layouts";
 
 export const metadata: Metadata = DEGENCAST_APP_LANDING_PAGE
   ? {
@@ -52,13 +53,14 @@ export default function RootLayout({
       <Script src="https://terminal.jup.ag/main-v3.js"></Script>
       <body className={`${font.className} antialiased`}>
         <PrivyProvider>
-          {DEGENCAST_APP_LANDING_PAGE ? (
+          {/* {DEGENCAST_APP_LANDING_PAGE ? (
             <LandingPageRootLayout>{children}</LandingPageRootLayout>
           ) : DEGENCAST_APP_ONCHAIN_FUTURES ? (
             <OnchainFuturesRootLayout>{children}</OnchainFuturesRootLayout>
           ) : (
             <DefaultRootLayout>{children}</DefaultRootLayout>
-          )}
+          )} */}
+          <Layouts>{children}</Layouts>
         </PrivyProvider>
         <Toaster />
         <InitSdk />

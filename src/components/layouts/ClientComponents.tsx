@@ -83,6 +83,21 @@ export function DefaultHeader() {
     </>
   );
 }
+
+export function HeaderRight() {
+  return (
+    <div className={cn("flex items-center gap-4 z-20 ml-auto max-md:gap-2")}>
+      <div className="min-w-[340px] max-md:hidden">
+        <Search />
+      </div>
+      <AboutDialogButton />
+      <div className="max-md:hidden">
+        <LaunchTokenButton />
+      </div>
+      <UserPill size={60} label={logoImageElement} />
+    </div>
+  );
+}
 const logoImageElement = <User2 className="size-12 rounded-full" />;
 export function DefaultMain({ children }: PropsWithChildren) {
   const pathname = usePathname();
