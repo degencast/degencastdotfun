@@ -25,7 +25,7 @@ export default function Products() {
           trending assets. Trade smarter, follow the market, and copy trends
           with ease!
         </ProductDesc>
-        <FeatureBtn href={`/trade`}>Start Trading 💰</FeatureBtn>
+        <FeatureBtn href={`/trades`}>Start Trading 💰</FeatureBtn>
       </div>
     </div>
   );
